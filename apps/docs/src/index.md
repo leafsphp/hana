@@ -1,6 +1,6 @@
 ---
 page: true
-title: Leaf PHP - Simple and elegant PHP
+title: Hana - React for Humans
 ---
 
 <script setup>

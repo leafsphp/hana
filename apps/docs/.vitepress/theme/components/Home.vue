@@ -15,10 +15,10 @@ import Footer from './Footer.vue';
       <img src="/logo-circle.png" class="w:20 mr:_10 d-sm-down:none hero-logo" alt="Leaf" />
       <div class="content-left">
         <h1 class="tagline">
-          <span class="accent">Leaf 3.0</span>
+          <span class="accent">Hana.js</span>
         </h1>
         <p class="description">
-          Simple and elegant PHP
+          React for humans
         </p>
         <p class="actions">
           <vue-mastery-modal />

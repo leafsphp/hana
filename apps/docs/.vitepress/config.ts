@@ -9,27 +9,7 @@ const nav = [
   {
     text: 'Docs',
     activeMatch: `^/(docs|style-guide|examples|tutorial)/`,
-    items: [
-      { text: 'Guide', link: '/docs/introduction/' },
-      { text: 'Tutorial', link: '/tutorial/' },
-      { text: 'Online Playground', link: 'https://sandbox.leafphp.dev/' },
-      {
-        text: 'Leaf Modules',
-        link: '/modules/'
-      },
-      {
-        text: 'Migration from Leaf 2',
-        link: '/docs/migration/introduction'
-      },
-      {
-        text: 'Leaf 2 Docs',
-        link: 'https://archive.leafphp.dev'
-      },
-      {
-        text: 'Changelog',
-        link: '/changes'
-      }
-    ]
+    link: '/docs/introduction/',
   },
   {
     text: 'Ecosystem',
@@ -39,17 +19,9 @@ const nav = [
         text: 'Core Projects',
         items: [
           {
-            text: 'Leaf MVC',
-            link: 'https://mvc.leafphp.dev/'
+            text: 'Leaf PHP',
+            link: 'https://leafphp.dev/'
           },
-          {
-            text: 'Leaf API',
-            link: 'https://api.leafphp.dev/'
-          },
-          {
-            text: 'Leaf Skeleton',
-            link: 'https://skeleton.leafphp.dev/'
-          }
         ]
       },
       {
@@ -57,33 +29,11 @@ const nav = [
         ariaLabel: 'Tooling Menu',
         items: [
           {
-            text: 'Aloe CLI',
-            link: '/aloe-cli/'
-          },
-          {
-            text: 'Leaf CLI',
+            text: 'Hana CLI',
             link: '/docs/cli/'
           },
-          {
-            text: 'Leaf UI',
-            link: 'https://ui.leafphp.dev/'
-          }
         ]
       },
-      {
-        text: 'Resources',
-        ariaLabel: 'Resources Menu',
-        items: [
-          {
-            text: 'Project Showcase',
-            link: '/ecosystem/showcase'
-          },
-          {
-            text: 'Codelabs',
-            link: '/codelabs/'
-          }
-        ]
-      }
     ]
   },
   {
@@ -474,8 +424,8 @@ export default defineConfigWithTheme<ThemeConfig>({
   logo: '/logo-circle.png',
   extends: baseConfig,
   lang: 'en-US',
-  title: 'Leaf PHP',
-  description: 'Leaf PHP - Simple and elegant PHP',
+  title: 'Hanabira',
+  description: 'Hana - React for Humans',
   srcDir: 'src',
   srcExclude: ['tutorial/**/description.md'],
   scrollOffset: 'header',
