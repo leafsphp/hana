@@ -1,0 +1,23 @@
+{
+  "name": "@hanabira/config",
+  "version": "0.0.0",
+  "files": [
+    "eslint",
+    "tsconfig"
+  ],
+  "scripts": {
+    "build": "mkdir dist && cp -R tsconfig dist && cp -R eslint dist && cp next.config.js dist",
+    "release": "pnpm publish"
+  },
+  "dependencies": {
+    "@changesets/cli": "^2.26.2",
+    "next": "^13.4.12"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.17",
+    "tsup": "^6.1.3"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
+}
