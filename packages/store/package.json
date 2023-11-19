@@ -16,15 +16,18 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {
+    "@hanabira/config": "workspace:*",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "eslint": "^7.32.0",
-    "@hanabira/config": "workspace:*",
     "react": "^17.0.2",
     "tsup": "^6.0.1",
     "typescript": "^5.2.2"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "use-force-update": "^1.0.11"
   }
 }

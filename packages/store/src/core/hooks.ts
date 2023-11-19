@@ -1,8 +1,10 @@
 import { SetStateAction } from 'react';
+import useForceUpdate from 'use-force-update';
+
+import Manager from './store';
 
 import { Options, State } from '../@types/core';
 import { SetStoreFn, Reducer } from '../@types/functions';
-import Manager from './store';
 
 export function createStore(options?: Options): void {
   return Manager.store(options);
@@ -18,7 +20,29 @@ export function useStore<StateType = any>(
   item?: string,
   callback?: (value: StateType) => any
 ): [StateType, SetStoreFn<StateType>] {
-  Manager
+  const forceUpdate = useForceUpdate();
+  const removeForceUpdateListener = (): void => {
+    // Manager.removePropertyListener(forceUpdate);
+  };
+
+  const state = Manager.get(item);
+
+  const stateSetter: SetStoreFn<StateType> = (value) => {
+    if (typeof value === 'function') {
+      const callableState = value as (prevState: StateType) => State;
+      Manager.set(callableState(state));
+    } else {
+      Manager.set(value);
+    }
+
+    Manager.applyPluginHook('onSave', Manager.get());
+  };
+
+  // If this component ever updates or unmounts, remove the force update
+  //   listener.
+  // useEffect((): VoidFunction => removeForceUpdateListener, []);
+
+  return [state, stateSetter];
 }
 
 export function useStaticStore<StateType = any>(): [State, SetStoreFn<State>];

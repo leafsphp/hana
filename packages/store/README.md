@@ -23,6 +23,12 @@ createStore({
     },
   },
 });
+```
+
+In your components:
+
+```js
+import { useStore, useReducer } from '@hanabira/store';
 
 /**
  * Use the store in your components.
