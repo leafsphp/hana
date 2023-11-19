@@ -1,0 +1,57 @@
+[
+  {
+    "name": "Michael Darko",
+    "title": "Creator/Maintainer",
+    "company": "Leaf PHP",
+    "projects": [
+      {
+        "label": "leafsphp/*",
+        "url": "https://www.github.com/leafsphp"
+      }
+    ],
+    "location": "Ghana",
+    "languages": ["English"],
+    "socials": {
+      "github": "mychidarko",
+      "twitter": "mychidarko"
+    },
+    "sponsor": false
+  },
+  {
+    "name": "André Rosa",
+    "title": "Developer",
+    "company": "Leaf PHP",
+    "projects": [
+      {
+        "label": "leafsphp/*",
+        "url": "https://www.github.com/leafsphp"
+      }
+    ],
+    "location": "Portugal",
+    "languages": ["Portuguese", "English"],
+    "socials": {
+      "github": "crosa7",
+      "twitter": "andre_crosa"
+    },
+    "sponsor": false
+  },
+  {
+    "name": "Ashley Nyanteh",
+    "title": "Community Manager",
+    "avatarPic": "https://user-images.githubusercontent.com/26604242/221550910-1a711f42-9589-4981-96e0-d0de19778e7a.png",
+    "company": "Leaf PHP",
+    "projects": [
+      {
+        "label": "Leaf PHP Community",
+        "url": "https://bento.me/leafphp"
+      }
+    ],
+    "location": "Ghana",
+    "languages": ["English"],
+    "socials": {
+      "twitter": "ashleybruwaa",
+      "linkedin": "ashley-bruwah-nyanteh-1811691b4"
+    },
+    "sponsor": false
+  }
+]

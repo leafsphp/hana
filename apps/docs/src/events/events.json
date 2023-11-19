@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Building Scalable APIs: Exploring the Power of Leaf PHP Framework",
+    "flyer": "https://pbs.twimg.com/media/F2haAZpWUAI5hb1?format=png&name=900x900",
+    "intro": "Join us for a Twitter space hosted by @DevCongress \"Building Scalable APIs with LeafPHP's Framework - Unleash Scalability and Efficiency.\" Don't miss this opportunity to accelerate your development journey!",
+    "date": "2023-08-14T19:00:00.000Z",
+    "description": [
+      "Join us for a Twitter space hosted by @DevCongress \"Building Scalable APIs with LeafPHP's Framework - Unleash Scalability and Efficiency.\" Don't miss this opportunity to accelerate your development journey!"
+    ],
+    "topics": ["Leaf PHP", "PHP", "Twitter"],
+    "region": ["Twitter"],
+    "location": ["Online"],
+    "website": {
+      "text": "Twitter",
+      "url": "https://twitter.com/i/spaces/1rmxPkMeOyZJN?s=20"
+    },
+    "contact": "ashley@leafphp.dev"
+  }
+]

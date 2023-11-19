@@ -1,0 +1,302 @@
+{
+  "special": [],
+  "sponsor": [
+    {
+      "name": "Netlify",
+      "url": "https://netlify.com",
+      "img": "https://user-images.githubusercontent.com/26604242/186772985-b21c2850-3cc3-41c6-9299-fe9cc5bac46a.png"
+    },
+    {
+      "name": "JetBrains",
+      "url": "https://www.jetbrains.com/",
+      "img": "https://avatars.githubusercontent.com/u/878437?s=200&v=4"
+    },
+    {
+      "name": "Digital Ocean",
+      "url": "https://www.digitalocean.com/",
+      "img": "https://avatars.githubusercontent.com/u/4650108?s=200&v=4"
+    },
+    {
+      "name": "Vano",
+      "url": "#",
+      "img": "https://images.opencollective.com/guest-32634fda/avatar.png"
+    },
+    {
+      "name": "Casprine Asempah",
+      "url": "https://github.com/casprine",
+      "img": "https://images.opencollective.com/guest-c72a498e/avatar.png"
+    },
+    {
+      "name": "Terry B",
+      "url": "https://github.com/terrybr",
+      "img": "https://avatars.githubusercontent.com/u/378788?v=4"
+    },
+    {
+      "name": "Farhan Yahaya",
+      "url": "https://github.com/doc-han",
+      "img": "https://avatars.githubusercontent.com/u/35382021?v=4"
+    },
+    {
+      "name": "Lucas Chaplain",
+      "url": "https://www.lucaschaplain.design/",
+      "img": "https://images.opencollective.com/sptaule/aa5f956/avatar/256.png"
+    },
+    {
+      "name": "Dawuda Iddris",
+      "url": "https://github.com/dawoodiddris",
+      "img": "https://avatars.githubusercontent.com/u/31323758?v=4"
+    },
+    {
+      "name": "King David Gyimah",
+      "url": "https://github.com/kdgyimah",
+      "img": "https://avatars.githubusercontent.com/u/29569594?v=4"
+    },
+    {
+      "name": "Andy Kwesi Apenteng",
+      "url": "https://github.com/andykwesi",
+      "img": "https://avatars.githubusercontent.com/u/36931378?v=4"
+    },
+    {
+      "name": "Aaron Smith",
+      "url": "https://opencollective.com/aaron-smith3",
+      "img": "https://images.opencollective.com/aaron-smith3/08ee620/avatar/256.png"
+    },
+    {
+      "name": "Peter Bogner",
+      "url": "https://opencollective.com/peter-bogner",
+      "img": "https://images.opencollective.com/peter-bogner/avatar/256.png"
+    },
+    {
+      "name": "温柔",
+      "url": "https://github.com/Seevil",
+      "img": "https://avatars.githubusercontent.com/u/7334510?v=4"
+    },
+    {
+      "name": "Diego",
+      "url": "https://opencollective.com/guest-d6b48e41",
+      "img": "https://images.opencollective.com/guest-d6b48e41/avatar.png"
+    }
+  ],
+  "code": [
+    {
+      "name": "Michael Darko",
+      "url": "https://github.com/mychidarko",
+      "img": "https://avatars.githubusercontent.com/u/26604242?v=4"
+    },
+    {
+      "name": "André Rosa",
+      "url": "https://github.com/crosa7",
+      "img": "https://avatars.githubusercontent.com/u/32076460?v=4"
+    },
+    {
+      "name": "Matthew Reichardt",
+      "url": "https://github.com/matthewjamesr",
+      "img": "https://avatars.githubusercontent.com/u/303321?v=4"
+    },
+    {
+      "name": "Daniel Lemes",
+      "url": "https://github.com/lemesdaniel",
+      "img": "https://avatars.githubusercontent.com/u/587064?v=4"
+    },
+    {
+      "name": "Ivan Voitovych",
+      "url": "https://github.com/ivanvoitovych/",
+      "img": "https://avatars.githubusercontent.com/u/9718423?v=4"
+    },
+    {
+      "name": "Joan Miquel",
+      "url": "https://github.com/joanhey",
+      "img": "https://avatars.githubusercontent.com/u/249085?v=4"
+    },
+    {
+      "name": "Ademílson F. Tonato",
+      "url": "https://github.com/ftonato",
+      "img": "https://avatars.githubusercontent.com/u/5417662?v=4"
+    },
+    {
+      "name": "Vitor Rodrigues",
+      "url": "https://github.com/vs0uz4",
+      "img": "https://avatars.githubusercontent.com/u/2080547?v=4"
+    },
+    {
+      "name": "sptaule",
+      "url": "https://github.com/sptaule",
+      "img": "https://avatars.githubusercontent.com/u/5262097?v=4"
+    },
+    {
+      "name": "Tobias Herber",
+      "url": "https://github.com/herber",
+      "img": "https://avatars.githubusercontent.com/u/22559657?&v=4"
+    },
+    {
+      "name": "Pjotr Savitski",
+      "url": "https://github.com/pjotrsavitski",
+      "img": "https://avatars.githubusercontent.com/u/518331?&v=4"
+    },
+    {
+      "name": "Pablo Ferreiro",
+      "url": "https://github.com/pablouser1",
+      "img": "https://avatars.githubusercontent.com/u/17802865?&v=4"
+    },
+    {
+      "name": "jess",
+      "url": "https://github.com/monkeywithacupcake",
+      "img": "https://avatars.githubusercontent.com/u/7316730?v=4"
+    },
+    {
+      "name": "Sergey Romanenko",
+      "url": "https://github.com/Awilum",
+      "img": "https://avatars.githubusercontent.com/u/477114?v=4"
+    },
+    {
+      "name": "Torben Buck",
+      "url": "https://github.com/Rasalas",
+      "img": "https://avatars.githubusercontent.com/u/7483565?v=4"
+    },
+    {
+      "name": "Master Sofua Desmond",
+      "url": "https://github.com/cr34t1ve",
+      "img": "https://avatars.githubusercontent.com/u/37486330?v=4"
+    },
+    {
+      "name": "Ashley",
+      "url": "https://github.com/AshleySymbolic",
+      "img": "https://avatars.githubusercontent.com/u/93997546?v=4"
+    },
+    {
+      "name": "Ivan Brykov",
+      "url": "https://github.com/brykov",
+      "img": "https://avatars.githubusercontent.com/u/476516?v=4"
+    },
+    {
+      "name": "Nur Muhammad",
+      "url": "https://github.com/ngekoding",
+      "img": "https://avatars.githubusercontent.com/u/11625690?v=4"
+    },
+    {
+      "name": "Mauro Callegari",
+      "url": "https://github.com/MauMaxxa",
+      "img": "https://avatars.githubusercontent.com/u/10811652?v=4"
+    },
+    {
+      "name": "Aminur Rahaman",
+      "url": "https://github.com/Aminur670",
+      "img": "https://avatars.githubusercontent.com/u/32174602?v=4"
+    },
+    {
+      "name": "Divine Niiquaye Ibok",
+      "url": "https://github.com/divineniiquaye",
+      "img": "https://avatars.githubusercontent.com/u/53147395?v=4"
+    },
+    {
+      "name": "Rai-Rai",
+      "url": "https://github.com/Rai-Rai",
+      "img": "https://avatars.githubusercontent.com/u/2023869?v=4"
+    },
+    {
+      "name": "Wahyu Kristianto",
+      "url": "https://github.com/Kristories",
+      "img": "https://avatars.githubusercontent.com/u/774338?v=4"
+    },
+    {
+      "name": "Muhammad Ezha Syafaat",
+      "url": "https://github.com/ezhasyafaat",
+      "img": "https://avatars.githubusercontent.com/u/49098343?v=4"
+    },
+    {
+      "name": "Rafael M.",
+      "url": "https://github.com/iamrameffort",
+      "img": "https://avatars.githubusercontent.com/u/52138516?v=4"
+    },
+    {
+      "name": "Pisyek K.",
+      "url": "https://github.com/pisyek",
+      "img": "https://avatars.githubusercontent.com/u/10695986?v=4"
+    },
+    {
+      "name": "Rafael Morais",
+      "url": "https://github.com/rafaelcanical",
+      "img": "https://avatars.githubusercontent.com/u/924985?v=4"
+    },
+    {
+      "name": "wfsdaj",
+      "url": "https://github.com/wfsdaj",
+      "img": "https://avatars.githubusercontent.com/u/36911167?v=4"
+    },
+    {
+      "name": "tedtop",
+      "url": "https://github.com/tedtop",
+      "img": "https://avatars.githubusercontent.com/u/5151307?v=4"
+    },
+    {
+      "name": "Dreamer0x01",
+      "url": "https://github.com/Dreamer0x01",
+      "img": "https://avatars.githubusercontent.com/u/12978365?v=4"
+    },
+    {
+      "name": "N'Bayramberdiyev",
+      "url": "https://github.com/nbayramberdiyev",
+      "img": "https://avatars.githubusercontent.com/u/23094428?v=4"
+    },
+    {
+      "name": "Robin",
+      "url": "https://github.com/MrAnyx",
+      "img": "https://avatars.githubusercontent.com/u/44176707?v=4"
+    },
+    {
+      "name": "Doeke Norg",
+      "url": "https://github.com/doekenorg",
+      "img": "https://avatars.githubusercontent.com/u/529515?v=4"
+    },
+    {
+      "name": "Francisco Ernesto Teixeira",
+      "url": "https://github.com/netinhoteixeira",
+      "img": "https://avatars.githubusercontent.com/u/1563399?v=4"
+    },
+    {
+      "name": "Ryan Gunn",
+      "url": "https://github.com/bluesn4rfer",
+      "img": "https://avatars.githubusercontent.com/u/86926422?v=4"
+    },
+    {
+      "name": "Shahlin Ibrahim",
+      "url": "https://github.com/shahlin",
+      "img": "https://avatars.githubusercontent.com/u/32275018?v=4"
+    },
+    {
+      "name": "Jei",
+      "url": "https://github.com/jeis4n",
+      "img": "https://avatars.githubusercontent.com/u/112980298?v=4"
+    },
+    {
+      "name": "induwara16",
+      "url": "https://github.com/induwara16",
+      "img": "https://avatars.githubusercontent.com/u/122541423?v=4"
+    },
+    {
+      "name": "Dr. Tobias Quathamer",
+      "url": "https://github.com/toddy15",
+      "img": "https://avatars.githubusercontent.com/u/12176273?v=4"
+    },
+    {
+      "name": "Zhangmw",
+      "url": "https://github.com/codediy",
+      "img": "https://avatars.githubusercontent.com/u/20250924?v=4"
+    },
+    {
+      "name": "kczx3",
+      "url": "https://github.com/kczx3",
+      "img": "https://avatars.githubusercontent.com/u/15206020?v=4"
+    },
+    {
+      "name": "1mahdimf",
+      "url": "https://github.com/1mahdimf",
+      "img": "https://avatars.githubusercontent.com/u/8771082?v=4"
+    },
+    {
+      "name": "Shubham Chaudhary",
+      "url": "https://github.com/Shubhamc4",
+      "img": "https://avatars.githubusercontent.com/u/71214613?v=4"
+    }
+  ]
+}

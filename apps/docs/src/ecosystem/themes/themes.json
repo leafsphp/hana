@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Leaf 3 Core",
+    "description": "These are projects built using a basic Leaf 3 scaffold.",
+    "products": [
+      {
+        "name": "[WIP] Complete authentication API",
+        "price": 0,
+        "description": "This project is a complete authentication system built with Leaf 3. It includes a full user registration system, OTP verification, password reset, and more.",
+        "url": "https://github.com/leafsphp/demos/tree/main/leaf/auth",
+        "image": "https://repository-images.githubusercontent.com/214705101/0ff19323-d2c5-46f5-a582-0b1f3a6eabcc",
+        "tags": ["basic"]
+      },
+      {
+        "name": "[WIP] Complete authentication API (Dockerized)",
+        "price": 0,
+        "description": "This project is a complete authentication system built with Leaf 3 and docker. It includes a full user registration system, OTP verification, password reset, and more.",
+        "url": "https://github.com/leafsphp/demos/tree/main/leaf/docker-auth",
+        "image": "https://repository-images.githubusercontent.com/214705101/0ff19323-d2c5-46f5-a582-0b1f3a6eabcc",
+        "tags": ["basic", "docker"]
+      }
+    ]
+  },
+  {
+    "name": "Leaf API v3",
+    "description": "These are projects built using the Leaf API v3 scaffold.",
+    "products": [
+      {
+        "name": "[WIP] Complete authentication API",
+        "price": 0,
+        "description": "This project is a complete authentication system built with Leaf 3. It includes a full user registration system, OTP verification, password reset, and more.",
+        "url": "https://github.com/leafsphp/demos/tree/main/leafAPI/auth",
+        "image": "https://repository-images.githubusercontent.com/214705101/0ff19323-d2c5-46f5-a582-0b1f3a6eabcc",
+        "tags": ["leafAPI", "leaf3"]
+      }
+    ]
+  }
+]

@@ -1,0 +1,34 @@
+/* always show anchors on /api/ and /style-guide/ pages */
+.vt-doc.api h2 .header-anchor,
+.vt-doc.style-guide h2 .header-anchor {
+  opacity: 1;
+}
+
+.vt-doc.sponsor h3 {
+  text-align: center;
+  padding-bottom: 1em;
+  border-bottom: 1px solid var(--vt-c-divider-light);
+}
+
+.vt-doc.sponsor h3 .header-anchor {
+  display: none;
+}
+
+.vt-grid-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 1rem;
+}
+
+.dark .custom-block [class*='language-'] pre {
+  background-color: var(--vt-c-theme-plain);
+}
+
+.dark .custom-block .custom-block {
+  background-color: var(--vt-c-theme-plain) !important;
+  border-left: none !important;
+}
+
+.details.custom-block::before {
+  content: none !important;
+}

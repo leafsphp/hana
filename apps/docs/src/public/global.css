@@ -1,0 +1,109 @@
+.dark .vue-repl[data-v-760f3496] {
+  --bg: #001318 !important;
+  --bg-soft: #002028 !important;
+  --border: #383838;
+  --text-light: #aaa;
+  --color-branding: #42d392;
+  --color-branding-dark: #89ddff;
+}
+
+.dark .CodeMirror {
+  color: var(--symbols);
+  --symbols: #89ddff;
+  --base: #a6accd;
+  --comment: #6d6d6d;
+  --keyword: #e879f9 !important;
+  --string: #bef264 !important;
+  --variable: #22d3ee !important;
+  --number: #f78c6c;
+  --tags: #f07178;
+  --brackets: #9299a6 !important;
+  --property: #f07178;
+  --attribute: #c792ea;
+  --cursor: #fff;
+  --selected-bg: rgba(255, 255, 255, 0.1);
+  --selected-bg-non-focus: rgba(255, 255, 255, 0.15);
+}
+
+.-is-tutorial .VPNavBar {
+  border-bottom: 1px solid var(--vt-c-divider-light) !important;
+}
+
+.video-docs {
+  color: var(--vt-c-text-1) !important;
+}
+
+.video-docs .video-docs-title {
+  font-weight: 600 !important;
+}
+
+.video-docs:not(.tip):not(.info):not(.warning):not(.danger)::before {
+  content: '' !important;
+}
+
+.dark .video-docs div[class*='language-'] {
+  background-color: var(--vt-c-bg) !important;
+}
+
+.CodeMirror pre {
+  font-size: 16px !important;
+}
+
+.vt-doc [class*='language-'] pre, .vt-doc [class*='language-'] code span, .editor-container * {
+  font-family: DM Mono !important;
+}
+
+.dark .cm-variable-2, .dark .cm-atom {
+  color: #fff !important;
+}
+
+.dark .cm-meta {
+  color: #e879f9 !important;
+}
+
+.dark .cm-operator {
+  color: #9299a6 !important;
+}
+
+.CodeMirror-line {
+  padding-left: 20px !important;
+}
+
+.CodeMirror-cursors {
+  margin-top: 14px;
+}
+
+.CodeMirror-gutters {
+  /* padding-top: 10px !important; */
+  border: none !important;
+}
+
+.vue-repl .tab-buttons, .vue-repl .file-selector, .vue-repl .left, .vue-repl {
+  border: none !important;
+}
+
+.vue-repl .output-container {
+  padding: 15px;
+  font-size: 16px;
+}
+
+.next-steps-link {
+  margin: 0px !important;
+}
+
+.vt-box-container .vt-box {
+  padding: 46px 36px !important;
+}
+
+.VPFooter {
+  border-top: none !important;
+}
+
+.join-button {
+  text-decoration: none;
+  background: white;
+  padding: 10px 20px;
+  color: black;
+  font-weight: 700;
+  border-radius: 4px;
+}
