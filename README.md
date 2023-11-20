@@ -56,5 +56,3 @@ This Turborepo includes the following:
 - `@hanabira/config`: shared configs used throughout the monorepo
 - `@leafphp/hana`: SSR bridge for Hana
 - `create-hana-app`: CLI tool for creating new Hana apps
-
-Each package is 100% [TypeScript](https://www.typescriptlang.org/).
