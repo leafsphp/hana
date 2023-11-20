@@ -1,14 +1,9 @@
 import useForceUpdate from 'use-force-update';
-import { SetStateAction, useEffect } from 'react';
 
 import Manager from './store';
 
-import { Options, State } from '../@types/core';
-import { SetStoreFn, Reducer } from '../@types/functions';
-
-export function createStore(options?: Options): void {
-  return Manager.store(options);
-}
+import type { State } from '../@types/core';
+import type { SetStoreFn, Reducer } from '../@types/functions';
 
 export function useStore<StateType = any>(): [State, SetStoreFn<State>];
 export function useStore<StateType = any>(
@@ -87,12 +82,4 @@ export function useStaticReducer<PayloadType = any>(
   return Manager.useReducer<PayloadType>(reducer);
 }
 
-export function setStore<StateType extends State = State>(
-  item: SetStateAction<StateType>
-) {
-  return Manager.set(item);
-}
 
-export function getStore<StateType = any>(item?: string): StateType {
-  return Manager.get(item);
-}

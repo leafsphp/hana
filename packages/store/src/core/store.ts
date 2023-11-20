@@ -182,6 +182,14 @@ export default class Manager {
     return runner<PayloadType>(reducerFunction(reducer.name));
   }
 
+  /**
+   * Reset state to it's default value
+   */
+  public static reset() {
+    this.applyPluginHook('onReset', this._options.defaultState);
+    this.set(this._options.defaultState);
+  }
+
   protected static _pluginInit(plugins: Plugin[]) {
     plugins.forEach((plugin: any) => {
       /**
