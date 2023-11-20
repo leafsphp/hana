@@ -53,15 +53,24 @@ export function useStaticStore<StateType = any>(
 export function useStaticStore<StateType = any>(
   item?: string
 ): [StateType, SetStoreFn<StateType>] {
-  return [
-    Manager.get(item),
-    function (state: SetStateAction<StateType>) {
-      const newState: any = Manager.get();
-      newState[item as any] = state;
+  const stateSetter: SetStoreFn<StateType> = (value) => {
+    let stateValue: State = value as State;
+    let stateToSet = stateValue;
 
-      Manager.set(newState);
-    },
-  ];
+    if (typeof value === 'function') {
+      const callableState = value as (prevState: StateType) => State;
+      stateValue = callableState(Manager.get(item));
+    }
+
+    if (item) {
+      stateToSet = { [item]: stateValue };
+    }
+
+    Manager.set(stateToSet);
+    Manager.applyPluginHook('onSave', Manager.get());
+  };
+
+  return [Manager.get(item), stateSetter];
 }
 
 export function useReducer<PayloadType = any>(
@@ -74,4 +83,8 @@ export function setStore<StateType extends State = State>(
   item: SetStateAction<StateType>
 ) {
   return Manager.set(item);
+}
+
+export function getStore<StateType = any>(item?: string): StateType {
+  return Manager.get(item);
 }
