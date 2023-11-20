@@ -80,7 +80,7 @@ export default class Manager {
    * @param {State} state Current state of the store
    */
   public static applyPluginHook(hook: Hook, state: any) {
-    this._plugins.forEach(plugin => {
+    this._plugins.forEach((plugin) => {
       plugin[hook] && plugin[hook]!(state);
     });
   }
@@ -142,6 +142,44 @@ export default class Manager {
     }
 
     return selectedState;
+  }
+
+  /**
+   * Call a reducer
+   * @param {string|Function} reducer The reducer to call
+   */
+  public static useReducer<PayloadType = any>(
+    reducer: string | Reducer<State>,
+    forceUpdate?: VoidFunction
+  ) {
+    const runner = <PayloadType = any>(reducer: Reducer) => {
+      return async (payload?: PayloadType) => {
+        const state = reducer(Manager.get(), payload);
+        Manager.set(await state);
+
+        if (typeof forceUpdate === 'function') {
+          forceUpdate();
+        }
+      };
+    };
+
+    const reducerFunction = (reducerName: string): Reducer => {
+      const parts = reducerName.split('.');
+      let base: any = this._options.reducers[parts[0]];
+
+      if (parts.length > 1) {
+        base = base[parts[1]];
+      }
+
+      return base;
+    };
+
+    if (typeof reducer === 'string') {
+      return runner<PayloadType>(reducerFunction(reducer));
+    }
+
+    this._options.reducers[reducer.name] = reducer;
+    return runner<PayloadType>(reducerFunction(reducer.name));
   }
 
   protected static _pluginInit(plugins: Plugin[]) {

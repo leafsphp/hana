@@ -76,7 +76,15 @@ export function useStaticStore<StateType = any>(
 export function useReducer<PayloadType = any>(
   reducer: string | Reducer<State>
 ) {
-  //
+  const forceUpdate = useForceUpdate();
+
+  return Manager.useReducer<PayloadType>(reducer, forceUpdate);
+}
+
+export function useStaticReducer<PayloadType = any>(
+  reducer: string | Reducer<State>
+) {
+  return Manager.useReducer<PayloadType>(reducer);
 }
 
 export function setStore<StateType extends State = State>(

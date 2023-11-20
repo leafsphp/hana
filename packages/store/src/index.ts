@@ -3,9 +3,10 @@ export * from './plugins/';
 
 export {
   createStore,
-  useStore,
-  useStaticStore,
   setStore,
   getStore,
+  useStore,
+  useStaticStore,
   useReducer,
+  useStaticReducer,
 } from './core/hooks';
