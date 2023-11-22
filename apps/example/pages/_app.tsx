@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { createRouter } from '@hanabira/router';
 import { PersistedState, createStore } from '@hanabira/store';
 
-import App from './App.tsx';
+import routes from '../.hana/routes.json';
 
 import './index.css';
 
@@ -22,6 +23,9 @@ createStore({
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
+    {createRouter({
+      root: import.meta.url,
+      routes,
+    })}
   </React.StrictMode>
 );
