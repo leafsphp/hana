@@ -13,8 +13,10 @@
   "dependencies": {
     "@hanabira/core": "workspace:*",
     "@hanabira/store": "workspace:*",
+    "@hanabira/router": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.19.0",
     "solid-js": "^1.8.5"
   },
   "devDependencies": {
