@@ -4,6 +4,7 @@ export interface HanaOptions {
 }
 
 export interface RouterOptions {
+  mode: 'history' | 'hash';
   root: string;
   routes: {
     routes: any[];

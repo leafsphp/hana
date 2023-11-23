@@ -24,6 +24,7 @@ createStore({
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     {createRouter({
+      mode: 'hash',
       root: import.meta.url,
       routes,
     })}
