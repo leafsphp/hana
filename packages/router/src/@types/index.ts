@@ -5,8 +5,10 @@ export interface HanaOptions {
 
 export interface RouterOptions {
   root: string;
-  _404: string[];
-  errorPages: string[];
-  loadingPages: string[];
-  routes: any[];
+  routes: {
+    routes: any[];
+    errorPages: string[];
+    loadingPages: string[];
+    _404Page: string;
+  };
 }

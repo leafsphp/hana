@@ -4,21 +4,18 @@ import { RouterOptions } from './@types';
 
 export function createRouter({
   routes: appRoutes,
-  loadingPages,
-  errorPages,
-  _404,
   root,
 }: RouterOptions) {
   const routes: any = [];
 
-  for (const r of appRoutes) {
+  for (const r of appRoutes.routes) {
     let closestErrorPage: any = null;
     let closestLoadingPage: any = null;
 
     let closestErrorMatchLength = 0;
     let closestLoadingMatchLength = 0;
 
-    errorPages.forEach((errorPage) => {
+    appRoutes.errorPages.forEach((errorPage) => {
       const routeFile = r.file.toLowerCase();
       const errorPageFile = errorPage
         .replace(/\_error.(jsx|tsx|js|ts)/, '')
@@ -34,7 +31,7 @@ export function createRouter({
       }
     });
 
-    loadingPages.forEach((loadingPage) => {
+    appRoutes.loadingPages.forEach((loadingPage) => {
       const routeFile = r.file.toLowerCase();
       const loadingPageFile = loadingPage
         .replace(/\_loading.(jsx|tsx|js|ts)/, '')
@@ -87,13 +84,13 @@ export function createRouter({
     });
   }
 
-  if (_404) {
+  if (appRoutes._404Page) {
     routes.push({
       path: '*',
       element: createElement(
         lazy(
           () =>
-            import(/* @vite-ignore */ `${root.replace('_app.tsx', _404[0])}`)
+            import(/* @vite-ignore */ `${root.replace('_app.tsx', appRoutes._404Page[0])}`)
         )
       ),
     });

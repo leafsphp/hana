@@ -102,22 +102,7 @@ export default function hana(options: HanaOptions): Plugin {
     fs.mkdirSync(path.resolve(options.root, '.hana'), { recursive: true });
     fs.writeFileSync(
       path.resolve(options.root, '.hana/routes.json'),
-      JSON.stringify(routes)
-    );
-
-    fs.writeFileSync(
-      path.resolve(options.root, '.hana/error-pages.json'),
-      JSON.stringify(errorPages)
-    );
-
-    fs.writeFileSync(
-      path.resolve(options.root, '.hana/loading-pages.json'),
-      JSON.stringify(loadingPages)
-    );
-
-    fs.writeFileSync(
-      path.resolve(options.root, '.hana/_404-page.json'),
-      JSON.stringify([_404Page])
+      JSON.stringify({ routes, errorPages, loadingPages, _404Page })
     );
   };
 
