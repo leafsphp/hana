@@ -1,4 +1,5 @@
 export default function Index() {
-  __dirname;
+  // uncomment the line below to see the error screen
+  // __dirname;
   return <div>Index</div>;
 }

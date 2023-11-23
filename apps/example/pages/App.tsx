@@ -8,12 +8,23 @@ import {
   useStaticStore,
   useStore,
 } from '@hanabira/store';
+import { useNavigate } from '@hanabira/router';
 
 function App() {
-  // const [count, setCount] = useStore<number>('count');
-  const increment = useReducer('INCREMENT');
-  // const [count, setCount] = useStaticStore<number>('count');
+  // useNavigate is a hook that returns a function that can be used to navigate
+  const navigate = useNavigate();
 
+  // this calls the increment reducer which increments the count state
+  const increment = useReducer('INCREMENT');
+
+  // this is a hook that returns the count state and a dispatch function
+  const [count] = useStore<number>('count');
+
+  // this is a hook that returns the count state and a dispatch function but
+  // the count is not updated when the state changes
+  const [, setStaticCount] = useStaticStore<number>('count');
+
+  // getStore is a function that returns the state of the store
   console.log('count', getStore('count'));
 
   return (
@@ -28,14 +39,15 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={increment}>count is {getStore('count')}</button>
+        <button onClick={increment}>count is {count}</button> <br />
+        <button onClick={() => setStaticCount((count) => count + 1)}>
+          count is {count} but won't show updates
+        </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <button onClick={() => navigate('/dashboard/van')}>navigate</button>
     </>
   );
 }

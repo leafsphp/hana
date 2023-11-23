@@ -24,7 +24,8 @@ createStore({
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     {createRouter({
-      mode: 'hash',
+      usePageTransition: true,
+      mode: 'history',
       root: import.meta.url,
       routes,
     })}

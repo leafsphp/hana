@@ -1,3 +1,12 @@
+import { useNavigate } from '@hanabira/router';
+
 export default function Van() {
-  return <div>Van</div>;
+  const navigate = useNavigate();
+
+  return (
+    <div>
+      Van
+      <button onClick={() => navigate('/app')}>Navigate</button>
+    </div>
+  );
 }
