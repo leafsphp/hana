@@ -1,0 +1,42 @@
+{
+  "name": "create-hana-app",
+  "version": "0.0.0",
+  "type": "module",
+  "bin": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "license": "MIT",
+  "files": [
+    "dist",
+    "templates"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts",
+    "dev": "tsup src/index.ts --format esm,cjs --watch --dts",
+    "lint": "eslint \"src/**/*.ts*\"",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leafsphp/hana.git",
+    "directory": "packages/create-hana-app"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "minimist": "^1.2.8",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@hanabira/config": "workspace:*",
+    "@types/minimist": "^1.2.4",
+    "@types/node": "^18.11.17",
+    "@types/prompts": "^2.4.9",
+    "eslint": "^7.32.0",
+    "tsup": "^6.0.1",
+    "typescript": "^5.2.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

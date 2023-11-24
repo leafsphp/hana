@@ -11,7 +11,7 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist && rm -rf .vite"
   },
   "dependencies": {
-    "@hanabira/core": "workspace:*",
+    "@hanabira/auth": "workspace:*",
     "@hanabira/store": "workspace:*",
     "@hanabira/router": "workspace:*",
     "react": "^18.2.0",
