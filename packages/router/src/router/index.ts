@@ -4,7 +4,7 @@ export {
   useNavigate,
   useParams,
   useSearchParams,
+  useBeforeUnload,
 } from 'react-router-dom';
 
 export * from './core';
-export * from './navigation';

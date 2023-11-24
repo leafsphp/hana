@@ -4,6 +4,7 @@ export interface HanaOptions {
 }
 
 export interface RouterOptions {
+  usePageTransition?: boolean;
   mode: 'history' | 'hash';
   root: string;
   routes: {

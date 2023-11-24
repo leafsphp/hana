@@ -5,9 +5,10 @@ import {
   createHashRouter,
 } from 'react-router-dom';
 
-import { RouterOptions } from '../@types';
+import type { RouterOptions } from '../@types';
 
 export function createRouter({
+  usePageTransition = false,
   mode = 'history',
   routes: appRoutes,
   root,
@@ -115,5 +116,8 @@ export function createRouter({
   return createElement(RouterProvider, {
     router:
       mode === 'hash' ? createHashRouter(routes) : createBrowserRouter(routes),
+    future: {
+      v7_startTransition: usePageTransition,
+    },
   });
 }
