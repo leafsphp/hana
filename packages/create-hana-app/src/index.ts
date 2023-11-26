@@ -4,10 +4,14 @@ import chalk from 'chalk';
 import prompts from 'prompts';
 import minimist from 'minimist';
 
+import { $ } from 'execa';
+
+import { copyDir, pkgFromUserAgent } from './utils';
+
+const __dirname = path.resolve();
+
 const cwd = process.cwd();
 const argv = minimist<{
-  js?: boolean;
-  ts?: boolean;
   template?: string;
 }>(process.argv.slice(2));
 
@@ -96,13 +100,46 @@ const main = async () => {
   if (fs.existsSync(appRoot)) {
     console.log(chalk.red('✖') + ` Directory ${appRoot} already exists`);
     return;
-  } else {
-    fs.mkdirSync(appRoot, { recursive: true });
   }
 
   const pkgInfo = pkgFromUserAgent(process.env.npm_config_user_agent);
   const pkgManager = pkgInfo ? pkgInfo.name : 'npm';
-  const isYarn1 = pkgManager === 'yarn' && pkgInfo?.version.startsWith('1.');
+  const isYarn = pkgManager === 'yarn';
+
+  const selectedTemplate = path.join(
+    __dirname,
+    '..',
+    'templates',
+    template.name
+  );
+
+  try {
+    copyDir(selectedTemplate, appRoot);
+  } catch (err) {
+    console.log(chalk.red('✖') + ' Could not scaffold project');
+  }
+
+  console.log(chalk.green('✔') + ' Project scaffolded successfully');
+
+  const packageJsonPath = path.join(appRoot, 'package.json');
+  const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
+  packageJson.name = directory;
+  fs.writeFileSync(
+    packageJsonPath,
+    JSON.stringify(packageJson, null, 2) + '\n'
+  );
+
+  console.log(chalk.green('✔') + ' Package.json updated');
+
+  const installArgs = isYarn ? '' : 'install';
+  const installOptions: any = {
+    cwd: appRoot,
+    stdio: 'inherit',
+  };
+
+  await $(installOptions)`${pkgManager} ${installArgs}`;
+
+  console.log(chalk.green('✔') + ' Dependencies installed');
 };
 
 main().catch((err) => {
