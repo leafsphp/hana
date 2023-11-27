@@ -1,10 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-
-import { createRouter } from '@hanabira/router';
 import { PersistedState, createStore } from '@hanabira/store';
-
-import routes from '../.hana/routes.json';
 
 import './index.css';
 
@@ -20,6 +14,7 @@ createStore({
   state: {
     count: 0,
   },
+
   // reducers are functions that allow you to update your state
   // you can call them using useReducer('REDUCER_NAME')
   reducers: {
@@ -37,13 +32,13 @@ createStore({
   ],
 });
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    {createRouter({
-      usePageTransition: true,
-      mode: 'history',
-      root: import.meta.url,
-      routes,
-    })}
-  </React.StrictMode>
-);
+const Application = ({ children }) => {
+  /**
+   * This is the root of your application. You can add any
+   * global components here. You can also add a global layout
+   * here if you want to wrap all of your pages in a layout.
+   */
+  return <>{children}</>;
+};
+
+export default Application;
