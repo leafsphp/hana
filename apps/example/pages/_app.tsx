@@ -1,9 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { createRouter } from '@hanabira/router';
+import nprogress from 'nprogress';
+import React, { useEffect } from 'react';
 import { PersistedState, createStore } from '@hanabira/store';
-
-import routes from '../.hana/routes.json';
 
 import './index.css';
 
@@ -21,13 +18,20 @@ createStore({
   plugins: [PersistedState],
 });
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    {createRouter({
-      usePageTransition: true,
-      mode: 'history',
-      root: import.meta.url,
-      routes,
-    })}
-  </React.StrictMode>
-);
+const Application: React.FC<React.PropsWithChildren> = ({ children }) => {
+  useEffect(() => {
+    nprogress.start();
+
+    setTimeout(() => {
+      // will figure this out later
+      // this won't work because it needs the location object
+      // that is passed to the router, but at this point the router
+      // hasn't been initialized yet
+      nprogress.done();
+    }, 3000);
+  }, []);
+
+  return <>{children}</>;
+};
+
+export default Application;

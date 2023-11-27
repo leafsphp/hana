@@ -1,11 +1,6 @@
-export interface HanaOptions {
-  root: string;
-  typescript?: boolean;
-}
-
 export interface RouterOptions {
   usePageTransition?: boolean;
-  mode: 'history' | 'hash';
+  mode?: 'history' | 'hash';
   root: string;
   routes: {
     routes: any[];
@@ -13,4 +8,8 @@ export interface RouterOptions {
     loadingPages: string[];
     _404Page: string;
   };
+}
+
+export interface HanaOptions extends Omit<RouterOptions, 'routes'> {
+  typescript?: boolean;
 }

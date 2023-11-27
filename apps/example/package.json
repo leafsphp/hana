@@ -12,8 +12,10 @@
   },
   "dependencies": {
     "@hanabira/auth": "workspace:*",
-    "@hanabira/store": "workspace:*",
     "@hanabira/router": "workspace:*",
+    "@hanabira/store": "workspace:*",
+    "@types/nprogress": "^0.2.3",
+    "nprogress": "^0.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.19.0",

@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["pages"],
+  "include": ["pages", ".hana/_app.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

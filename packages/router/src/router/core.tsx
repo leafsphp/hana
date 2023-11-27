@@ -58,14 +58,23 @@ export function createRouter({
     let LoadingComponent: any;
 
     const Component = lazy(
-      () => import(/* @vite-ignore */ `${root.replace('_app.tsx', r.file)}`)
+      () =>
+        import(
+          /* @vite-ignore */ `${root.replace(
+            '.hana/_app.tsx',
+            `pages/${r.file}`
+          )}`
+        )
     );
 
     if (closestErrorPage) {
       ErrorComponent = lazy(
         () =>
           import(
-            /* @vite-ignore */ `${root.replace('_app.tsx', closestErrorPage)}`
+            /* @vite-ignore */ `${root.replace(
+              '.hana/_app.tsx',
+              `pages/${closestErrorPage}`
+            )}`
           )
       );
     }
@@ -74,7 +83,10 @@ export function createRouter({
       LoadingComponent = lazy(
         () =>
           import(
-            /* @vite-ignore */ `${root.replace('_app.tsx', closestLoadingPage)}`
+            /* @vite-ignore */ `${root.replace(
+              '.hana/_app.tsx',
+              `pages/${closestLoadingPage}`
+            )}`
           )
       );
     }

@@ -25,6 +25,36 @@ export default function hana(options: HanaOptions): Plugin {
   const isLoadingFile = (file: string) =>
     isJavascriptFile(file) && file.includes('/_loading.');
 
+  const setupAppFile = () => {
+    const appFile = path.resolve(options.root, '.hana', `_app.${options.typescript ? 'tsx' : 'jsx'}`);
+
+    if (!fs.existsSync(appFile)) {
+      fs.writeFileSync(
+        appFile,
+        `import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { createRouter } from '@hanabira/router';
+
+import routes from './routes.json';
+import Application from './../pages/_app';
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <Application>
+      {createRouter({
+        usePageTransition: ${options.usePageTransition ?? false},
+        mode: ${options.mode ?? 'history'},
+        root: import.meta.url,
+        routes,
+      })}
+    </Application>
+  </React.StrictMode>
+);
+`
+      );
+    }
+  };
+
   const buildRoutes = () => {
     console.log('Building your routes...');
 
@@ -104,6 +134,8 @@ export default function hana(options: HanaOptions): Plugin {
       path.resolve(options.root, '.hana/routes.json'),
       JSON.stringify({ routes, errorPages, loadingPages, _404Page })
     );
+
+    setupAppFile();
   };
 
   return {
