@@ -11,6 +11,7 @@ export class PersistedState implements PluginClass {
     key: 'hana-store',
     env: 'react',
     exclude: [],
+    include: [],
   };
 
   public constructor(options?: PersistPluginOptions) {
@@ -68,15 +69,27 @@ export class PersistedState implements PluginClass {
       return;
     }
 
-    this._options.exclude.forEach((item) => {
-      if (state[item]) {
-        delete state[item];
-      }
-    });
+    let finalState: State = {};
+
+    if (this._options.include.length > 0) {
+      this._options.include.forEach((item) => {
+        if (state[item]) {
+          finalState[item] = state[item];
+        }
+      });
+    } else {
+      this._options.exclude.forEach((item) => {
+        if (state[item]) {
+          delete state[item];
+        }
+      });
+
+      finalState = state;
+    }
 
     return await this._options.storage?.setItem?.(
       this._options.key,
-      JSON.stringify(state)
+      JSON.stringify(finalState)
     );
   }
 
