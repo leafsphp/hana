@@ -31,8 +31,8 @@ Hana is a simple, lightweight and easy to use React framework. It focuses on dev
 
 - Powerful routing
 - Human state management
-- Dead simple server/client side authentication
-- SSR support with [Leaf PHP](https://leafphp.dev)
+- Dead simple server/client side authentication (coming soon)
+- SSR support with [Leaf PHP](https://leafphp.dev) (coming soon)
 
 *You can call it React on the go.*
 
