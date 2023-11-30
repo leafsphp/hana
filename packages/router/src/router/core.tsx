@@ -12,7 +12,7 @@ export function createRouter({
   mode = 'history',
   routes: appRoutes,
   root,
-}: RouterOptions) {
+}: RouterOptions): React.ReactNode {
   const routes: any = [];
 
   for (const r of appRoutes.routes) {

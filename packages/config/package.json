@@ -6,7 +6,7 @@
     "tsconfig"
   ],
   "scripts": {
-    "build": "mkdir dist && cp -R tsconfig dist && cp -R eslint dist && cp next.config.js dist",
+    "build": "rm -rf dist && mkdir dist && cp -R tsconfig dist && cp -R eslint dist",
     "release": "pnpm publish"
   },
   "dependencies": {

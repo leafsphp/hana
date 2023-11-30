@@ -17,5 +17,16 @@
     "prettier": "^2.5.1",
     "turbo": "latest"
   },
-  "packageManager": "pnpm@8.9.0"
+  "packageManager": "pnpm@8.9.0",
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@algolia/client-search",
+        "react",
+        "react-dom",
+        "@types/react",
+        "search-insights"
+      ]
+    }
+  }
 }
