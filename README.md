@@ -49,7 +49,6 @@ npm create hana-app@latest
 This Turborepo includes the following:
 
 - `docs`: Documentation powered by [Vitepress](https://vitepress.vuejs.org/)
-- `@hanabira/core`: core library for Hana
 - `@hanabira/store`: state management library for Hana
 - `@hanabira/auth`: authentication library for Hana
 - `@hanabira/router`: router library for Hana
