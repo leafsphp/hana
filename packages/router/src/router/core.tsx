@@ -5,7 +5,7 @@ import {
   createHashRouter,
 } from 'react-router-dom';
 
-import type { RouterOptions } from '../@types';
+import type { RouteItem, RouterOptions } from '../@types';
 
 export function createRouter({
   usePageTransition = false,
@@ -16,15 +16,15 @@ export function createRouter({
   const routes: any = [];
 
   for (const r of appRoutes.routes) {
-    let closestErrorPage: any = null;
-    let closestLoadingPage: any = null;
+    let closestErrorPage: RouteItem | null = null;
+    let closestLoadingPage: RouteItem | null = null;
 
     let closestErrorMatchLength = 0;
     let closestLoadingMatchLength = 0;
 
     appRoutes.errorPages.forEach((errorPage) => {
       const routeFile = r.file.toLowerCase();
-      const errorPageFile = errorPage
+      const errorPageFile = errorPage.file
         .replace(/\_error.(jsx|tsx|js|ts)/, '')
         .toLowerCase();
 
@@ -40,7 +40,7 @@ export function createRouter({
 
     appRoutes.loadingPages.forEach((loadingPage) => {
       const routeFile = r.file.toLowerCase();
-      const loadingPageFile = loadingPage
+      const loadingPageFile = loadingPage.file
         .replace(/\_loading.(jsx|tsx|js|ts)/, '')
         .toLowerCase();
 
@@ -57,38 +57,14 @@ export function createRouter({
     let ErrorComponent: any;
     let LoadingComponent: any;
 
-    const Component = lazy(
-      () =>
-        import(
-          /* @vite-ignore */ `${root.replace(
-            '.hana/_app.tsx',
-            `pages/${r.file}`
-          )}`
-        )
-    );
+    const Component = lazy(() => r.component);
 
     if (closestErrorPage) {
-      ErrorComponent = lazy(
-        () =>
-          import(
-            /* @vite-ignore */ `${root.replace(
-              '.hana/_app.tsx',
-              `pages/${closestErrorPage}`
-            )}`
-          )
-      );
+      ErrorComponent = lazy(() => closestErrorPage!.component);
     }
 
     if (closestLoadingPage) {
-      LoadingComponent = lazy(
-        () =>
-          import(
-            /* @vite-ignore */ `${root.replace(
-              '.hana/_app.tsx',
-              `pages/${closestLoadingPage}`
-            )}`
-          )
-      );
+      LoadingComponent = lazy(() => closestLoadingPage!.component);
     }
 
     routes.push({
@@ -103,20 +79,10 @@ export function createRouter({
     });
   }
 
-  if (appRoutes._404Page) {
+  if (appRoutes._404Page.file) {
     routes.push({
       path: '*',
-      element: createElement(
-        lazy(
-          () =>
-            import(
-              /* @vite-ignore */ `${root.replace(
-                '_app.tsx',
-                appRoutes._404Page[0]
-              )}`
-            )
-        )
-      ),
+      element: createElement(lazy(() => appRoutes._404Page!.component!)),
     });
   } else {
     routes.push({

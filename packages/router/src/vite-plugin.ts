@@ -25,8 +25,12 @@ export default function hana(options: HanaOptions): Plugin {
   const isLoadingFile = (file: string) =>
     isJavascriptFile(file) && file.includes('/_loading.');
 
-  const setupAppFile = () => {
-    const appFile = path.resolve(options.root, '.hana', `_app.${options.typescript ? 'tsx' : 'jsx'}`);
+  const setupAppFile = (routes: any) => {
+    const appFile = path.resolve(
+      options.root,
+      '.hana',
+      `_app.${options.typescript ? 'tsx' : 'jsx'}`
+    );
 
     if (!fs.existsSync(appFile)) {
       fs.writeFileSync(
@@ -35,7 +39,33 @@ export default function hana(options: HanaOptions): Plugin {
 import ReactDOM from 'react-dom/client';
 import { createRouter } from '@hanabira/router';
 
-import routes from './routes.json';
+${routes.routes
+  ?.map(
+    (appRoute: any) =>
+      `const ${appRoute.component} = import('../pages${appRoute.file}');`
+  )
+  .join('\n')}
+
+${routes.errorPages
+  ?.map(
+    (errorPage: any) =>
+      `const ${errorPage
+        .replace(/\//g, '_')
+        .replace(/\./g, '_')} = import('../pages${errorPage}');`
+  )
+  .join('\n')}
+
+${routes.loadingPages
+  ?.map(
+    (loadingPage: any) =>
+      `const ${loadingPage
+        .replace(/\//g, '_')
+        .replace(/\./g, '_')} = import('../pages${loadingPage}');`
+  )
+  .join('\n')}
+
+${routes._404Page ? `const _404 = import('./../pages${routes._404Page}');` : ''}
+
 import Application from './../pages/_app';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -43,9 +73,51 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <Application>
       {createRouter({
         usePageTransition: ${options.usePageTransition ?? false},
-        mode: ${options.mode ?? 'history'},
+        mode: '${options.mode ?? 'history'}',
         root: import.meta.url,
-        routes,
+        routes: {
+          routes: [
+            ${routes.routes
+              ?.map(
+                (appRoute: any) =>
+                  `{
+                file: '${appRoute.file}',
+                path: '${appRoute.path}',
+                component: ${appRoute.component},
+              },`
+              )
+              .join('\n')}
+          ],
+          errorPages: [
+            ${routes.errorPages
+              ?.map(
+                (errorPage: any) =>
+                  `{
+                file: '${errorPage}',
+                component: ${errorPage.replace(/\//g, '_').replace(/\./g, '_')},
+              },`
+              )
+              .join('\n')}
+          ],
+          loadingPages: [
+            ${routes.loadingPages
+              ?.map(
+                (loadingPage: any) =>
+                  `{
+                file: '${loadingPage}',
+                component: ${loadingPage
+                  .replace(/\//g, '_')
+                  .replace(/\./g, '_')},
+              },`
+              )
+              .join('\n')}
+          ],
+          _404Page: ${
+            routes._404Page
+              ? `{ file: '${routes._404Page}', component: _404 }`
+              : 'undefined'
+          },
+        },
       })}
     </Application>
   </React.StrictMode>
@@ -135,16 +207,18 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       JSON.stringify({ routes, errorPages, loadingPages, _404Page })
     );
 
-    setupAppFile();
+    setupAppFile({ routes, errorPages, loadingPages, _404Page });
   };
 
   return {
     name: 'hana',
 
     configResolved(config) {
-      if (config.command === 'serve') {
-        buildRoutes();
+      if (config.command === 'build') {
+        console.log('Starting production build...');
       }
+
+      buildRoutes();
     },
 
     async handleHotUpdate({ file, read }) {

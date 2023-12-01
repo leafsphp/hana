@@ -3,12 +3,18 @@ export interface RouterOptions {
   mode?: 'history' | 'hash';
   root: string;
   routes: {
-    routes: any[];
-    errorPages: string[];
-    loadingPages: string[];
-    _404Page: string;
+    routes: RouteItem[];
+    errorPages: RouteItem[];
+    loadingPages: RouteItem[];
+    _404Page: Partial<RouteItem>;
   };
 }
+
+export type RouteItem = {
+  path?: string;
+  file: string;
+  component: Promise<any>;
+};
 
 export interface HanaOptions extends Omit<RouterOptions, 'routes'> {
   typescript?: boolean;
