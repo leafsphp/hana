@@ -1,10 +1,12 @@
+#!/usr/bin/env node
+
 import fs from 'fs';
 import path from 'path';
-import execa from 'execa';
 import chalk from 'chalk';
 import prompts from 'prompts';
 import minimist from 'minimist';
 
+import { $ } from 'execa';
 import { copyDir, pkgFromUserAgent } from './utils';
 
 const __dirname = path.resolve();
@@ -136,7 +138,7 @@ const main = async () => {
     stdio: 'inherit',
   };
 
-  await execa.$(installOptions)`${pkgManager} ${installArgs}`;
+  await $(installOptions)`${pkgManager} ${installArgs}`;
 
   console.log(chalk.green('✔') + ' Dependencies installed');
 };
