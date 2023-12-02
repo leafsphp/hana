@@ -3,8 +3,8 @@
   "display": "Console bin",
   "extends": "./base.json",
   "compilerOptions": {
-    "lib": ["ES2015"],
-    "module": "ESNext",
-    "target": "ES6",
+    "target": "ES2022",
+    "module": "ES2020",
+    "moduleResolution": "bundler"
   }
 }

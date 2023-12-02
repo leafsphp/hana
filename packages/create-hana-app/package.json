@@ -1,6 +1,6 @@
 {
   "name": "create-hana-app",
-  "version": "0.4.0",
+  "version": "0.8.0",
   "type": "module",
   "bin": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -8,11 +8,10 @@
   "sideEffects": false,
   "license": "MIT",
   "files": [
-    "dist",
-    "templates"
+    "dist"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --format esm,cjs --dts",
+    "build": "tsup src/index.ts --format esm,cjs --dts && cp -r templates dist/templates",
     "dev": "tsup src/index.ts --format esm,cjs --watch --dts",
     "lint": "eslint \"src/**/*.ts*\"",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
