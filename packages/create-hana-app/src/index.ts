@@ -7,10 +7,11 @@ import prompts from 'prompts';
 import minimist from 'minimist';
 
 import { $ } from 'execa';
+import { fileURLToPath } from 'url';
 
 import { copyDir, pkgFromUserAgent } from './utils';
 
-const __dirname = path.resolve();
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const cwd = process.cwd();
 const argv = minimist<{
@@ -108,22 +109,15 @@ const main = async () => {
   const pkgManager = pkgInfo ? pkgInfo.name : 'npm';
   const isYarn = pkgManager === 'yarn';
 
-  const selectedTemplate = path.join(
-    __dirname,
-    '..',
-    'templates',
-    template.name
-  );
+  const selectedTemplate = path.join(__dirname, 'templates', template.name);
 
   try {
     copyDir(selectedTemplate, appRoot);
     console.log(chalk.green('✔') + ' Project scaffolded successfully');
   } catch (err) {
+    console.log(err);
     console.log(chalk.red('✖') + ' Could not scaffold project');
   }
-
-  // wait for the copy to finish for whatever reason
-  await new Promise((resolve) => setTimeout(resolve, 1000));
 
   const packageJsonPath = path.join(appRoot, 'package.json');
   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
