@@ -5,6 +5,5 @@ export default defineConfig({
     '.': 'src/index.ts',
   },
   format: ['cjs', 'esm'],
-  external: ['react'],
   dts: true,
 });

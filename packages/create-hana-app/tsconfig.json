@@ -1,5 +1,4 @@
 {
-  "extends": "@hanabira/config/tsconfig/react-library.json",
-  "include": ["."],
-  "exclude": ["dist", "build", "node_modules"]
+  "extends": "@hanabira/config/tsconfig/bin.json",
+  "exclude": ["dist", "template"]
 }
