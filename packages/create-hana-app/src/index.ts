@@ -7,6 +7,7 @@ import prompts from 'prompts';
 import minimist from 'minimist';
 
 import { $ } from 'execa';
+
 import { copyDir, pkgFromUserAgent } from './utils';
 
 const __dirname = path.resolve();
@@ -116,15 +117,19 @@ const main = async () => {
 
   try {
     copyDir(selectedTemplate, appRoot);
+    console.log(chalk.green('✔') + ' Project scaffolded successfully');
   } catch (err) {
     console.log(chalk.red('✖') + ' Could not scaffold project');
   }
 
-  console.log(chalk.green('✔') + ' Project scaffolded successfully');
+  // wait for the copy to finish for whatever reason
+  await new Promise((resolve) => setTimeout(resolve, 1000));
 
   const packageJsonPath = path.join(appRoot, 'package.json');
   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
+
   packageJson.name = directory;
+
   fs.writeFileSync(
     packageJsonPath,
     JSON.stringify(packageJson, null, 2) + '\n'
