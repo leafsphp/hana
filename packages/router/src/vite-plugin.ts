@@ -44,25 +44,21 @@ ${routes.routes
     (appRoute: any) =>
       `const ${appRoute.component} = import('../pages${appRoute.file}');`
   )
-  .join('\n')}
-
-${routes.errorPages
-  ?.map(
-    (errorPage: any) =>
-      `const ${errorPage
-        .replace(/\//g, '_')
-        .replace(/\./g, '_')} = import('../pages${errorPage}');`
-  )
-  .join('\n')}
-
-${routes.loadingPages
-  ?.map(
-    (loadingPage: any) =>
-      `const ${loadingPage
-        .replace(/\//g, '_')
-        .replace(/\./g, '_')} = import('../pages${loadingPage}');`
-  )
-  .join('\n')}
+  .join('\n')}${routes.errorPages
+          ?.map(
+            (errorPage: any) =>
+              `const ${errorPage
+                .replace(/\//g, '_')
+                .replace(/\./g, '_')} = import('../pages${errorPage}');`
+          )
+          .join('\n')}${routes.loadingPages
+          ?.map(
+            (loadingPage: any) =>
+              `const ${loadingPage
+                .replace(/\//g, '_')
+                .replace(/\./g, '_')} = import('../pages${loadingPage}');`
+          )
+          .join('\n')}
 
 ${routes._404Page ? `const _404 = import('./../pages${routes._404Page}');` : ''}
 
