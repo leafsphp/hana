@@ -64,7 +64,7 @@ ${routes._404Page ? `const _404 = import('./../pages${routes._404Page}');` : ''}
 
 import Application from './../pages/_app';
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById('root')${options.typescript ? '!' : ''}).render(
   <React.StrictMode>
     <Application>
       {createRouter({
