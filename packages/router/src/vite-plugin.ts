@@ -111,7 +111,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           _404Page: ${
             routes._404Page
               ? `{ file: '${routes._404Page}', component: _404 }`
-              : `{ file: null, component: null }`
+              : `{ file: undefined, component: undefined }`
           },
         },
       })}
