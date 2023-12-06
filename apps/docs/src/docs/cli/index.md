@@ -1,25 +1,25 @@
-# Leaf CLI
+# create-hana-app
 
 <!-- markdownlint-disable no-inline-html -->
 
-<script setup>
+<!-- <script setup>
 import VideoDocs from '/@theme/components/VideoDocs.vue'
-</script>
+</script> -->
 
 <p class="flex flex:start-all" style="gap:10px;">
-  <img src="https://poser.pugx.org/leafs/cli/v/stable" class="m:0" alt="">
-  <img src="https://poser.pugx.org/leafs/cli/downloads" class="m:0" alt="">
+  <a href="https://npmjs.com/package/create-hana-app"><img src="https://img.shields.io/npm/v/create-hana-app" alt="npm version" height="18"></a>
+  <img src="https://img.shields.io/npm/dt/create-hana-app" class="m:0" alt="">
 </p>
 
 Leaf CLI is a simple command line tool for creating and interacting with your Leaf applications. It gives you the options to create projects, install dependencies, run scripts, scaffold items and much more.
 
 ## Installation
 
-<VideoDocs
+<!-- <VideoDocs
   subject="Watch the leaf CLI installation walkthrough"
   description="You can take a look at our leaf cli setup walkthrough on youtube."
   link="https://www.youtube.com/embed/yb3LUYHtopQ"
-/>
+/> -->
 
 You can install the leaf cli using composer. Composer is a dependency manager for PHP. You can follow the instructions on [getcomposer.org](https://getcomposer.org) to install composer on your system. From there, you should have access to the `composer` command from anywhere on your system.
 

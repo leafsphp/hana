@@ -116,30 +116,14 @@ const mainSidebar = [
     collapsed: true,
     items: [
       { text: 'Introduction', link: '/docs/introduction/' },
-      { text: 'Why Leaf?', link: '/docs/introduction/why' },
       { text: 'Installation', link: '/docs/introduction/installation' },
-      { text: 'Leaf + MVC', link: '/docs/mvc/' },
-      { text: 'Using Docker', link: '/docs/introduction/docker' },
-      { text: 'Migration Guide', link: '/docs/migration/other' },
+      { text: 'Project Structure', link: '/docs/introduction/structure' },
+      // { text: 'Migration Guide', link: '/docs/migration/other' },
+      { text: 'create-hana-app', link: '/docs/cli/' },
     ]
   },
   {
-    text: 'Introduction',
-    collapsible: true,
-    collapsed: true,
-    items: [
-      { text: 'Leaf CLI', link: '/docs/cli/' },
-      { text: 'Modules', link: '/modules/' },
-      { text: 'Functional Mode', link: '/docs/tooling/functions' },
-      { text: 'Leaf tutorial', link: '/tutorial/' },
-      { text: 'Your first app', link: '/docs/introduction/first-app' },
-      { text: 'Leaf Devtools', link: '/modules/devtools/' },
-      { text: 'Testing', link: '/docs/tooling/testing' },
-      { text: 'Deployment', link: '/docs/tooling/deployment' }
-    ]
-  },
-  {
-    text: 'Config',
+    text: 'Routing',
     collapsible: true,
     collapsed: true,
     items: [
@@ -151,7 +135,7 @@ const mainSidebar = [
     ]
   },
   {
-    text: 'The basics',
+    text: 'State Management',
     collapsible: true,
     collapsed: true,
     items: [
@@ -168,7 +152,7 @@ const mainSidebar = [
     ]
   },
   {
-    text: 'Routing',
+    text: 'Utilities',
     collapsible: true,
     collapsed: true,
     items: [
@@ -184,121 +168,6 @@ const mainSidebar = [
       { text: 'Using controllers', link: '/docs/routing/controller' }
     ]
   },
-  {
-    text: 'Database',
-    collapsible: true,
-    collapsed: true,
-    items: [
-      { text: 'Introduction', link: '/modules/db/' },
-      { text: 'MVC Support', link: '/modules/db/mvc' },
-      { text: 'Query Builder', link: '/modules/db/v/2/builder' },
-      { text: 'Leaf Redis', link: '/modules/redis/' }
-    ]
-  },
-  {
-    text: 'Authentication',
-    collapsible: true,
-    collapsed: true,
-    items: [
-      { text: 'Introduction', link: '/modules/auth/' },
-      { text: 'MVC Support', link: '/modules/auth/mvc' },
-      { text: 'Auth Config', link: '/modules/auth/config' },
-      { text: 'User Login', link: '/modules/auth/login' },
-      { text: 'User Sign Up', link: '/modules/auth/signup' },
-      { text: 'Auth Session', link: '/modules/auth/session' },
-      {
-        text: 'Protecting your Routes',
-        link: '/modules/auth/protecting-your-routes'
-      },
-      { text: 'Updating logged-in user', link: '/modules/auth/update' },
-      { text: 'Helper methods', link: '/modules/auth/helpers' }
-    ]
-  },
-  {
-    text: 'Utilities',
-    collapsible: true,
-    collapsed: true,
-    items: [
-      { text: 'Validation', link: '/modules/forms/v/2/' },
-      { text: 'Leaf Password', link: '/modules/password/' },
-      { text: 'Leaf Anchor', link: '/modules/anchor/' },
-      { text: 'Date/Time', link: '/modules/date/' },
-      { text: 'Data Fetching', link: '/modules/fetch/' },
-      { text: 'Logging', link: '/docs/tooling/logging' }
-    ]
-  },
-  {
-    text: 'Digging Deeper',
-    collapsible: true,
-    collapsed: true,
-    items: [
-      { text: 'CSRF', link: '/modules/anchor/csrf/' },
-      { text: 'HTTP Cache', link: '/modules/http/v/2/cache' },
-      { text: 'Eien Server', link: '/modules/eien/' },
-      { text: 'Leaf Mail', link: '/modules/mail/' },
-      { text: 'File System', link: '/modules/fs/' },
-      { text: 'Queues/Jobs', link: '/modules/queues/' },
-    ]
-  },
-  {
-    text: 'Frontend',
-    collapsible: true,
-    collapsed: true,
-    items: [
-      { text: 'Introduction', link: '/modules/views/' },
-      { text: 'Bare UI', link: '/modules/views/bareui/' },
-      { text: 'Leaf Blade', link: '/modules/views/blade/' },
-      { text: 'Leaf Veins', link: '/modules/views/veins/' },
-      { text: 'Other Engines', link: '/modules/views/third-party/' },
-      { text: 'Vite JS', link: '/modules/views/vite/' },
-      { text: 'Inertia JS', link: '/modules/views/inertia/' },
-      { text: 'Viewi PHP', link: '/modules/views/viewi/' },
-      { text: 'Leaf UI', link: '/modules/views/leaf-ui/' },
-    ]
-  },
-  {
-    text: 'MVC Integrations',
-    collapsible: true,
-    collapsed: true,
-    items: [
-      { text: 'Leaf MVC', link: '/docs/leafmvc/' },
-      { text: 'Leaf API', link: '/docs/leafapi/' },
-      { text: 'Skeleton', link: '/docs/skeleton/' },
-      { text: 'MVC Config', link: '/docs/mvc/config' },
-      { text: 'Controllers', link: '/docs/mvc/controllers' },
-      { text: 'Views', link: '/docs/mvc/views' },
-      { text: 'Models', link: '/docs/mvc/models' },
-      { text: 'Migrations', link: '/docs/mvc/migrations' },
-      { text: 'Schema', link: '/docs/mvc/schema' },
-      { text: 'Seeders', link: '/docs/mvc/seeds' },
-      { text: 'Factories', link: '/modules/mvc-core/factories' },
-      { text: 'Writing Commands', link: '/docs/mvc/commands' },
-      { text: 'Mailing', link: '/docs/mvc/mail' },
-      { text: 'MVC Helpers', link: '/docs/mvc/globals' },
-      { text: 'Custom Libraries', link: '/docs/mvc/libraries' },
-      { text: 'MVC Console Tool', link: '/docs/mvc/console' },
-    ]
-  },
-  {
-    text: 'Codelabs',
-    collapsible: true,
-    collapsed: true,
-    items: [
-      { text: 'Intro', link: '/codelabs/' },
-      { text: 'Contributing', link: '/codelabs/contributing' },
-      { text: 'Deployment', link: '/codelabs/experiments/deployment/' }
-      // { text: 'Authentication', link: '/codelabs/experiments/auth/' },
-    ]
-  }
-  // {
-  //   text: 'Archive',
-  //   collapsible: true,
-  //   collapsed: true,
-  //   items: [
-  //     { text: 'Leaf Http', link: '/modules/http/' },
-  //     { text: 'Leaf Http v1', link: '/modules/http/v/1/' }
-  //   ]
-  // }
 ]
 
 const communitySidebar = [
@@ -590,7 +459,7 @@ export default defineConfigWithTheme<ThemeConfig>({
 
     socialLinks: [
       { icon: 'languages', link: '/translations/' },
-      { icon: 'github', link: 'https://github.com/leafsphp/leaf' },
+      { icon: 'github', link: 'https://github.com/leafsphp/hana' },
       { icon: 'twitter', link: 'https://twitter.com/leafphp' },
       { icon: 'discord', link: 'https://discord.gg/Pkrm9NJPE3' }
       // {

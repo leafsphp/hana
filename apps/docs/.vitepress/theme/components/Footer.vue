@@ -3,7 +3,7 @@
     <div class="footer-row flex flex:center-start">
       <div class="flex flex:center-all">
         <img src="/logo.png" class="w:_3 mr:_1 d-sm-down:none hero-logo" alt="Leaf" />
-        <h3>Leaf PHP</h3>
+        <h3>Hanabira</h3>
       </div>
     </div>
     <div class="footer-grid">

@@ -95,6 +95,16 @@
   padding: 46px 36px !important;
 }
 
+.vt-box:not(.no-hover) {
+  border: 1px solid var(--vt-c-divider-light);
+  cursor: pointer !important;
+}
+
+.vt-box:not(.no-hover):hover {
+  border: 1px solid var(--vt-c-green-light);
+  transition: border-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
 .VPFooter {
   border-top: none !important;
 }

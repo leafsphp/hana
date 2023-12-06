@@ -1,7 +1,6 @@
 import './styles/index.css'
 import { h, App } from 'vue'
 import { VPTheme } from '@leafphp/docs-theme'
-import PreferenceSwitch from './components/PreferenceSwitch.vue'
 import {
   preferFunctional,
   preferSFC,
@@ -18,8 +17,8 @@ export default Object.assign({}, VPTheme, {
       // banner: () => h('div', {}, [
       //   h(Banner),
       // ]),
-      'sidebar-top': () => h(PreferenceSwitch),
-      'aside-mid': () => h(SponsorsAside),
+      // 'sidebar-top': () => h(PreferenceSwitch),
+      // 'aside-mid': () => h(SponsorsAside)
       // 'aside-bottom': () => h(VueJobs)
     })
   },

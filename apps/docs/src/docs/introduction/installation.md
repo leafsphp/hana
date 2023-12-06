@@ -6,194 +6,125 @@
 import VideoDocs from '/@theme/components/VideoDocs.vue'
 </script>
 
-Leaf 3 is built by design to be incrementally adoptable. This means that it can be integrated into a project multiple ways depending on the requirements.
+Hana is built by design to be simple to integrate into any project. At it's core, it's just a simple Vite and React setup.
 
-There are four primary ways of adding Leaf PHP to a project:
+There are three primary ways of adding Leaf PHP to a project:
 
-1. [Use the Leaf CLI to scaffold a project [RECOMMENDED]](#leaf-cli).
-2. [Download leaf through composer](#composer)
-3. [Scaffold a Leaf MVC or Leaf API project](#mvc-setup)
+1. [Setup a project using create-hana-app [RECOMMENDED]](#hana-cli).
+2. [Manually set up Hana](#manual-setup)
+3. [Use components](#hana-components)
 
 ## Technical Requirements
 
-Before creating your first Leaf application you must:
+Before creating your first Hana application you must:
 
-- Install PHP 7.4 or higher and these PHP extensions (which are installed and enabled by default in most PHP installations): json, zip;
-- [Install Composer](https://getcomposer.org/download/), which is used to install PHP packages.
-- Optionally, you can also install [Leaf CLI](/docs/cli/). This provides all the tools you need to create and manage your Leaf application locally. This is optional but highly recommended.
+- Install Node JS (minimum version required by Vite is 18);
+- Anywhere Vite can run, Hana can run.
 
-<details>
-<summary>Not sure where to start?</summary>
+## Hana CLI
 
-- Laravel released an amazing tool called [Laravel Herd](https://herd.laravel.com/) that provides a quick and easy way to set up a local PHP development environment for Mac. It's a great way to get started with PHP and Leaf.
-
-- On Windows and Mac, you can use [Xampp](https://www.apachefriends.org/), which is a free and open-source cross-platform web server solution stack package developed by Apache Friends, consisting mainly of the Apache HTTP Server, MariaDB database, and interpreters for scripts written in the PHP and Perl programming languages.
-
-</details>
-
-## Leaf CLI
-
-<VideoDocs
-  subject="Watch the leaf 3 installation walkthrough"
-  description="You can take a look at our leaf cli setup walkthrough on youtube."
-  link="https://www.youtube.com/embed/PuOk5xqTIsA"
-/>
-
-Leaf provides an [official CLI](https://github.com/leafsphp/cli) for quickly creating and managing your Leaf applications. It takes just a few seconds to get up and running with your leaf app. See [the Leaf CLI docs](/docs/cli/) for more details.
-
-Using the CLI, you can quickly scaffold a new Leaf 3 project with:
+Hana comes with a [create-hana-app](/docs/cli/) CLI tool that allows you to quickly create a new Hana app. It is the recommended way of setting up a Hana app. It allows you to customize your installation and choose between TypeScript and JavaScript.
 
 ```bash
-leaf create <project-name>
+npx create-hana-app@latest <project-name>
 ```
 
-Besides the core of the framework, Leaf also ships with a ton of installable functionality. We call these independent libraries modules. You can install modules using the `install` command:
+Or
 
 ```bash
-leaf install <module-name>
+npm create hana-app@latest
 ```
 
-The CLI also allows you to completely customize the installation you wish to create. You can choose different features like database, authentication, etc. This is done using the `--custom` flag:
+This will take you through a series of prompts that will help you set up your project. After that, a new Hana app will be created in the directory you specified. You can then run your app with `npm run dev`.
+
+## Manual Setup
+
+This is a bit more complex than using the CLI tool, but it's still pretty simple. You can set up Hana manually by following the steps below:
+
+1. Create a new Vite + React app or use an existing one.
+2. Install Hana router or any other Hana component you want to use.
+
+In your existing Vite + React app, you can install Hana router by running:
 
 ```bash
-leaf create <project-name> --custom
+npm install @hanabira/router
 ```
 
-You can then run your app using the `serve` command:
+From there, open your Vite config file and add the Hana plugin. The plugin takes in options that allow you to customize Hana router. You can find a list of all the options [here](/docs/router/config).
+
+```js
+import { defineConfig } from 'vite';
+import { hana } from '@hanabira/router';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  plugins: [
+    react(),
+    hana({
+      root: __dirname,
+      typescript: true,
+      usePageTransition: true,
+      mode: 'history',
+    }),
+  ],
+});
+```
+
+Once you've done that, you need to rename your `src` to `pages`. This is where all your routes (pages) will be stored. Every file in the `pages` directory will be treated as a route. You can read more about this [here](/docs/router/). You also need to add an `_app.jsx` or `_app.tsx` file to your `pages` directory. This is where you will define your app's layout. You can read more about this [here](/docs/router/).
+
+```js
+const Application = ({ children }) => {
+  return <>{children}</>;
+};
+
+export default Application;
+```
+
+You can use this as a base layout or a place to load your global styles and components. Just be sure to render the `children` prop as that is where your pages will be rendered.
+
+The last thing you need to do is to update your `index.html` file. You need to set the application file to `.hana/_app.jsx` or `.hana/_app.tsx` depending on your setup.
+
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React + TS</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/.hana/_app.tsx"></script>
+  </body>
+</html>
+```
+
+## Hana Components
+
+The last way to add Hana to your project is by using Hana components. Hana components are a collection of components that you can use in your React app. They are built to work with Hana, but they can also be used in any React app. You can find a list of all the components [here](/docs/components/). You can install them by running:
 
 ```bash
-leaf serve
+npm install @hanabira/<component-name>
 ```
 
-## Composer
+From there, you can import and use the component in your app.
 
-<!-- <VideoDocs
-  subject="Watch the composer setup on youtube"
-  description="Learn how to set up a leaf app with composer."
-  link="https://www.youtube.com/watch?v=t-pNURSTOKw"
-/> -->
+## Next Steps
 
-Leaf also allows a more traditional approach to installation. You can install leaf through composer. You can use this method if you don't want to use the leaf cli or if you want to use leaf as a dependency in your project. The disadvantage of this method is that you don't get a quick-start setup like you do with the leaf cli.
+Now that you have set up Hana, you can start building your app.
 
-```bash
-composer require leafs/leaf
-```
-
-After insalling Leaf, you need to create your index.php file which will be the entry point to your application.
-
-<div class="class-mode">
-
-```php
-<?php
-
-require __DIR__ . '/vendor/autoload.php';
-
-$app = new Leaf\App;
-
-$app->get('/', function () use($app) {
-  $app->response()->json(['message' => 'Hello World!']);
-});
-
-$app->run();
-```
-
-</div>
-
-<div class="functional-mode">
-
-```php
-<?php
-
-require __DIR__ . '/vendor/autoload.php';
-
-app()->get('/', function () {
-  response()->json(['message' => 'Hello World!']);
-});
-
-app()->run();
-```
-
-</div>
-
-When hosting your application on a webserver, all requests coming into your app must be routed through Leaf. It is really simple to do, and all needed instructions can be found @ [URL rewriting](/docs/introduction/url-rewriting.html).
-
-## MVC Setup
-
-Although Leaf allows you to select exactly what you want to install, some applications go beyond the basic setup. Leaf MVC is a full but ridiculously light-weight MVC framework that allows you to build complex applications with Leaf. It comes with a lot of features like authentication, database, http related functionality and a powerful CLI. To get started with Leaf's MVC setup, you can check out the [MVC docs](/docs/mvc/).
-
-## Hello world example
-
-Below is a "hello world" example which takes you through the core of Leaf. Other parts of the docs cover deeper examples. You can also refer to our [codelab experiments](/codelabs/) for real world examples and use-cases.
-
-A base Leaf app that outputs hello world in your browser looks like this:
-
-<div class="class-mode">
-
-```php
-<?php
-
-require __DIR__ . '/vendor/autoload.php';
-
-$app = new Leaf\App;
-
-$app->get('/', function () {
-  echo 'Hello world';
-});
-
-$app->run();
-```
-
-</div>
-
-<div class="functional-mode">
-
-```php
-<?php
-
-require __DIR__ . '/vendor/autoload.php';
-
-app()->get('/', function () {
-  echo 'Hello world';
-});
-
-app()->run();
-```
-
-</div>
-
-You might have noticed that we used `echo` to output our data. Using `echo` is not a bad thing, but it can be confusing when you're trying to output data of a different type. For example, if we wanted to output JSON data, we would have to use `echo json_encode($data)`. This can be confusing because we're not sure if the content type is set to JSON or not.
-
-To simplify this, Leaf comes with a `Response` object that automatically handles content the right way for us. Let's look at an example below.
-
-<div class="class-mode">
-
-```php
-<?php
-
-require __DIR__ . '/vendor/autoload.php';
-
-$app = new Leaf\App;
-
-$app->get('/', function () use($app) {
-  $app->response()->markup('Hello world');
-});
-
-$app->run();
-```
-
-</div>
-<div class="functional-mode">
-
-```php
-<?php
-
-require __DIR__ . '/vendor/autoload.php';
-
-app()->get('/', function () {
-  response()->markup('Hello world');
-});
-
-app()->run();
-```
-
+<div class="vt-box-container next-steps">
+  <a class="vt-box" href="/docs/introduction/structure">
+    <h3 class="next-steps-link">Project Structure</h3>
+    <small class="next-steps-caption">Learn about the structure of a Hana application.</small>
+  </a>
+  <a class="vt-box" href="/docs/cli">
+    <h3 class="next-steps-link">Create-Hana-App</h3>
+    <small class="next-steps-caption">Read about the options available with the CLI</small>
+  </a>
+  <a class="vt-box" href="/docs/routing/">
+    <h3 class="next-steps-link">Routing</h3>
+    <small class="next-steps-caption">Jump straight into learning about the Hana Router</small>
+  </a>
 </div>

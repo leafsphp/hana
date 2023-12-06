@@ -50,8 +50,8 @@ This Turborepo includes the following:
 
 - `docs`: Documentation powered by [Vitepress](https://vitepress.vuejs.org/)
 - `@hanabira/store`: state management library for Hana
-- `@hanabira/auth`: authentication library for Hana
+- `@hanabira/auth`: authentication library for Hana (WIP)
 - `@hanabira/router`: router library for Hana
 - `@hanabira/config`: shared configs used throughout the monorepo
-- `@leafphp/hana`: SSR bridge for Hana
+- `@leafphp/hana`: SSR bridge for Hana (WIP)
 - `create-hana-app`: CLI tool for creating new Hana apps

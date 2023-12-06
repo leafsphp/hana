@@ -11,102 +11,124 @@ import Footer from './Footer.vue';
 
 <template>
   <section id="hero">
-    <div style="display: flex; justify-content: center; align-items: center;">
-      <img src="/logo-circle.png" class="w:20 mr:_10 d-sm-down:none hero-logo" alt="Leaf" />
-      <div class="content-left">
+    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+      <img src="/logo-circle.png" class="w:10 mb:_5 d-sm-down:none hero-logo" alt="Leaf" />
+      <div class="flex-col flex:center-all">
         <h1 class="tagline">
           <span class="accent">Hana.js</span>
         </h1>
         <p class="description">
-          React for humans
+          Simple, lightweight React framework for humans
         </p>
         <p class="actions">
-          <vue-mastery-modal />
-          <a class="get-started" href="/docs/introduction/">
+          <!-- <vue-mastery-modal /> -->
+          <a class="get-started bg:teal text:white" href="/docs/introduction/">
             Get Started
             <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24">
-            <path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" />
-          </svg>
-        </a>
-        <a class="setup" href="/docs/introduction/installation.html">Install</a>
-      </p>
-    </div>
-  </div>
-</section>
-
-  <!-- TODO make dynamic based on data -->
-  <!-- <section id="special-sponsor" class="flex-col">
-        <span>Special Sponsor</span>
-        <a href="https://netlify.com" class="mt:_1" target="_blank">
-          <img
-            alt="netlify logo"
-            style="border-radius: 500px; width: 35px;"
-            src="https://user-images.githubusercontent.com/26604242/186772985-b21c2850-3cc3-41c6-9299-fe9cc5bac46a.png" />
-          <div>Netlify</div>
-        </a>
-      </section> -->
-
-  <section id="highlights" class="vt-box-container">
-    <div class="vt-box">
-      <h2>Approachable 👨🏾‍🏫</h2>
-      <p>
-        Builds on top of standard PHP with a flexible learning curve + ZERO config.
-      </p>
-    </div>
-    <div class="vt-box">
-      <h2>Versatile ☃️</h2>
-      <p>
-        A rich, incrementally adoptable ecosystem of modules to build powerful apps with.
-      </p>
-    </div>
-    <div class="vt-box">
-      <h2>Efficient ⏰</h2>
-      <p>
-        Blazing Fast <br>
-        &lsaquo;40KB Source <br>
-        Crazy development time </p>
+              <path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" />
+            </svg>
+          </a>
+          <a class="setup" href="/docs/introduction/installation.html">Install</a>
+        </p>
+      </div>
     </div>
   </section>
 
-  <section id="sponsors">
+  <section id="highlights" class="vt-box-container">
+    <div class="vt-box no-hover">
+      <h2>Complete 👨🏾‍🏫</h2>
+      <p>
+        Comes wired with powerful routing, state management and everything you need to build a full-blown app.
+      </p>
+    </div>
+    <div class="vt-box no-hover">
+      <h2>Lightweight 📦</h2>
+      <p>
+        Built on top of lightweight and performant systems like Vite with a near-zero runtime footprint.
+      </p>
+    </div>
+    <div class="vt-box no-hover">
+      <h2>Intuitive 📕</h2>
+      <p>
+        Know React? You already know Hana.js. No need to learn a new framework or any new concepts.
+      </p>
+    </div>
+  </section>
+
+  <section id="sponsors" class="flex flex:center-all" style="min-height: 100vh; text-align: center;">
+    <div>
+      <h1 style="font-weight: 700;">Why Another Framework?</h1>
+      <p style="max-width: 960px; margin: 0 auto 2rem;">
+        Hana.js is a simple, lightweight React framework for crafted with simplicity, performance and a great developer
+        experience in mind. Unlike the 100s of other React frameworks out there, Hana comes with a lot of features out of
+        the box:
+      </p>
+
+      <div class="vt-box-container"
+        style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px;">
+        <div class="vt-box" style="padding: 20px !important;text-align: left;">
+          <h2 class="m:0 mb:_1">🛜 Powerful Routing</h2>
+          <p>Hana includes a powerful router that automatically maps your file-system into routes and includes advanced
+            features like loading pages and route based error pages.</p>
+        </div>
+        <div class="vt-box" style="padding: 20px !important;text-align: left;">
+          <h2 class="m:0 mb:_1">⚛️ Simple State Management</h2>
+          <p>Hana comes with Hana Store which is a high performance, easy-to-use state management library that has a
+            feature-rich API.</p>
+        </div>
+        <div class="vt-box" style="padding: 20px !important;text-align: left;">
+          <h2 class="m:0 mb:_1">😎 Powered by tools you love</h2>
+          <p>Hana uses powerful tools like Vite that make it simple and easy to use and customize. Hana is the ultimate Vite
+            + React, all tools included setup to build your next big idea on.</p>
+        </div>
+        <div class="vt-box" style="padding: 20px !important;text-align: left;">
+          <h2 class="m:0 mb:_1">⚡️ Superpowers included</h2>
+          <p>Hana includes a bunch of utilities like route-based error pages and loading pages, data fetching, SEO and meta
+            utilities, as well as authentication and web builder helpers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- <section id="sponsors">
     <h2>Sponsors</h2>
     <SponsorsGroup tier="sponsor" showLabel placement="landing" />
 
     <h2 id="contributors">Code Contributors</h2>
     <SponsorsGroup tier="code" showLabel placement="landing" />
-  </section>
+  </section> -->
 
   <Testimonials />
-  <BlogSection />
+  <!-- <BlogSection /> -->
   <Speak />
 
   <section class="discord-section flex flex:center-all">
-      <div class="d-sm-up:flex flex:center-between w:100">
-        <div class="d-sm-up:flex">
-          <div class="discord-logo mb-xs:_2">
-            <svg viewBox="0 0 48 48" focusable="false" class="chakra-icon css-onkibi">
-              <g id="surface1615260">
-                <path fill="currentColor" stroke="none" fill-rule="nonzero"
-                  d="M 39.246094 10.175781 C 36.445312 8.890625 33.4375 7.941406 30.292969 7.398438 C 30.234375 7.390625 30.179688 7.414062 30.148438 7.46875 C 29.761719 8.15625 29.332031 9.050781 29.03125 9.757812 C 25.652344 9.253906 22.285156 9.253906 18.972656 9.757812 C 18.675781 9.035156 18.230469 8.15625 17.839844 7.46875 C 17.8125 7.414062 17.753906 7.390625 17.695312 7.398438 C 14.554688 7.941406 11.546875 8.886719 8.742188 10.175781 C 8.71875 10.1875 8.695312 10.203125 8.683594 10.226562 C 2.976562 18.75 1.414062 27.0625 2.183594 35.273438 C 2.183594 35.3125 2.207031 35.351562 2.238281 35.375 C 6.003906 38.140625 9.648438 39.816406 13.226562 40.929688 C 13.28125 40.945312 13.34375 40.925781 13.378906 40.878906 C 14.226562 39.722656 14.980469 38.503906 15.628906 37.222656 C 15.664062 37.148438 15.628906 37.058594 15.550781 37.027344 C 14.355469 36.574219 13.214844 36.019531 12.121094 35.390625 C 12.03125 35.339844 12.027344 35.21875 12.105469 35.15625 C 12.335938 34.984375 12.566406 34.804688 12.789062 34.625 C 12.828125 34.589844 12.882812 34.585938 12.929688 34.605469 C 20.132812 37.894531 27.925781 37.894531 35.042969 34.605469 C 35.089844 34.582031 35.144531 34.589844 35.1875 34.621094 C 35.40625 34.804688 35.636719 34.984375 35.871094 35.15625 C 35.949219 35.21875 35.945312 35.339844 35.859375 35.390625 C 34.761719 36.03125 33.621094 36.574219 32.425781 37.027344 C 32.347656 37.054688 32.3125 37.144531 32.347656 37.222656 C 33.011719 38.503906 33.765625 39.71875 34.59375 40.875 C 34.628906 40.925781 34.691406 40.945312 34.75 40.929688 C 38.34375 39.816406 41.988281 38.136719 45.753906 35.375 C 45.785156 35.351562 45.808594 35.3125 45.808594 35.273438 C 46.726562 25.78125 44.273438 17.539062 39.304688 10.230469 C 39.292969 10.203125 39.273438 10.1875 39.246094 10.175781 Z M 16.703125 30.273438 C 14.535156 30.273438 12.75 28.28125 12.75 25.839844 C 12.75 23.394531 14.5 21.402344 16.703125 21.402344 C 18.921875 21.402344 20.691406 23.410156 20.65625 25.839844 C 20.65625 28.28125 18.90625 30.273438 16.703125 30.273438 Z M 31.324219 30.273438 C 29.15625 30.273438 27.371094 28.28125 27.371094 25.839844 C 27.371094 23.394531 29.121094 21.402344 31.324219 21.402344 C 33.542969 21.402344 35.3125 23.410156 35.277344 25.839844 C 35.277344 28.28125 33.542969 30.273438 31.324219 30.273438 Z M 31.324219 30.273438 ">
-                </path>
-              </g>
-            </svg>
-          </div>
-
-          <div class="w:100">
-            <h2 class="css-1c75i90">Connect with the community</h2>
-            <p class="discord-subtext">Ask questions, report issues, and meet new people.</p>
-          </div>
+    <div class="d-sm-up:flex flex:center-between w:100">
+      <div class="d-sm-up:flex">
+        <div class="discord-logo mb-xs:_2">
+          <svg viewBox="0 0 48 48" focusable="false" class="chakra-icon css-onkibi">
+            <g id="surface1615260">
+              <path fill="currentColor" stroke="none" fill-rule="nonzero"
+                d="M 39.246094 10.175781 C 36.445312 8.890625 33.4375 7.941406 30.292969 7.398438 C 30.234375 7.390625 30.179688 7.414062 30.148438 7.46875 C 29.761719 8.15625 29.332031 9.050781 29.03125 9.757812 C 25.652344 9.253906 22.285156 9.253906 18.972656 9.757812 C 18.675781 9.035156 18.230469 8.15625 17.839844 7.46875 C 17.8125 7.414062 17.753906 7.390625 17.695312 7.398438 C 14.554688 7.941406 11.546875 8.886719 8.742188 10.175781 C 8.71875 10.1875 8.695312 10.203125 8.683594 10.226562 C 2.976562 18.75 1.414062 27.0625 2.183594 35.273438 C 2.183594 35.3125 2.207031 35.351562 2.238281 35.375 C 6.003906 38.140625 9.648438 39.816406 13.226562 40.929688 C 13.28125 40.945312 13.34375 40.925781 13.378906 40.878906 C 14.226562 39.722656 14.980469 38.503906 15.628906 37.222656 C 15.664062 37.148438 15.628906 37.058594 15.550781 37.027344 C 14.355469 36.574219 13.214844 36.019531 12.121094 35.390625 C 12.03125 35.339844 12.027344 35.21875 12.105469 35.15625 C 12.335938 34.984375 12.566406 34.804688 12.789062 34.625 C 12.828125 34.589844 12.882812 34.585938 12.929688 34.605469 C 20.132812 37.894531 27.925781 37.894531 35.042969 34.605469 C 35.089844 34.582031 35.144531 34.589844 35.1875 34.621094 C 35.40625 34.804688 35.636719 34.984375 35.871094 35.15625 C 35.949219 35.21875 35.945312 35.339844 35.859375 35.390625 C 34.761719 36.03125 33.621094 36.574219 32.425781 37.027344 C 32.347656 37.054688 32.3125 37.144531 32.347656 37.222656 C 33.011719 38.503906 33.765625 39.71875 34.59375 40.875 C 34.628906 40.925781 34.691406 40.945312 34.75 40.929688 C 38.34375 39.816406 41.988281 38.136719 45.753906 35.375 C 45.785156 35.351562 45.808594 35.3125 45.808594 35.273438 C 46.726562 25.78125 44.273438 17.539062 39.304688 10.230469 C 39.292969 10.203125 39.273438 10.1875 39.246094 10.175781 Z M 16.703125 30.273438 C 14.535156 30.273438 12.75 28.28125 12.75 25.839844 C 12.75 23.394531 14.5 21.402344 16.703125 21.402344 C 18.921875 21.402344 20.691406 23.410156 20.65625 25.839844 C 20.65625 28.28125 18.90625 30.273438 16.703125 30.273438 Z M 31.324219 30.273438 C 29.15625 30.273438 27.371094 28.28125 27.371094 25.839844 C 27.371094 23.394531 29.121094 21.402344 31.324219 21.402344 C 33.542969 21.402344 35.3125 23.410156 35.277344 25.839844 C 35.277344 28.28125 33.542969 30.273438 31.324219 30.273438 Z M 31.324219 30.273438 ">
+              </path>
+            </g>
+          </svg>
         </div>
 
-        <a href="https://discord.gg/Pkrm9NJPE3" rel="noopener" target="_blank"
-          class="join-button mt-xs:_3 w-xs:100 flex flex:center-all">
-          Join Discord!
-        </a>
+        <div class="w:100">
+          <h2 class="css-1c75i90">Connect with the community</h2>
+          <p class="discord-subtext">Ask questions, report issues, and meet new people.</p>
+        </div>
       </div>
-    </section>
 
-  <NewsLetter />
+      <a href="https://discord.gg/Pkrm9NJPE3" rel="noopener" target="_blank"
+        class="join-button mt-xs:_3 w-xs:100 flex flex:center-all">
+        Join Discord!
+      </a>
+    </div>
+  </section>
+
+  <!-- <NewsLetter /> -->
   <Footer />
 </template>
 
