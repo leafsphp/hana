@@ -139,7 +139,7 @@ Note how the return value of `useReducer()` is a function that accepts only the 
 
 ## Valueless reducers
 
-Sometimes, you may need to perform an operation that does not require a payload. In this case, you can simply set the payload argument from the reducer function with a default value.
+Sometimes, you may need to perform an operation that does not require a payload. In this case, you can simply exclude the payload argument from the reducer function.
 
 ```jsx
 import { createStore } from '@hanabira/store';
@@ -149,7 +149,7 @@ createStore({
     items: [],
   },
   reducers: {
-    doSomething: (state, payload = null) => ({
+    doSomething: (state) => ({
       something: 'static value',
     }),
   },
