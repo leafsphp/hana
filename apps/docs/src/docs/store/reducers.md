@@ -216,6 +216,24 @@ const Component = () => {
 };
 ```
 
+## useStaticReducer()
+
+Sometimes, you may need to use a reducer in a component that does not actually re-render the UI after the reducer is called. In this case, you can use the `useStaticReducer()` hook. It works exactly like the `useReducer()` hook, but it does not cause the component to re-render when the reducer is called.
+
+```jsx
+import { useStaticReducer } from '@hanabira/store';
+
+const Component = () => {
+  const setItems = useStaticReducer('setItems');
+
+  const addToList = (items) => {
+    setItems(items);
+  };
+
+  ...
+};
+```
+
 ## Next Steps
 
 <div class="vt-box-container next-steps">
