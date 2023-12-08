@@ -102,7 +102,7 @@ The last thing you need to do is to update your `index.html` file. You need to s
 
 ## Hana Components
 
-The last way to add Hana to your project is by using Hana components. Hana components are a collection of components that you can use in your React app. They are built to work with Hana, but they can also be used in any React app. You can find a list of all the components [here](/docs/). You can install them by running:
+The last way to add Hana to your project is by using Hana components. Hana components are a collection of components that you can use in your React app. They are built to work with Hana, but they can also be used in any React app. You can find a list of all the components [here](/docs/introduction/). You can install them by running:
 
 ```bash
 npm install @hanabira/<component-name>
