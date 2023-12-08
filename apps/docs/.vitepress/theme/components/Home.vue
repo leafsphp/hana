@@ -98,9 +98,8 @@ import Footer from './Footer.vue';
     <SponsorsGroup tier="code" showLabel placement="landing" />
   </section> -->
 
-  <Testimonials />
+  <!-- <Testimonials /> -->
   <!-- <BlogSection /> -->
-  <Speak />
 
   <section class="discord-section flex flex:center-all">
     <div class="d-sm-up:flex flex:center-between w:100">
@@ -127,6 +126,8 @@ import Footer from './Footer.vue';
       </a>
     </div>
   </section>
+
+  <Speak />
 
   <!-- <NewsLetter /> -->
   <Footer />

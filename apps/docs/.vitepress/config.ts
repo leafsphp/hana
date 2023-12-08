@@ -438,27 +438,27 @@ export default defineConfigWithTheme<ThemeConfig>({
   themeConfig: {
     nav,
     sidebar,
-    algolia: {
-      appId: 'Q38TT8XUN9',
-      indexName: 'leafphp',
-      apiKey: '87b4b8d90960f7a326dfd4c8781a5a74'
-    },
+    // algolia: {
+    //   appId: 'Q38TT8XUN9',
+    //   indexName: 'leafphp',
+    //   apiKey: '87b4b8d90960f7a326dfd4c8781a5a74'
+    // },
 
     socialLinks: [
-      { icon: 'languages', link: '/translations/' },
+      // { icon: 'languages', link: '/translations/' },
       { icon: 'github', link: 'https://github.com/leafsphp/hana' },
       { icon: 'twitter', link: 'https://twitter.com/leafphp' },
-      { icon: 'discord', link: 'https://discord.gg/Pkrm9NJPE3' }
+      { icon: 'discord', link: 'https://discord.gg/Pkrm9NJPE3' },
       // {
       //   icon: 'youtube',
       //   link: 'https://www.youtube.com/channel/UCllE-GsYy10RkxBUK0HIffw'
       // }
     ],
 
-    editLink: {
-      repo: 'leafsphp/docs#master',
-      text: 'Edit this page on GitHub'
-    },
+    // editLink: {
+    //   repo: 'leafsphp/hana/?link=',
+    //   text: 'Edit this page on GitHub'
+    // },
 
     footer: {
       license: {
