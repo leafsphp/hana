@@ -10,7 +10,7 @@ Hana is built by design to be simple to integrate into any project. At it's core
 
 There are three primary ways of adding Leaf PHP to a project:
 
-1. [Setup a project using create-hana-app [RECOMMENDED]](#hana-cli).
+1. [Setup a project using create-hana-app [RECOMMENDED]](#create-hana-app).
 2. [Manually set up Hana](#manual-setup)
 3. [Use components](#hana-components)
 
@@ -21,7 +21,7 @@ Before creating your first Hana application you must:
 - Install Node JS (minimum version required by Vite is 18);
 - Anywhere Vite can run, Hana can run.
 
-## Hana CLI
+## Create Hana App
 
 Hana comes with a [create-hana-app](/docs/cli/) CLI tool that allows you to quickly create a new Hana app. It is the recommended way of setting up a Hana app. It allows you to customize your installation and choose between TypeScript and JavaScript.
 
