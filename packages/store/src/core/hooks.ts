@@ -2,6 +2,7 @@ import useForceUpdate from 'use-force-update';
 
 import Manager from './store';
 
+import type { SetStateAction } from 'react';
 import type { State } from '../@types/core';
 import type { SetStoreFn, Reducer } from '../@types/functions';
 
@@ -62,10 +63,20 @@ export function useStaticStore<StateType = any>(
     }
 
     Manager.set(stateToSet);
-    Manager.applyPluginHook('onSave', Manager.get());
   };
 
   return [Manager.get(item), stateSetter];
+}
+
+export function useSetStore<StateType extends State = State>(): (
+  value: StateType
+) => void {
+  const forceUpdate = useForceUpdate();
+
+  return (value: SetStateAction<StateType>) => {
+    Manager.set(value);
+    forceUpdate();
+  };
 }
 
 export function useReducer<PayloadType = any>(
@@ -82,4 +93,11 @@ export function useStaticReducer<PayloadType = any>(
   return Manager.useReducer<PayloadType>(reducer);
 }
 
+export function useResetStore() {
+  const forceUpdate = useForceUpdate();
 
+  return () => {
+    Manager.reset();
+    forceUpdate();
+  };
+}
