@@ -5,7 +5,8 @@ export {
   useParams,
   useSearchParams,
   useBeforeUnload,
-  useLocation
+  useLocation,
+  unstable_useViewTransitionState as useViewTransitionState,
 } from 'react-router-dom';
 
 export * from './core';
