@@ -410,7 +410,7 @@ export default defineConfigWithTheme<ThemeConfig>({
       'script',
       {
         async: '',
-        src: 'https://www.googletagmanager.com/gtag/js?id=G-QGZVHHLK12'
+        src: 'https://www.googletagmanager.com/gtag/js?id=G-8X6FF10HD1'
       }
     ],
     [
@@ -421,7 +421,7 @@ export default defineConfigWithTheme<ThemeConfig>({
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'G-QGZVHHLK12');
+        gtag('config', 'G-8X6FF10HD1');
       `
     ],
     [
