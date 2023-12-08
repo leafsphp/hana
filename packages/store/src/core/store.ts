@@ -187,7 +187,7 @@ export default class Manager {
    */
   public static reset() {
     this.applyPluginHook('onReset', this._options.defaultState);
-    this.set(this._options.defaultState);
+    this._options.state = this._options.defaultState;
   }
 
   protected static _pluginInit(plugins: Plugin[]) {
