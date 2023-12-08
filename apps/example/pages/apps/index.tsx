@@ -1,4 +1,4 @@
-import reactLogo from './assets/react.svg';
+import reactLogo from './../assets/react.svg';
 import viteLogo from '/vite.svg';
 
 import {
@@ -7,6 +7,7 @@ import {
   useStaticStore,
   useStore,
 } from '@hanabira/store';
+
 import { useNavigate } from '@hanabira/router';
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
   const navigate = useNavigate();
 
   // this calls the increment reducer which increments the count state
-  const increment = useReducer('INCREMENT');
+  const increment = useReducer('increment');
 
   // this is a hook that returns the count state and a dispatch function
   const [count] = useStore<number>('count');
@@ -24,7 +25,7 @@ function App() {
   const [, setStaticCount] = useStaticStore<number>('count');
 
   // getStore is a function that returns the state of the store
-  console.log('count', getStore('count'));
+  console.log('count', getStore<number>('count'));
 
   return (
     <>

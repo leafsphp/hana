@@ -9,7 +9,7 @@ createStore({
     count: 0,
   },
   reducers: {
-    INCREMENT(state) {
+    increment(state) {
       return {
         count: state.count + 1,
       };
