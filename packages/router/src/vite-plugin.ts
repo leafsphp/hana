@@ -64,7 +64,9 @@ ${routes._404Page ? `const _404 = import('./../pages${routes._404Page}');` : ''}
 
 import Application from './../pages/_app';
 
-ReactDOM.createRoot(document.getElementById('root')${options.typescript ? '!' : ''}).render(
+ReactDOM.createRoot(document.getElementById('root')${
+          options.typescript ? '!' : ''
+        }).render(
   <React.StrictMode>
     <Application>
       {createRouter({
@@ -222,6 +224,14 @@ ReactDOM.createRoot(document.getElementById('root')${options.typescript ? '!' : 
         isJavascriptFile(file) &&
         (await read()).indexOf('export default') > -1
       ) {
+        if (fs.existsSync(path.resolve(options.root, '.hana'))) {
+          console.log('Cleaning up previous build...');
+
+          fs.rmdirSync(path.resolve(options.root, '.hana'), {
+            recursive: true,
+          });
+        }
+
         buildRoutes();
       }
     },
