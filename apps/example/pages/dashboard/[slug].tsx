@@ -1,5 +1,9 @@
+import { useParams } from "@hanabira/router";
+
 const Dashboard = () => {
-  return <div>Dashboard</div>;
+  const slug = useParams<{ slug: string }>().slug;
+
+  return <div>Dashboard {slug}</div>;
 };
 
 export default Dashboard;
