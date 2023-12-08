@@ -5,6 +5,11 @@
 import VideoDocs from '/@theme/components/VideoDocs.vue'
 </script> -->
 
+<p class="flex flex:start-all" style="gap:10px;">
+  <a href="https://npmjs.com/package/@hanabira/router"><img src="https://img.shields.io/npm/v/@hanabira/router" alt="npm version" height="18"></a>
+  <img src="https://img.shields.io/npm/dt/@hanabira/router" class="m:0" alt="">
+</p>
+
 One of Hana's most powerful features is its file based routing. This means that you can create a route by simply creating a file in the `pages` directory. This is a feature that is heavily inspired by Next.js.
 
 Under the hood, Hana router compiles all the files in the `pages` directory into a single route file and serves it using [react router](https://reactrouter.com/). This makes it easy to create routes without having to worry about setting up a router.
