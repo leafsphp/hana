@@ -50,7 +50,7 @@ In your existing Vite + React app, you can install Hana router by running:
 npm install @hanabira/router
 ```
 
-From there, open your Vite config file and add the Hana plugin. The plugin takes in options that allow you to customize Hana router. You can find a list of all the options [here](/docs/router/config).
+From there, open your Vite config file and add the Hana plugin. The plugin takes in options that allow you to customize Hana router. You can find a list of all the options [here](/docs/routing/config).
 
 ```js
 import { defineConfig } from 'vite';
@@ -70,7 +70,7 @@ export default defineConfig({
 });
 ```
 
-Once you've done that, you need to rename your `src` to `pages`. This is where all your routes (pages) will be stored. Every file in the `pages` directory will be treated as a route. You can read more about this [here](/docs/router/). You also need to add an `_app.jsx` or `_app.tsx` file to your `pages` directory. This is where you will define your app's layout. You can read more about this [here](/docs/router/).
+Once you've done that, you need to rename your `src` to `pages`. This is where all your routes (pages) will be stored. Every file in the `pages` directory will be treated as a route. You can read more about this [here](/docs/routing/). You also need to add an `_app.jsx` or `_app.tsx` file to your `pages` directory. This is where you will define your app's layout. You can read more about this [here](/docs/routing/).
 
 ```js
 const Application = ({ children }) => {
@@ -102,7 +102,7 @@ The last thing you need to do is to update your `index.html` file. You need to s
 
 ## Hana Components
 
-The last way to add Hana to your project is by using Hana components. Hana components are a collection of components that you can use in your React app. They are built to work with Hana, but they can also be used in any React app. You can find a list of all the components [here](/docs/components/). You can install them by running:
+The last way to add Hana to your project is by using Hana components. Hana components are a collection of components that you can use in your React app. They are built to work with Hana, but they can also be used in any React app. You can find a list of all the components [here](/docs/). You can install them by running:
 
 ```bash
 npm install @hanabira/<component-name>
