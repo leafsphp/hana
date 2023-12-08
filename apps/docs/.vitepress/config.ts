@@ -112,7 +112,7 @@ const nav = [
 const mainSidebar = [
   {
     text: 'Quick Start',
-    collapsible: true,
+    collapsible: false,
     collapsed: true,
     items: [
       { text: 'Introduction', link: '/docs/introduction/' },
@@ -124,50 +124,37 @@ const mainSidebar = [
   },
   {
     text: 'Routing',
-    collapsible: true,
+    collapsible: false,
     collapsed: true,
     items: [
-      { text: 'Overview', link: '/docs/config/' },
-      { text: 'App settings', link: '/docs/config/settings' },
-      { text: 'Application Env', link: '/docs/config/nsm' },
-      { text: 'URL Rewriting', link: '/docs/introduction/url-rewriting' },
-      { text: 'Dependency Injection', link: '/docs/tooling/container' },
+      { text: 'Overview', link: '/docs/routing/' },
+      { text: 'Navigation', link: '/docs/routing/navigation' },
+      { text: 'Config', link: '/docs/routing/config' },
+      { text: 'Error Handling', link: '/docs/routing/errors' },
+      { text: 'Loading Pages', link: '/docs/routing/loading' },
     ]
   },
   {
     text: 'State Management',
-    collapsible: true,
+    collapsible: false,
     collapsed: true,
     items: [
-      { text: 'Request', link: '/modules/http/v/2/request' },
-      { text: 'Response', link: '/modules/http/v/2/response' },
-      { text: 'Headers', link: '/modules/http/v/2/headers' },
-      { text: 'CORS', link: '/modules/cors/' },
-      { text: 'Session', link: '/modules/session/' },
-      { text: 'Session Flash', link: '/modules/session/flash' },
-      { text: 'Cookies', link: '/modules/cookies/' },
-      { text: 'Leaf View', link: '/docs/tooling/view' },
-      { text: 'Middleware', link: '/docs/routing/middleware' },
-      { text: 'Error Handling', link: '/docs/routing/errors' }
+      { text: 'Overview', link: '/docs/store/' },
+      { text: 'State', link: '/docs/store/state' },
+      { text: 'Reducers', link: '/docs/store/reducers' },
+      { text: 'Plugins', link: '/docs/store/plugins' },
+      { text: 'TypeScript', link: '/docs/store/typescript' },
+      // { text: 'Modules', link: '/docs/store/modules' },
     ]
   },
-  {
-    text: 'Utilities',
-    collapsible: true,
-    collapsed: true,
-    items: [
-      { text: 'Basic Routing', link: '/docs/routing/' },
-      { text: 'MVC Support', link: '/docs/routing/mvc' },
-      { text: 'Route Groups', link: '/docs/routing/sub-routing' },
-      { text: 'Dynamic routing', link: '/docs/routing/dynamic' },
-      {
-        text: 'Optional Route sub-patterns',
-        link: '/docs/routing/sub-patterns'
-      },
-      { text: 'Subfolder support', link: '/docs/routing/sub-folder' },
-      { text: 'Using controllers', link: '/docs/routing/controller' }
-    ]
-  },
+  // {
+  //   text: 'Utilities',
+  //   collapsible: true,
+  //   collapsed: true,
+  //   items: [
+  //     { text: 'Basic Routing', link: '/docs/routing/' },
+  //   ]
+  // },
 ]
 
 const communitySidebar = [

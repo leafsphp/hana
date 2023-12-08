@@ -12,135 +12,49 @@ import VideoDocs from '/@theme/components/VideoDocs.vue'
   link="https://www.youtube.com/embed/BTcUgeOZLyM"
 /> -->
 
-By default Leaf has error screens which are displayed for application exceptions, 404s and production server errors, however, Leaf also gives you full control and allows you to customize what is shown when an error or exception is encountered.
+Hana router provides default error pages for 404 and 500 errors, however, those pages are not very useful in production. In this guide, we will learn how to handle errors in Hana.
 
-## Handling 404
+## 404 Errors
 
-Leaf displays a 404 screen for users, however, it may not always be appropriate, especially when you're building an API. You will probably want to return JSON instead of markup. For cases like this, Leaf has prepared a `set404` method on the Leaf instance.
+404 errors occur when a user tries to navigate to a page that does not exist. You can customize the 404 page by creating a `_404.tsx` file in the `pages` directory. The `_404.tsx` file should export a React component that will be rendered when a 404 error occurs.
 
-This method allows you to customize what a user sees when they visit a route that doesn't exist in your application. It takes in one parameter, a callable in the form of a function or an array.
+```tsx
+// Path: /pages/_404.tsx
 
-The example below displays a custom 404 page.
+import React from 'react';
 
-<div class="functional-mode">
+const NotFound: React.FC = () => {
+  return <div>404 - Not Found</div>;
+};
 
-```php
-app()->set404(function () {
-  response()->page('./pages/404.html');
-});
+export default NotFound;
 ```
 
-</div>
-<div class="class-mode">
+Hana will automatically detect the `_404.tsx` file and use it as the 404 page.
 
-```php
-$app->set404(function () use($app) {
-  $app->response()->page('./pages/404.html');
-});
+## 500 Errors
+
+500 errors occur when an error occurs while rendering a page. You can customize the 500 page by creating a `_error.tsx` file in the `pages` directory. The `_500.tsx` file should export a React component that will be rendered when a 500 error occurs.
+
+```tsx
+import { useRouteError } from "@hanabira/router";
+
+export default function ErrorPage() {
+  const error: any = useRouteError();
+  console.log(error, 'error');
+
+  return <div>Error</div>;
+}
 ```
 
-</div>
+Note that unlike the `_404.tsx` file, you can have multiple `_error.tsx` files. For example, you can have a `_error.tsx` file in the `pages/users` directory that will be used for all errors that occur on routes in the `/users` directory.
 
-## Handling 500
-
-Server errors are a bit more complicated because there are 2 states displayed to the user. The first is a general error state used in development. That screen gives you details on errors that occur during development. If you've ever run into an error during development, you've probably come across a nice looking page that gives you information about your error, line numbers and all that.
-
-The second screen is shown when debugging is turned off. This screen is intended to not give any details on the error, but rather log out issues in the background. To get a preview of this screen locally, you can configure Leaf's `debug` to `false`.
-
-<div class="functional-mode">
-
-```php
-app()->config('debug', false);
+```tree
+|- pages
+  |- index.tsx
+  |- _error.tsx
+  |- users
+    |- _error.tsx
 ```
 
-</div>
-<div class="class-mode">
-
-```php
-$app = new \Leaf\App('debug', false);
-```
-
-</div>
-
-You'll have an error page which doesn't give details on the error, however, if logs are enabled, all the errors are saved to a log file in the background.
-
-### Setting your own error screen
-
-Although Leaf handles both debug and production cases, you may want to display your own error/exception screens instead of going with the Leaf defaults. For cases like this, you should use the `setErrorHandler` method on the Leaf instance.
-
-This method takes in a callable in the form of a function or an array. You can take a look at the exaples below:
-
-<div class="class-mode">
-
-```php
-// use an error handler from a package
-$app->setErrorHandler(['\Leaf\Exception\General', 'defaultError']);
-
-// use a custom function
-$app->setErrorHandler(function () use($app) {
-  $app->response()->page('./pages/500.html');
-});
-```
-
-</div>
-<div class="functional-mode">
-
-```php
-// use an error handler from a package
-app()->setErrorHandler(['\Leaf\Exception\General', 'defaultError']);
-
-// use a custom function
-app()->setErrorHandler(function () {
-  response()->page('./pages/500.html');
-});
-```
-
-</div>
-
-## Application Down
-
-Leaf is also able to dynamically handle placing your application in maintenance mode using leaf config. We have a `down` config which you can set to `true` to place your application in maintenance mode.
-
-<div class="functional-mode">
-
-```php
-app()->config('app.down', true);
-```
-
-</div>
-<div class="class-mode">
-
-```php
-$app->config('app.down', true);
-```
-
-</div>
-
-Alternatively, you could also place your application in maintenance mode by setting the `APP_DOWN` environment variable to true. Since `.env` variables are given more priority than router config, the router config will be ignored as long as the env is set. If you decide to use the env variable, you will have to manually load your `.env` file. Check out the [env docs](/docs/config/nsm) for more info.
-
-::: tip Loading your env
-Your environment variables are automatically loaded into your application if you are using Leaf MVC, Leaf API or Skeleton.
-:::
-
-### Custom Down Handler
-
-Leaf comes with a beautiful application down handler which you can use in production. However, it might not match your theme, or you might have a maintenance screen designed by someone which needs to match that design. Leaf gives you the flexibility to display a custom maintenance error page using the `setDown` method.
-
-<div class="functional-mode">
-
-```php
-app()->setDown(function () {
-  echo "Down for maintenance";
-});
-```
-
-</div>
-<div class="class-mode">
-
-```php
-$app->setDown(function () {
-  echo "Down for maintenance";
-});
-```
-
-</div>
+Considering the directory structure above, the `_error.tsx` file in the `pages/users` directory will be used for all errors that occur on routes in the `/users` directory. The `_error.tsx` file in the `pages` directory will be used for all other errors.
