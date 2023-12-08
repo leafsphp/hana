@@ -27,7 +27,7 @@ const Component = () => {
 };
 ```
 
-The `useStore()` hook can also be used to set and get the entire state object. This is useful when you need to access multiple values from the state object.
+The `useStore()` hook can also be used to set and get the entire state object. This is useful when you need to access multiple values from the state object. To do this, you can call `useStore()` without any arguments. This will return an array with the state object and a function that can be used to set the state object.
 
 ```jsx{4}
 import { useStore } from '@hanabira/store';
