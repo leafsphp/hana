@@ -11,7 +11,7 @@ Under the hood, Hana router compiles all the files in the `pages` directory into
 
 ## Installation
 
-It is recommended to use the [create-hana-app CLI](/docs/cli) to create a new Hana app. This will automatically set up the router for you. However, if you have an existing app, you can check out the [manual installation](/docs/introduction/installation.html#manual-setup) guide.
+It is recommended to use the [create-hana-app CLI](/docs/cli/) to create a new Hana app. This will automatically set up the router for you. However, if you have an existing app, you can check out the [manual installation](/docs/introduction/installation.html#manual-setup) guide.
 
 ## Creating a Route
 
