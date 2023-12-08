@@ -18,7 +18,7 @@ createStore({
   // reducers are functions that allow you to update your state
   // you can call them using useReducer('REDUCER_NAME')
   reducers: {
-    INCREMENT(state) {
+    increment(state) {
       return {
         count: state.count + 1,
       };
