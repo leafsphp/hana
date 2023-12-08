@@ -1,5 +1,10 @@
 # Hana Store
 
+<p class="flex flex:start-all" style="gap:10px;">
+  <a href="https://npmjs.com/package/@hanabira/store"><img src="https://img.shields.io/npm/v/@hanabira/store" alt="npm version" height="18"></a>
+  <img src="https://img.shields.io/npm/dt/@hanabira/store" class="m:0" alt="">
+</p>
+
 Hana Store is a simple, lightweight and easy to use state management library for React. It focuses on maintaining a great developer experience and ease of use. It requires no boilerplate, no configuration, and no extra dependencies to get started. It is inspired by React's state management hooks, VueX and ReactN.
 
 Although Hana Store is built as a Hana component, it can be used in any React application and even in React Native applications.
