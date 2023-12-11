@@ -6,10 +6,9 @@ export default defineConfig({
   plugins: [
     react(),
     hana({
+      useLazy: true,
       root: __dirname,
       typescript: true,
-      usePageTransition: true,
-      mode: 'history',
     }),
   ],
 });

@@ -2,7 +2,7 @@ import nprogress from 'nprogress';
 import React, { useEffect } from 'react';
 import { PersistedState, createStore } from '@hanabira/store';
 
-import './index.css';
+import './../styles/index.css';
 
 createStore({
   state: {
