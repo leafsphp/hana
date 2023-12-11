@@ -11,8 +11,8 @@ export function createRouter({
   usePageTransition = false,
   mode = 'history',
   routes: appRoutes,
-  root,
-}: RouterOptions): React.ReactNode {
+  useLazy = true,
+}: Omit<RouterOptions, 'root' | 'useSrc'>): React.ReactNode {
   const routes: any = [];
 
   for (const r of appRoutes.routes) {
@@ -57,14 +57,20 @@ export function createRouter({
     let ErrorComponent: any;
     let LoadingComponent: any;
 
-    const Component = lazy(() => r.component);
+    const Component = useLazy
+      ? lazy(() => r.component as Promise<any>)
+      : (r.component as any);
 
     if (closestErrorPage) {
-      ErrorComponent = lazy(() => closestErrorPage!.component);
+      ErrorComponent = useLazy
+        ? lazy(() => closestErrorPage!.component as Promise<any>)
+        : (closestErrorPage as RouteItem).component;
     }
 
     if (closestLoadingPage) {
-      LoadingComponent = lazy(() => closestLoadingPage!.component);
+      LoadingComponent = useLazy
+        ? lazy(() => closestLoadingPage!.component as Promise<any>)
+        : (closestLoadingPage as RouteItem).component;
     }
 
     routes.push({
@@ -82,7 +88,11 @@ export function createRouter({
   if (appRoutes._404Page.file) {
     routes.push({
       path: '*',
-      element: createElement(lazy(() => appRoutes._404Page!.component!)),
+      element: createElement(
+        useLazy
+          ? lazy(() => appRoutes._404Page!.component! as Promise<any>)
+          : (appRoutes._404Page.component as any)
+      ),
     });
   } else {
     routes.push({
