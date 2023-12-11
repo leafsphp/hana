@@ -2,6 +2,8 @@ export interface RouterOptions {
   usePageTransition?: boolean;
   mode?: 'history' | 'hash';
   root: string;
+  useLazy?: boolean;
+  useSrc?: boolean;
   routes: {
     routes: RouteItem[];
     errorPages: RouteItem[];
@@ -13,7 +15,7 @@ export interface RouterOptions {
 export type RouteItem = {
   path?: string;
   file: string;
-  component: Promise<any>;
+  component: Promise<any> | React.ReactNode;
 };
 
 export interface HanaOptions extends Omit<RouterOptions, 'routes'> {

@@ -4,7 +4,14 @@ import { Plugin } from 'vite';
 
 import type { HanaOptions } from './@types';
 
-export default function hana(options: HanaOptions): Plugin {
+export default function hana({
+  root,
+  useSrc = true,
+  useLazy = true,
+  mode = 'history',
+  typescript = false,
+  usePageTransition = true,
+}: HanaOptions): Plugin {
   const isJavascriptFile = (file: string) =>
     (file.endsWith('.js') ||
       file.endsWith('.jsx') ||
@@ -27,9 +34,9 @@ export default function hana(options: HanaOptions): Plugin {
 
   const setupAppFile = (routes: any) => {
     const appFile = path.resolve(
-      options.root,
+      root,
       '.hana',
-      `_app.${options.typescript ? 'tsx' : 'jsx'}`
+      `_app.${typescript ? 'tsx' : 'jsx'}`
     );
 
     if (!fs.existsSync(appFile)) {
@@ -40,39 +47,92 @@ import ReactDOM from 'react-dom/client';
 import { createRouter } from '@hanabira/router';
 
 ${routes.routes
-  ?.map(
-    (appRoute: any) =>
-      `const ${appRoute.component} = import('../pages${appRoute.file}');`
+  ?.map((appRoute: any) =>
+    useLazy
+      ? `const ${appRoute.component} = import(${
+          useSrc
+            ? `'../src/pages${appRoute.file}'`
+            : `'../pages${appRoute.file}'`
+        });`
+      : `import ${appRoute.component} from ${
+          useSrc
+            ? `'../src/pages${appRoute.file}'`
+            : `'../pages${appRoute.file}'`
+        };`
   )
   .join('\n')}${routes.errorPages
-          ?.map(
-            (errorPage: any) =>
-              `const ${errorPage
-                .replace(/\//g, '_')
-                .replace(/\./g, '_')} = import('../pages${errorPage}');`
+          ?.map((errorPage: any) =>
+            useLazy
+              ? `const ${errorPage
+                  .replace(/\//g, '_')
+                  .replace(/\./g, '_')} = import(${
+                  useSrc
+                    ? `'../src/pages${errorPage}'`
+                    : `'../pages${errorPage}'`
+                });`
+              : `import ${errorPage
+                  .replace(/\//g, '_')
+                  .replace(/\./g, '_')} from ${
+                  useSrc
+                    ? `'../src/pages${errorPage}'`
+                    : `'../pages${errorPage}'`
+                };`
           )
           .join('\n')}${routes.loadingPages
-          ?.map(
-            (loadingPage: any) =>
-              `const ${loadingPage
-                .replace(/\//g, '_')
-                .replace(/\./g, '_')} = import('../pages${loadingPage}');`
+          ?.map((loadingPage: any) =>
+            useLazy
+              ? `const ${loadingPage
+                  .replace(/\//g, '_')
+                  .replace(/\./g, '_')} = import(${
+                  useSrc
+                    ? `'../src/pages${loadingPage}'`
+                    : `'../pages${loadingPage}'`
+                });`
+              : `import ${loadingPage
+                  .replace(/\//g, '_')
+                  .replace(/\./g, '_')} from ${
+                  useSrc
+                    ? `'../src/pages${loadingPage}'`
+                    : `'../pages${loadingPage}'`
+                };`
           )
           .join('\n')}
 
-${routes._404Page ? `const _404 = import('./../pages${routes._404Page}');` : ''}
+${
+  routes._404Page
+    ? useLazy
+      ? `const _404 = import(${
+          useSrc
+            ? `'./../src/pages${routes._404Page}'`
+            : `'./../pages${routes._404Page}'`
+        });`
+      : `import _404 from ${
+          useSrc
+            ? `'./../src/pages${routes._404Page}'`
+            : `'./../pages${routes._404Page}'`
+        };`
+    : ''
+}
 
-import Application from './../pages/_app';
+${
+  useLazy
+    ? `const Application = React.lazy(() => import(${
+        useSrc ? `'./../src/pages/_app'` : `'./../pages/_app'`
+      }));`
+    : `import Application from ${
+        useSrc ? `'./../src/pages/_app'` : `'./../pages/_app'`
+      };`
+}
 
 ReactDOM.createRoot(document.getElementById('root')${
-          options.typescript ? '!' : ''
+          typescript ? '!' : ''
         }).render(
   <React.StrictMode>
     <Application>
       {createRouter({
-        usePageTransition: ${options.usePageTransition ?? false},
-        mode: '${options.mode ?? 'history'}',
-        root: import.meta.url,
+        useLazy: ${useLazy},
+        usePageTransition: ${usePageTransition},
+        mode: '${mode}',
         routes: {
           routes: [
             ${routes.routes
@@ -138,9 +198,13 @@ ReactDOM.createRoot(document.getElementById('root')${
       const errorFiles: any = [];
       const loadingFiles: any = [];
 
-      const files = fs.readdirSync(path.resolve(options.root, dir), {
-        withFileTypes: true,
-      });
+      const files = useSrc
+        ? fs.readdirSync(path.resolve(root, 'src', dir), {
+            withFileTypes: true,
+          })
+        : fs.readdirSync(path.resolve(root, dir), {
+            withFileTypes: true,
+          });
 
       for (const file of files) {
         if (file.isDirectory()) {
@@ -150,9 +214,11 @@ ReactDOM.createRoot(document.getElementById('root')${
           loadingFiles.push(...data.loadingFiles);
           errorFiles.push(...data.errorFiles);
         } else {
-          javascriptFiles.push(`${dir}/${file.name}`.replace('pages', ''));
-          loadingFiles.push(`${dir}/${file.name}`.replace('pages', ''));
-          errorFiles.push(`${dir}/${file.name}`.replace('pages', ''));
+          const _pages = `${dir}/${file.name}`.replace('pages', '');
+
+          javascriptFiles.push(_pages);
+          loadingFiles.push(_pages);
+          errorFiles.push(_pages);
         }
       }
 
@@ -199,9 +265,9 @@ ReactDOM.createRoot(document.getElementById('root')${
 
     console.log('Routes built successfully!');
 
-    fs.mkdirSync(path.resolve(options.root, '.hana'), { recursive: true });
+    fs.mkdirSync(path.resolve(root, '.hana'), { recursive: true });
     fs.writeFileSync(
-      path.resolve(options.root, '.hana/routes.json'),
+      path.resolve(root, '.hana/routes.json'),
       JSON.stringify({ routes, errorPages, loadingPages, _404Page })
     );
 
@@ -212,6 +278,14 @@ ReactDOM.createRoot(document.getElementById('root')${
     name: 'hana',
 
     configResolved(config) {
+      if (fs.existsSync(path.resolve(root, '.hana'))) {
+        console.log('Cleaning up previous build...');
+
+        fs.rmdirSync(path.resolve(root, '.hana'), {
+          recursive: true,
+        });
+      }
+
       if (config.command === 'build') {
         console.log('Starting production build...');
       }
@@ -224,10 +298,10 @@ ReactDOM.createRoot(document.getElementById('root')${
         isJavascriptFile(file) &&
         (await read()).indexOf('export default') > -1
       ) {
-        if (fs.existsSync(path.resolve(options.root, '.hana'))) {
+        if (fs.existsSync(path.resolve(root, '.hana'))) {
           console.log('Cleaning up previous build...');
 
-          fs.rmdirSync(path.resolve(options.root, '.hana'), {
+          fs.rmdirSync(path.resolve(root, '.hana'), {
             recursive: true,
           });
         }
