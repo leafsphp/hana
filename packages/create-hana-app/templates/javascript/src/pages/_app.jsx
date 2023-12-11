@@ -1,7 +1,6 @@
-import React from 'react';
 import { PersistedState, createStore } from '@hanabira/store';
 
-import './index.css';
+import './../styles/index.css';
 
 /**
  * Hana store allows you to use global state in your application.
@@ -29,11 +28,11 @@ createStore({
     // The persisted state plugin allows you to save your
     // global state to local storage. You can remove the plugins
     // section if you don't need it
-    PersistedState
+    PersistedState,
   ],
 });
 
-const Application: React.FC<React.PropsWithChildren> = ({ children }) => {
+const Application = ({ children }) => {
   /**
    * This is the root of your application. You can add any
    * global components here. You can also add a global layout

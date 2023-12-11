@@ -8,7 +8,6 @@ export default defineConfig({
     hana({
       root: __dirname,
       typescript: true,
-      usePageTransition: true,
     }),
   ],
 });
