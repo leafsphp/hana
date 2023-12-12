@@ -17,9 +17,11 @@ export function createRouter({
 
   for (const r of appRoutes.routes) {
     let closestErrorPage: RouteItem | null = null;
+    let closestLayoutPage: RouteItem | null = null;
     let closestLoadingPage: RouteItem | null = null;
 
     let closestErrorMatchLength = 0;
+    let closestLayoutMatchLength = 0;
     let closestLoadingMatchLength = 0;
 
     appRoutes.errorPages.forEach((errorPage) => {
@@ -54,7 +56,24 @@ export function createRouter({
       }
     });
 
+    appRoutes.layouts.forEach((layout) => {
+      const routeFile = r.file.toLowerCase();
+      const layoutFile = layout.file
+        .replace(/\_layout.(jsx|tsx|js|ts)/, '')
+        .toLowerCase();
+
+      if (routeFile.startsWith(layoutFile)) {
+        const matchLength = layoutFile.length;
+
+        if (matchLength > closestLayoutMatchLength) {
+          closestLayoutPage = layout;
+          closestLayoutMatchLength = matchLength;
+        }
+      }
+    });
+
     let ErrorComponent: any;
+    let LayoutComponent: any;
     let LoadingComponent: any;
 
     const Component = useLazy
@@ -73,14 +92,24 @@ export function createRouter({
         : (closestLoadingPage as RouteItem).component;
     }
 
+    if (closestLayoutPage) {
+      LayoutComponent = useLazy
+        ? lazy(() => closestLayoutPage!.component as Promise<any>)
+        : (closestLayoutPage as RouteItem).component;
+    }
+
     routes.push({
       path: r.path,
       errorElement: closestErrorPage ? createElement(ErrorComponent) : null,
       element: closestLoadingPage
         ? createElement(Suspense, {
             fallback: createElement(LoadingComponent),
-            children: createElement(Component),
+            children: closestLayoutPage
+              ? createElement(LayoutComponent, {}, createElement(Component))
+              : createElement(Component),
           })
+        : closestLayoutPage
+        ? createElement(LayoutComponent, {}, createElement(Component))
         : createElement(Component),
     });
   }

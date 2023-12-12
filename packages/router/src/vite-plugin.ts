@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { Plugin } from 'vite';
 
-import type { HanaOptions } from './@types';
+import type { HanaOptions, RouteCompiler } from './@types';
 
 export default function hana({
   root,
@@ -28,6 +28,9 @@ export default function hana({
 
   const isErrorPage = (file: string) =>
     isJavascriptFile(file) && file.includes('/_error.');
+
+  const isLayoutFile = (file: string) =>
+    isJavascriptFile(file) && file.includes('/_layout.');
 
   const isLoadingFile = (file: string) =>
     isJavascriptFile(file) && file.includes('/_loading.');
@@ -60,19 +63,57 @@ ${routes.routes
             : `'../pages${appRoute.file}'`
         };`
   )
-  .join('\n')}${routes.errorPages
+  .join('\n')}${routes.layoutPages
+          ?.map((layoutPage: any) =>
+            useLazy
+              ? `const ${layoutPage
+                  .replace(/:/g, '_')
+                  .replace(/\//g, '_')
+                  .replace(/\[/g, '_')
+                  .replace(/\]/g, '_')
+                  .replace(/\.(js|ts)$/g, '___')
+                  .replace(/\.(jsx|tsx)$/g, '____')
+                  .toUpperCase()} = import(${
+                  useSrc
+                    ? `'../src/pages${layoutPage}'`
+                    : `'../pages${layoutPage}'`
+                });`
+              : `import ${layoutPage
+                  .replace(/:/g, '_')
+                  .replace(/\//g, '_')
+                  .replace(/\[/g, '_')
+                  .replace(/\]/g, '_')
+                  .replace(/\.(js|ts)$/g, '___')
+                  .replace(/\.(jsx|tsx)$/g, '____')
+                  .toUpperCase()} from ${
+                  useSrc
+                    ? `'../src/pages${layoutPage}'`
+                    : `'../pages${layoutPage}'`
+                };`
+          )
+          .join('\n')}${routes.errorPages
           ?.map((errorPage: any) =>
             useLazy
               ? `const ${errorPage
+                  .replace(/:/g, '_')
                   .replace(/\//g, '_')
-                  .replace(/\./g, '_')} = import(${
+                  .replace(/\[/g, '_')
+                  .replace(/\]/g, '_')
+                  .replace(/\.(js|ts)$/g, '___')
+                  .replace(/\.(jsx|tsx)$/g, '____')
+                  .toUpperCase()} = import(${
                   useSrc
                     ? `'../src/pages${errorPage}'`
                     : `'../pages${errorPage}'`
                 });`
               : `import ${errorPage
+                  .replace(/:/g, '_')
                   .replace(/\//g, '_')
-                  .replace(/\./g, '_')} from ${
+                  .replace(/\[/g, '_')
+                  .replace(/\]/g, '_')
+                  .replace(/\.(js|ts)$/g, '___')
+                  .replace(/\.(jsx|tsx)$/g, '____')
+                  .toUpperCase()} from ${
                   useSrc
                     ? `'../src/pages${errorPage}'`
                     : `'../pages${errorPage}'`
@@ -82,15 +123,25 @@ ${routes.routes
           ?.map((loadingPage: any) =>
             useLazy
               ? `const ${loadingPage
+                  .replace(/:/g, '_')
                   .replace(/\//g, '_')
-                  .replace(/\./g, '_')} = import(${
+                  .replace(/\[/g, '_')
+                  .replace(/\]/g, '_')
+                  .replace(/\.(js|ts)$/g, '___')
+                  .replace(/\.(jsx|tsx)$/g, '____')
+                  .toUpperCase()} = import(${
                   useSrc
                     ? `'../src/pages${loadingPage}'`
                     : `'../pages${loadingPage}'`
                 });`
               : `import ${loadingPage
+                  .replace(/:/g, '_')
                   .replace(/\//g, '_')
-                  .replace(/\./g, '_')} from ${
+                  .replace(/\[/g, '_')
+                  .replace(/\]/g, '_')
+                  .replace(/\.(js|ts)$/g, '___')
+                  .replace(/\.(jsx|tsx)$/g, '____')
+                  .toUpperCase()} from ${
                   useSrc
                     ? `'../src/pages${loadingPage}'`
                     : `'../pages${loadingPage}'`
@@ -152,7 +203,13 @@ ReactDOM.createRoot(document.getElementById('root')${
                 (errorPage: any) =>
                   `{
                 file: '${errorPage}',
-                component: ${errorPage.replace(/\//g, '_').replace(/\./g, '_')},
+                component: ${errorPage.replace(/:/g, '_')
+                  .replace(/\//g, '_')
+                  .replace(/\[/g, '_')
+                  .replace(/\]/g, '_')
+                  .replace(/\.(js|ts)$/g, '___')
+                  .replace(/\.(jsx|tsx)$/g, '____')
+                  .toUpperCase()},
               },`
               )
               .join('\n')}
@@ -164,8 +221,31 @@ ReactDOM.createRoot(document.getElementById('root')${
                   `{
                 file: '${loadingPage}',
                 component: ${loadingPage
+                  .replace(/:/g, '_')
                   .replace(/\//g, '_')
-                  .replace(/\./g, '_')},
+                  .replace(/\[/g, '_')
+                  .replace(/\]/g, '_')
+                  .replace(/\.(js|ts)$/g, '___')
+                  .replace(/\.(jsx|tsx)$/g, '____')
+                  .toUpperCase()},
+              },`
+              )
+              .join('\n')}
+          ],
+          layouts: [
+            ${routes.layoutPages
+              ?.map(
+                (layoutPage: any) =>
+                  `{
+                file: '${layoutPage}',
+                component: ${layoutPage
+                  .replace(/:/g, '_')
+                  .replace(/\//g, '_')
+                  .replace(/\[/g, '_')
+                  .replace(/\]/g, '_')
+                  .replace(/\.(js|ts)$/g, '___')
+                  .replace(/\.(jsx|tsx)$/g, '____')
+                  .toUpperCase()},
               },`
               )
               .join('\n')}
@@ -188,15 +268,11 @@ ReactDOM.createRoot(document.getElementById('root')${
   const buildRoutes = () => {
     console.log('Building your routes...');
 
-    const compileRoutes: (dir?: string) => {
-      javascriptFiles: any[];
-      loadingFiles: any[];
-      errorFiles: any[];
-      _404Page: string;
-    } = (dir = 'pages') => {
+    const compileRoutes: RouteCompiler = (dir = 'pages') => {
       const javascriptFiles: any = [];
-      const errorFiles: any = [];
       const loadingFiles: any = [];
+      const layoutFiles: any = [];
+      const errorFiles: any = [];
 
       const files = useSrc
         ? fs.readdirSync(path.resolve(root, 'src', dir), {
@@ -212,12 +288,14 @@ ReactDOM.createRoot(document.getElementById('root')${
 
           javascriptFiles.push(...data.javascriptFiles);
           loadingFiles.push(...data.loadingFiles);
+          layoutFiles.push(...data.layoutFiles);
           errorFiles.push(...data.errorFiles);
         } else {
           const _pages = `${dir}/${file.name}`.replace('pages', '');
 
           javascriptFiles.push(_pages);
           loadingFiles.push(_pages);
+          layoutFiles.push(_pages);
           errorFiles.push(_pages);
         }
       }
@@ -225,6 +303,7 @@ ReactDOM.createRoot(document.getElementById('root')${
       return {
         javascriptFiles: javascriptFiles.filter(isNotHanaFile),
         loadingFiles: loadingFiles.filter(isLoadingFile),
+        layoutFiles: layoutFiles.filter(isLayoutFile),
         errorFiles: errorFiles.filter(isErrorPage),
         _404Page: javascriptFiles.find((file: string) =>
           file.includes('/_404.')
@@ -234,10 +313,11 @@ ReactDOM.createRoot(document.getElementById('root')${
 
     const routes: any = [];
     const appFiles = compileRoutes();
+    const _404Page = appFiles._404Page;
     const errorPages = appFiles.errorFiles;
+    const layoutPages = appFiles.layoutFiles;
     const appRoutes = appFiles.javascriptFiles;
     const loadingPages = appFiles.loadingFiles;
-    const _404Page = appFiles._404Page;
 
     appRoutes.forEach((route: string) => {
       const routePath = route
@@ -268,10 +348,16 @@ ReactDOM.createRoot(document.getElementById('root')${
     fs.mkdirSync(path.resolve(root, '.hana'), { recursive: true });
     fs.writeFileSync(
       path.resolve(root, '.hana/routes.json'),
-      JSON.stringify({ routes, errorPages, loadingPages, _404Page })
+      JSON.stringify({
+        routes,
+        errorPages,
+        loadingPages,
+        layoutPages,
+        _404Page,
+      })
     );
 
-    setupAppFile({ routes, errorPages, loadingPages, _404Page });
+    setupAppFile({ routes, errorPages, loadingPages, layoutPages, _404Page });
   };
 
   return {
@@ -281,7 +367,7 @@ ReactDOM.createRoot(document.getElementById('root')${
       if (fs.existsSync(path.resolve(root, '.hana'))) {
         console.log('Cleaning up previous build...');
 
-        fs.rmdirSync(path.resolve(root, '.hana'), {
+        fs.rmSync(path.resolve(root, '.hana'), {
           recursive: true,
         });
       }
@@ -301,7 +387,7 @@ ReactDOM.createRoot(document.getElementById('root')${
         if (fs.existsSync(path.resolve(root, '.hana'))) {
           console.log('Cleaning up previous build...');
 
-          fs.rmdirSync(path.resolve(root, '.hana'), {
+          fs.rmSync(path.resolve(root, '.hana'), {
             recursive: true,
           });
         }

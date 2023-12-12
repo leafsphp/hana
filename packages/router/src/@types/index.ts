@@ -6,6 +6,7 @@ export interface RouterOptions {
   useSrc?: boolean;
   routes: {
     routes: RouteItem[];
+    layouts: RouteItem[];
     errorPages: RouteItem[];
     loadingPages: RouteItem[];
     _404Page: Partial<RouteItem>;
@@ -21,3 +22,11 @@ export type RouteItem = {
 export interface HanaOptions extends Omit<RouterOptions, 'routes'> {
   typescript?: boolean;
 }
+
+export type RouteCompiler = (dir?: string) => {
+  javascriptFiles: any[];
+  loadingFiles: any[];
+  layoutFiles: any[];
+  errorFiles: any[];
+  _404Page: string;
+};
