@@ -384,14 +384,6 @@ ReactDOM.createRoot(document.getElementById('root')${
         isJavascriptFile(file) &&
         (await read()).indexOf('export default') > -1
       ) {
-        if (fs.existsSync(path.resolve(root, '.hana'))) {
-          console.log('Cleaning up previous build...');
-
-          fs.rmSync(path.resolve(root, '.hana'), {
-            recursive: true,
-          });
-        }
-
         buildRoutes();
       }
     },
