@@ -1,6 +1,6 @@
 {
   "name": "create-hana-app",
-  "version": "0.17.0",
+  "version": "0.18.0",
   "type": "module",
   "bin": "./dist/index.js",
   "module": "./dist/index.mjs",
