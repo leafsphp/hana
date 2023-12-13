@@ -2,7 +2,16 @@ import fs from 'fs';
 import path from 'path';
 import { Plugin } from 'vite';
 
-import type { HanaOptions, RouteCompiler } from './@types';
+import type { AppRoutes, HanaOptions, RouteCompiler } from './@types';
+import {
+  componentify,
+  importify,
+  isErrorPage,
+  isJavascriptFile,
+  isLayoutFile,
+  isLoadingFile,
+  isNotHanaFile,
+} from './router/utils';
 
 export default function hana({
   root,
@@ -12,30 +21,7 @@ export default function hana({
   typescript = false,
   usePageTransition = true,
 }: HanaOptions): Plugin {
-  const isJavascriptFile = (file: string) =>
-    (file.endsWith('.js') ||
-      file.endsWith('.jsx') ||
-      file.endsWith('.ts') ||
-      file.endsWith('.tsx')) &&
-    !file.endsWith('.d.ts') &&
-    !file.endsWith('.test.js') &&
-    !file.endsWith('.test.jsx') &&
-    !file.endsWith('.test.ts') &&
-    !file.endsWith('.test.tsx');
-
-  const isNotHanaFile = (file: string) =>
-    isJavascriptFile(file) && !file.includes('/_');
-
-  const isErrorPage = (file: string) =>
-    isJavascriptFile(file) && file.includes('/_error.');
-
-  const isLayoutFile = (file: string) =>
-    isJavascriptFile(file) && file.includes('/_layout.');
-
-  const isLoadingFile = (file: string) =>
-    isJavascriptFile(file) && file.includes('/_loading.');
-
-  const setupAppFile = (routes: any) => {
+  const setupAppFile = (routes: AppRoutes) => {
     const appFile = path.resolve(
       root,
       '.hana',
@@ -49,129 +35,18 @@ export default function hana({
 import ReactDOM from 'react-dom/client';
 import { createRouter } from '@hanabira/router';
 
-${routes.routes
-  ?.map((appRoute: any) =>
-    useLazy
-      ? `const ${appRoute.component} = import(${
-          useSrc
-            ? `'../src/pages${appRoute.file}'`
-            : `'../pages${appRoute.file}'`
-        });`
-      : `import ${appRoute.component} from ${
-          useSrc
-            ? `'../src/pages${appRoute.file}'`
-            : `'../pages${appRoute.file}'`
-        };`
-  )
-  .join('\n')}${routes.layoutPages
-          ?.map((layoutPage: any) =>
-            useLazy
-              ? `const ${layoutPage
-                  .replace(/:/g, '_')
-                  .replace(/\//g, '_')
-                  .replace(/\[/g, '_')
-                  .replace(/\]/g, '_')
-                  .replace(/\.(js|ts)$/g, '___')
-                  .replace(/\.(jsx|tsx)$/g, '____')
-                  .toUpperCase()} = import(${
-                  useSrc
-                    ? `'../src/pages${layoutPage}'`
-                    : `'../pages${layoutPage}'`
-                });`
-              : `import ${layoutPage
-                  .replace(/:/g, '_')
-                  .replace(/\//g, '_')
-                  .replace(/\[/g, '_')
-                  .replace(/\]/g, '_')
-                  .replace(/\.(js|ts)$/g, '___')
-                  .replace(/\.(jsx|tsx)$/g, '____')
-                  .toUpperCase()} from ${
-                  useSrc
-                    ? `'../src/pages${layoutPage}'`
-                    : `'../pages${layoutPage}'`
-                };`
-          )
-          .join('\n')}${routes.errorPages
-          ?.map((errorPage: any) =>
-            useLazy
-              ? `const ${errorPage
-                  .replace(/:/g, '_')
-                  .replace(/\//g, '_')
-                  .replace(/\[/g, '_')
-                  .replace(/\]/g, '_')
-                  .replace(/\.(js|ts)$/g, '___')
-                  .replace(/\.(jsx|tsx)$/g, '____')
-                  .toUpperCase()} = import(${
-                  useSrc
-                    ? `'../src/pages${errorPage}'`
-                    : `'../pages${errorPage}'`
-                });`
-              : `import ${errorPage
-                  .replace(/:/g, '_')
-                  .replace(/\//g, '_')
-                  .replace(/\[/g, '_')
-                  .replace(/\]/g, '_')
-                  .replace(/\.(js|ts)$/g, '___')
-                  .replace(/\.(jsx|tsx)$/g, '____')
-                  .toUpperCase()} from ${
-                  useSrc
-                    ? `'../src/pages${errorPage}'`
-                    : `'../pages${errorPage}'`
-                };`
-          )
-          .join('\n')}${routes.loadingPages
-          ?.map((loadingPage: any) =>
-            useLazy
-              ? `const ${loadingPage
-                  .replace(/:/g, '_')
-                  .replace(/\//g, '_')
-                  .replace(/\[/g, '_')
-                  .replace(/\]/g, '_')
-                  .replace(/\.(js|ts)$/g, '___')
-                  .replace(/\.(jsx|tsx)$/g, '____')
-                  .toUpperCase()} = import(${
-                  useSrc
-                    ? `'../src/pages${loadingPage}'`
-                    : `'../pages${loadingPage}'`
-                });`
-              : `import ${loadingPage
-                  .replace(/:/g, '_')
-                  .replace(/\//g, '_')
-                  .replace(/\[/g, '_')
-                  .replace(/\]/g, '_')
-                  .replace(/\.(js|ts)$/g, '___')
-                  .replace(/\.(jsx|tsx)$/g, '____')
-                  .toUpperCase()} from ${
-                  useSrc
-                    ? `'../src/pages${loadingPage}'`
-                    : `'../pages${loadingPage}'`
-                };`
-          )
-          .join('\n')}
-
-${
-  routes._404Page
-    ? useLazy
-      ? `const _404 = import(${
-          useSrc
-            ? `'./../src/pages${routes._404Page}'`
-            : `'./../pages${routes._404Page}'`
-        });`
-      : `import _404 from ${
-          useSrc
-            ? `'./../src/pages${routes._404Page}'`
-            : `'./../pages${routes._404Page}'`
-        };`
-    : ''
-}
-
+${importify(routes.routes, { useLazy, useSrc })}
+${importify(routes.errorPages, { useLazy, useSrc })}
+${importify(routes.layoutPages, { useLazy, useSrc })}
+${importify(routes.loadingPages, { useLazy, useSrc })}
+${importify(routes._404Page, { useLazy, useSrc })}
 ${
   useLazy
     ? `const Application = React.lazy(() => import(${
-        useSrc ? `'./../src/pages/_app'` : `'./../pages/_app'`
+        useSrc ? `'../src/pages/_app'` : `'../pages/_app'`
       }));`
     : `import Application from ${
-        useSrc ? `'./../src/pages/_app'` : `'./../pages/_app'`
+        useSrc ? `'../src/pages/_app'` : `'../pages/_app'`
       };`
 }
 
@@ -186,73 +61,32 @@ ReactDOM.createRoot(document.getElementById('root')${
         mode: '${mode}',
         routes: {
           routes: [
-            ${routes.routes
-              ?.map(
-                (appRoute: any) =>
-                  `{
-                file: '${appRoute.file}',
-                path: '${appRoute.path}',
-                component: ${appRoute.component},
-              },`
-              )
-              .join('\n')}
+            ${routes.routes.map(
+              (route) =>
+                `{ path: '${route.path}', component: ${route.component}, file: '${route.file}' }`
+            )}
           ],
           errorPages: [
-            ${routes.errorPages
-              ?.map(
-                (errorPage: any) =>
-                  `{
-                file: '${errorPage}',
-                component: ${errorPage.replace(/:/g, '_')
-                  .replace(/\//g, '_')
-                  .replace(/\[/g, '_')
-                  .replace(/\]/g, '_')
-                  .replace(/\.(js|ts)$/g, '___')
-                  .replace(/\.(jsx|tsx)$/g, '____')
-                  .toUpperCase()},
-              },`
-              )
-              .join('\n')}
+            ${routes.errorPages.map(
+              (route) =>
+                `{ component: ${route.component}, file: '${route.file}' }`
+            )}
           ],
           loadingPages: [
-            ${routes.loadingPages
-              ?.map(
-                (loadingPage: any) =>
-                  `{
-                file: '${loadingPage}',
-                component: ${loadingPage
-                  .replace(/:/g, '_')
-                  .replace(/\//g, '_')
-                  .replace(/\[/g, '_')
-                  .replace(/\]/g, '_')
-                  .replace(/\.(js|ts)$/g, '___')
-                  .replace(/\.(jsx|tsx)$/g, '____')
-                  .toUpperCase()},
-              },`
-              )
-              .join('\n')}
+            ${routes.loadingPages.map(
+              (route) =>
+                `{ component: ${route.component}, file: '${route.file}' }`
+            )}
           ],
           layouts: [
-            ${routes.layoutPages
-              ?.map(
-                (layoutPage: any) =>
-                  `{
-                file: '${layoutPage}',
-                component: ${layoutPage
-                  .replace(/:/g, '_')
-                  .replace(/\//g, '_')
-                  .replace(/\[/g, '_')
-                  .replace(/\]/g, '_')
-                  .replace(/\.(js|ts)$/g, '___')
-                  .replace(/\.(jsx|tsx)$/g, '____')
-                  .toUpperCase()},
-              },`
-              )
-              .join('\n')}
+            ${routes.layoutPages.map(
+              (route) =>
+                `{ component: ${route.component}, file: '${route.file}' }`
+            )}
           ],
           _404Page: ${
-            routes._404Page
-              ? `{ file: '${routes._404Page}', component: _404 }`
+            routes._404Page.length > 0
+              ? `{ component: ${routes._404Page[0].component}, file: '${routes._404Page[0].file}' }`
               : `{ file: undefined, component: undefined }`
           },
         },
@@ -269,10 +103,10 @@ ReactDOM.createRoot(document.getElementById('root')${
     console.log('Building your routes...');
 
     const compileRoutes: RouteCompiler = (dir = 'pages') => {
-      const javascriptFiles: any = [];
-      const loadingFiles: any = [];
-      const layoutFiles: any = [];
-      const errorFiles: any = [];
+      const javascriptFiles: string[] = [];
+      const loadingFiles: string[] = [];
+      const layoutFiles: string[] = [];
+      const errorFiles: string[] = [];
 
       const files = useSrc
         ? fs.readdirSync(path.resolve(root, 'src', dir), {
@@ -311,37 +145,12 @@ ReactDOM.createRoot(document.getElementById('root')${
       };
     };
 
-    const routes: any = [];
     const appFiles = compileRoutes();
-    const _404Page = appFiles._404Page;
-    const errorPages = appFiles.errorFiles;
-    const layoutPages = appFiles.layoutFiles;
-    const appRoutes = appFiles.javascriptFiles;
-    const loadingPages = appFiles.loadingFiles;
-
-    appRoutes.forEach((route: string) => {
-      const routePath = route
-        .replace(/\[(.*?)\]/g, ':$1')
-        .replace(/\$/g, '')
-        .replace(/\.(js|jsx|ts|tsx)$/g, '')
-        .replace(/\/index$/g, '')
-        .replace(/\/_/g, '/:')
-        .replace(/\/\//g, '/')
-        .toLowerCase();
-
-      routes.push({
-        path: routePath,
-        file: route,
-        component: route
-          .replace(/:/g, '_')
-          .replace(/\//g, '_')
-          .replace(/\[/g, '_')
-          .replace(/\]/g, '_')
-          .replace(/\.(js|ts)$/g, '___')
-          .replace(/\.(jsx|tsx)$/g, '____')
-          .toUpperCase(),
-      });
-    });
+    const errorPages = componentify(appFiles.errorFiles);
+    const routes = componentify(appFiles.javascriptFiles);
+    const layoutPages = componentify(appFiles.layoutFiles);
+    const loadingPages = componentify(appFiles.loadingFiles);
+    const _404Page = appFiles._404Page ? componentify([appFiles._404Page]) : [];
 
     console.log('Routes built successfully!');
 
@@ -353,7 +162,7 @@ ReactDOM.createRoot(document.getElementById('root')${
         errorPages,
         loadingPages,
         layoutPages,
-        _404Page,
+        _404Page: _404Page[0] ?? {},
       })
     );
 
@@ -380,11 +189,12 @@ ReactDOM.createRoot(document.getElementById('root')${
     },
 
     async handleHotUpdate({ file, read }) {
-      if (
-        isJavascriptFile(file) &&
-        (await read()).indexOf('export default') > -1
-      ) {
-        buildRoutes();
+      if (isJavascriptFile(file)) {
+        if ((await read()).indexOf('export default') > -1) {
+          buildRoutes();
+        }
+
+        // TODO: Handle page deletion
       }
     },
   };

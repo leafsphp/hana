@@ -13,6 +13,19 @@ export interface RouterOptions {
   };
 }
 
+export interface RouteImportOptions {
+  useLazy?: boolean;
+  useSrc?: boolean;
+}
+
+export interface AppRoutes {
+  routes: RouteItem[];
+  errorPages: RouteItem[];
+  loadingPages: RouteItem[];
+  layoutPages: RouteItem[];
+  _404Page: RouteItem[];
+}
+
 export type RouteItem = {
   path?: string;
   file: string;
@@ -24,9 +37,9 @@ export interface HanaOptions extends Omit<RouterOptions, 'routes'> {
 }
 
 export type RouteCompiler = (dir?: string) => {
-  javascriptFiles: any[];
-  loadingFiles: any[];
-  layoutFiles: any[];
-  errorFiles: any[];
-  _404Page: string;
+  javascriptFiles: string[];
+  loadingFiles: string[];
+  layoutFiles: string[];
+  errorFiles: string[];
+  _404Page?: string;
 };
