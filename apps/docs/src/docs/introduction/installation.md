@@ -70,7 +70,7 @@ export default defineConfig({
 });
 ```
 
-Once you've done that, you need to rename your `src` to `pages`. This is where all your routes (pages) will be stored. Every file in the `pages` directory will be treated as a route. You can read more about this [here](/docs/routing/). You also need to add an `_app.jsx` or `_app.tsx` file to your `pages` directory. This is where you will define your app's layout. You can read more about this [here](/docs/routing/).
+Once you've done that, you can create a new folder in your `src` directory named `pages`. This is where all your routes (pages) will be stored. Every file in the `pages` directory will be treated as a route. You can read more about this [here](/docs/routing/). You also need to add an `_app.jsx` or `_app.tsx` file to your `pages` directory. This is where you will define your app's layout. You can read more about this [here](/docs/routing/).
 
 ```js
 const Application = ({ children }) => {

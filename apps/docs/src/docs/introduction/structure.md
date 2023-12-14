@@ -17,19 +17,25 @@ Hana comes with a straightforward directory structure that makes it easy to orga
 
 ```bash
 .
-├── index.html
-├── package.json
-├── pages
-│   ├── _app.jsx
-│   ├── index.jsx
+├── src
+│   ├── pages
+│   │   ├── _app.jsx
+│   │   └── index.jsx
+│   ├── styles
 │   └── vite-env.d.ts
 ├── public
+├── index.html
+├── package.json
 └── vite.config.ts
 ```
 
 As you can see, this is a very simple structure. Let's go over each file and directory.
 
 ## Directories
+
+### `src`
+
+This is where all your application's source code will be stored. If you don't want to organize your code in an `src` directory, you can change the `useSrc` option in your `vite.config.ts` file. You can read more about that [here](/docs/routing/config).
 
 ### `pages`
 

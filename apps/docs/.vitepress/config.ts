@@ -132,6 +132,7 @@ const mainSidebar = [
       { text: 'Config', link: '/docs/routing/config' },
       { text: 'Error Handling', link: '/docs/routing/errors' },
       { text: 'Loading Pages', link: '/docs/routing/loading' },
+      { text: 'Layout Pages', link: '/docs/routing/layout' },
     ]
   },
   {
