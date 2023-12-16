@@ -26,13 +26,16 @@ Before creating your first Hana application you must:
 Hana comes with a [create-hana-app](/docs/cli/) CLI tool that allows you to quickly create a new Hana app. It is the recommended way of setting up a Hana app. It allows you to customize your installation and choose between TypeScript and JavaScript.
 
 ```bash
-npx create-hana-app@latest <project-name>
+npx create-hana-app@latest # for npm users
+pnpx create-hana-app@latest # for pnpm users
 ```
 
 Or
 
 ```bash
-npm create hana-app@latest
+npm create hana-app@latest # for npm users
+yarn create hana-app@latest # for yarn users
+pnpm create hana-app@latest # for pnpm users
 ```
 
 This will take you through a series of prompts that will help you set up your project. After that, a new Hana app will be created in the directory you specified. You can then run your app with `npm run dev`.
