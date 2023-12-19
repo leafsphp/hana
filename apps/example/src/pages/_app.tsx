@@ -1,5 +1,4 @@
-import nprogress from 'nprogress';
-import React, { useEffect } from 'react';
+import { createAuth } from '@hanabira/auth';
 import { PersistedState, createStore } from '@hanabira/store';
 
 import './../styles/index.css';
@@ -15,21 +14,15 @@ createStore({
       };
     },
   },
-  plugins: [PersistedState],
+  plugins: [
+    new PersistedState({
+      include: ['count'],
+    }),
+  ],
 });
 
 const Application: React.FC<React.PropsWithChildren> = ({ children }) => {
-  useEffect(() => {
-    nprogress.start();
-
-    setTimeout(() => {
-      // will figure this out later
-      // this won't work because it needs the location object
-      // that is passed to the router, but at this point the router
-      // hasn't been initialized yet
-      nprogress.done();
-    }, 3000);
-  }, []);
+  createAuth();
 
   return <>{children}</>;
 };

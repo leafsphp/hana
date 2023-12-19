@@ -16,6 +16,7 @@ function App() {
 
   // this calls the increment reducer which increments the count state
   const increment = useReducer('increment');
+  const something = useReducer('somethingElse');
 
   // this is a hook that returns the count state and a dispatch function
   const [count] = useStore<number>('count');
@@ -40,6 +41,7 @@ function App() {
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={increment}>count is {count}</button> <br />
+        <button onClick={() => something('This is it')}>{getStore('any')}</button> <br />
         <button onClick={() => setStaticCount((count) => count + 1)}>
           count is {count} but won't show updates
         </button>

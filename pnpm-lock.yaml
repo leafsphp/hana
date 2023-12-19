@@ -136,6 +136,9 @@ importers:
       '@hanabira/config':
         specifier: workspace:*
         version: link:../config
+      '@hanabira/store':
+        specifier: workspace:*
+        version: link:../store
       '@types/react':
         specifier: ^18.2.0
         version: 18.2.5
@@ -146,8 +149,8 @@ importers:
         specifier: ^7.32.0
         version: 7.32.0
       react:
-        specifier: ^17.0.2
-        version: 17.0.2
+        specifier: ^18.2.0
+        version: 18.2.0
       tsup:
         specifier: ^6.0.1
         version: 6.7.0(typescript@5.2.2)
@@ -273,7 +276,7 @@ importers:
     dependencies:
       use-force-update:
         specifier: ^1.0.11
-        version: 1.0.11(react@17.0.2)
+        version: 1.0.11(react@18.2.0)
     devDependencies:
       '@hanabira/config':
         specifier: workspace:*
@@ -288,8 +291,8 @@ importers:
         specifier: ^7.32.0
         version: 7.32.0
       react:
-        specifier: ^17.0.2
-        version: 17.0.2
+        specifier: ^18.2.0
+        version: 18.2.0
       tsup:
         specifier: ^6.0.1
         version: 6.7.0(typescript@5.2.2)
@@ -4563,6 +4566,7 @@ packages:
     dependencies:
       loose-envify: 1.4.0
       object-assign: 4.1.1
+    dev: false
 
   /react@18.2.0:
     resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
@@ -5231,7 +5235,7 @@ packages:
       punycode: 2.1.1
     dev: true
 
-  /use-force-update@1.0.11(react@17.0.2):
+  /use-force-update@1.0.11(react@18.2.0):
     resolution: {integrity: sha512-h4SICYgTJHon8w9dFIqdqR1Vrzdgl4YaRfRwhmAh01kBGljzTICanyfaFU8C4etuEfRdYpE+04XX2ZrEhOWKXQ==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -5239,7 +5243,7 @@ packages:
       react:
         optional: true
     dependencies:
-      react: 17.0.2
+      react: 18.2.0
     dev: false
 
   /v8-compile-cache@2.3.0:
