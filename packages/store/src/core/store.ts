@@ -23,12 +23,12 @@ export default class Manager {
    * @param {Options|null} options Config for Hana store
    */
   public static store(options: Options | null = null) {
-    let state = options?.state || {};
-    let reducers = options?.reducers || {};
+    let state = this.createCleanObject(options?.state);
+    let reducers = this.createCleanObject(options?.reducers);
     let modules = options?.modules || [];
     const plugins = options?.plugins || [];
 
-    this._options.compareState = options?.compareState || false;
+    this._options.compareState = !!options?.compareState;
 
     if (modules.length > 0) {
       modules.forEach((module) => {
@@ -42,15 +42,15 @@ export default class Manager {
           const moduleState = module.state;
 
           if (key === null) {
-            state = {
+            state = this.createCleanObject({
               ...state,
               ...moduleState,
-            };
+            });
           } else {
-            state = {
+            state = this.createCleanObject({
               ...state,
               [key]: moduleState,
-            };
+            });
           }
         }
 
@@ -58,15 +58,15 @@ export default class Manager {
           const moduleReducers = module.reducers;
 
           if (key === null) {
-            reducers = {
+            reducers = this.createCleanObject({
               ...reducers,
               ...moduleReducers,
-            };
+            });
           } else {
-            reducers = {
+            reducers = this.createCleanObject({
               ...reducers,
               [key]: moduleReducers,
-            } as Record<string, Record<string, Reducer>>;
+            } as Record<string, Record<string, Reducer>>);
           }
         }
       });
@@ -86,9 +86,11 @@ export default class Manager {
    * @param {State} state Current state of the store
    */
   public static applyPluginHook(hook: Hook, state: any) {
-    this._plugins.forEach((plugin) => {
-      plugin[hook] && plugin[hook]!(state);
-    });
+    for (const plugin of this._plugins) {
+      if (plugin[hook]) {
+        plugin[hook]!(state);
+      }
+    }
   }
 
   /**
@@ -96,6 +98,7 @@ export default class Manager {
    *
    * @param {State} state The new state
    * @param {boolean} withPlugins Whether to run the plugin hooks or not
+   * @param {boolean} reactive Whether to run the property listeners or not
    */
   public static set(state: any, withPlugins = true, reactive = true) {
     let finalState: State = {};
@@ -104,17 +107,17 @@ export default class Manager {
     if (typeof state === 'function') {
       const callableState = state as (prevState: State) => State;
 
-      finalState = {
+      finalState = this.createCleanObject({
         ...finalState,
         ...globalState,
         ...callableState(globalState),
-      };
+      });
     } else {
-      finalState = {
+      finalState = this.createCleanObject({
         ...finalState,
         ...globalState,
         ...state,
-      };
+      });
     }
 
     if (withPlugins) {
@@ -128,8 +131,8 @@ export default class Manager {
     this._options.state = finalState;
 
     if (reactive) {
-      for (const items of Object.keys(finalState)) {
-        this._options.listeners.get(items)?.forEach((propertyListener) => {
+      for (const stateItem of Object.keys(finalState)) {
+        this._options.listeners.get(stateItem)?.forEach((propertyListener) => {
           propertyListener();
         });
       }
@@ -141,7 +144,10 @@ export default class Manager {
   /**
    * Get the global state
    */
-  public static get<Shape = State>(state?: string | null, propertyListener?: PropertyListener) {
+  public static get<Shape = State>(
+    state?: string | null,
+    propertyListener?: PropertyListener
+  ) {
     if (!state) {
       /**
        * @author Charles Stover <https://github.com/CharlesStover/reactn>
@@ -174,7 +180,7 @@ export default class Manager {
     let selectedState = this._options.state[parts[0]];
 
     if (parts.length > 1) {
-      selectedState = selectedState[parts[1]];
+      selectedState = selectedState?.[parts[1]];
     }
 
     return selectedState;
@@ -190,7 +196,11 @@ export default class Manager {
   ) {
     const runner = <PayloadType = any>(reducer: Reducer) => {
       return async (payload?: PayloadType) => {
-        Manager.set(await reducer(Manager.get(null, propertyListener), payload), true, !!propertyListener);
+        Manager.set(
+          await reducer(Manager.get(null, propertyListener), payload),
+          true,
+          !!propertyListener
+        );
       };
     };
 
@@ -261,26 +271,8 @@ export default class Manager {
     return removed;
   }
 
-  protected static _createSubscribableState<Item = any>() {
-    const subscribers: Set<(item: Item) => void> = new Set();
-
-    return {
-      subscribe(callback: (item: Item) => void): void {
-        subscribers.add(callback);
-      },
-
-      unsubscribe(callback: (item: Item) => void): void {
-        subscribers.delete(callback);
-      },
-
-      publish(item: Item): void {
-        subscribers.forEach((callback) => callback(item));
-      },
-    };
-  }
-
   protected static _pluginInit(plugins: Plugin[]) {
-    plugins.forEach((plugin: any) => {
+    for (const plugin of plugins) {
       /**
        * ----
        * Plugins could be initialized by the user. This check is to prevent
@@ -293,7 +285,11 @@ export default class Manager {
         const p = new plugin();
         this._plugins.push(p);
       }
-    });
+    }
+  }
+
+  protected static createCleanObject<Item = any>(object?: Item): Item {
+    return Object.assign(Object.create(null), object ?? {});
   }
 
   protected static _compareState(state: State | string) {

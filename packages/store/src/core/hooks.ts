@@ -48,7 +48,20 @@ export function useStore<StateType = any>(
     }
 
     if (item) {
-      stateToSet = { [item]: stateValue };
+      const parts = item.split('.');
+
+      if (parts.length === 1) {
+        stateToSet = { [item]: stateValue };
+      } else {
+        const parentState = Manager.get(parts[0]) ?? {};
+
+        stateToSet = {
+          [parts[0]]: {
+            ...parentState,
+            [parts[1]]: stateValue,
+          },
+        };
+      }
     }
 
     Manager.set(stateToSet);
