@@ -38,14 +38,13 @@ const searchableTemplates = templates.map((template) => {
 });
 
 const main = async () => {
-  const targetDirectory = argv._[0];
   let results: prompts.Answers<'directory' | 'template'>;
 
   try {
     results = await prompts(
       [
         {
-          type: !targetDirectory && 'text',
+          type: 'text',
           name: 'directory',
           message: 'Project name:',
           initial: 'my-hana-app',
@@ -117,6 +116,7 @@ const main = async () => {
   } catch (err) {
     console.log(err);
     console.log(chalk.red('✖') + ' Could not scaffold project');
+    return;
   }
 
   const packageJsonPath = path.join(appRoot, 'package.json');
