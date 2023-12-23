@@ -1,6 +1,6 @@
 {
   "name": "@hanabira/store",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -15,19 +15,19 @@
     "lint": "eslint \"src/**/*.ts*\"",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
+  "dependencies": {
+    "use-force-update": "^1.0.11"
+  },
   "devDependencies": {
     "@hanabira/config": "workspace:*",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "eslint": "^7.32.0",
-    "react": "^17.0.2",
+    "react": "^18.2.0",
     "tsup": "^6.0.1",
     "typescript": "^5.2.2"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "dependencies": {
-    "use-force-update": "^1.0.11"
   }
 }

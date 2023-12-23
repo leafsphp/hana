@@ -6,7 +6,6 @@ export {
   useStaticStore,
   useReducer,
   useStaticReducer,
-  useResetStore,
   useSetStore,
 } from './core/hooks';
 

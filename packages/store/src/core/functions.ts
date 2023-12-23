@@ -10,7 +10,7 @@ export function createStore(options?: Options): void {
 export function setStore<StateType extends State = State>(
   item: SetStateAction<StateType>
 ) {
-  return Manager.set(item);
+  return Manager.set(item, true, false);
 }
 
 export function getStore<StateType = any>(item?: string): StateType {

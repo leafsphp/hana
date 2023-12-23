@@ -11,6 +11,8 @@ export interface FunctionalGlobalState<Type = State> {
   (global: Type, reducerName?: string, reducerArgs?: any[]): GlobalState<Type>;
 }
 
+export type PropertyListener = VoidFunction;
+
 export type GlobalState<Type = State> =
   | AsyncGlobalState<Type>
   | SyncGlobalState<Type>
@@ -29,6 +31,7 @@ export type InternalOptions = {
   state: State;
   reducers: ReducerStore;
   compareState: boolean;
+  listeners: Map<string, Set<PropertyListener>>;
 };
 
 export type Module = {

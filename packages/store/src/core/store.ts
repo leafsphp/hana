@@ -1,6 +1,11 @@
 import { Reducer } from '../@types/functions';
 import { Hook, Plugin, PluginClass } from '../@types/plugin';
-import { Options, State, InternalOptions } from '../@types/core';
+import {
+  Options,
+  State,
+  InternalOptions,
+  PropertyListener,
+} from '../@types/core';
 
 export default class Manager {
   private static _plugins: PluginClass[] = [];
@@ -9,6 +14,7 @@ export default class Manager {
     state: {},
     reducers: {},
     compareState: false,
+    listeners: new Map<string, Set<PropertyListener>>(),
   };
 
   /**
@@ -91,7 +97,7 @@ export default class Manager {
    * @param {State} state The new state
    * @param {boolean} withPlugins Whether to run the plugin hooks or not
    */
-  public static set(state: any, withPlugins = true) {
+  public static set(state: any, withPlugins = true, reactive = true) {
     let finalState: State = {};
     const globalState: State = this.get();
 
@@ -121,15 +127,45 @@ export default class Manager {
 
     this._options.state = finalState;
 
+    if (reactive) {
+      for (const items of Object.keys(finalState)) {
+        this._options.listeners.get(items)?.forEach((propertyListener) => {
+          propertyListener();
+        });
+      }
+    }
+
     return finalState;
   }
 
   /**
    * Get the global state
    */
-  public static get(state?: string | null) {
+  public static get<Shape = State>(state?: string | null, propertyListener?: PropertyListener) {
     if (!state) {
-      return this._options.state;
+      /**
+       * @author Charles Stover <https://github.com/CharlesStover/reactn>
+       */
+      return (Object.keys(this._options.state) as (keyof Shape)[]).reduce(
+        (accumulator: Partial<Shape>, key: keyof Shape): Partial<Shape> => {
+          Object.defineProperty(accumulator, key, {
+            configurable: false,
+            enumerable: true,
+            get: (): Shape[keyof Shape] => {
+              if (propertyListener) {
+                (function (item: string) {
+                  Manager.addPropertyListener(item, propertyListener);
+                })(key as string);
+              }
+
+              return this._options.state[key as string];
+            },
+          });
+
+          return accumulator;
+        },
+        Object.create(null)
+      );
     }
 
     this.applyPluginHook('onRead', state);
@@ -150,16 +186,11 @@ export default class Manager {
    */
   public static useReducer<PayloadType = any>(
     reducer: string | Reducer<State>,
-    forceUpdate?: VoidFunction
+    propertyListener?: PropertyListener
   ) {
     const runner = <PayloadType = any>(reducer: Reducer) => {
       return async (payload?: PayloadType) => {
-        const state = reducer(Manager.get(), payload);
-        Manager.set(await state);
-
-        if (typeof forceUpdate === 'function') {
-          forceUpdate();
-        }
+        Manager.set(await reducer(Manager.get(null, propertyListener), payload), true, !!propertyListener);
       };
     };
 
@@ -188,6 +219,64 @@ export default class Manager {
   public static reset() {
     this.applyPluginHook('onReset', this._options.defaultState);
     this._options.state = this._options.defaultState;
+
+    for (const items of Object.keys(this._options.state)) {
+      this._options.listeners.get(items)?.forEach((propertyListener) => {
+        propertyListener();
+      });
+    }
+  }
+
+  /**
+   * Map component instance to a state property.
+   *
+   * @param {string} property The state property to map to.
+   * @param {PropertyListener} propertyListener The listener to map.
+   */
+  public static addPropertyListener(
+    property: string,
+    propertyListener: PropertyListener
+  ) {
+    if (this._options.listeners.has(property)) {
+      this._options.listeners.get(property)?.add(propertyListener);
+    } else {
+      this._options.listeners.set(property, new Set([propertyListener]));
+    }
+  }
+
+  /**
+   * Remove a property listener.
+   *
+   * @param {PropertyListener} propertyListener The listener to remove.
+   */
+  public static removePropertyListener(propertyListener: PropertyListener) {
+    let removed = false;
+
+    for (const propertyListeners of this._options.listeners.values()) {
+      if (propertyListeners.delete(propertyListener)) {
+        removed = true;
+      }
+    }
+
+    return removed;
+  }
+
+  protected static _createSubscribableState<Item = any>() {
+    const subscribers: Set<(item: Item) => void> = new Set();
+
+    return {
+      subscribe(callback: (item: Item) => void): void {
+        subscribers.add(callback);
+      },
+
+      unsubscribe(callback: (item: Item) => void): void {
+        subscribers.delete(callback);
+      },
+
+      publish(item: Item): void {
+        subscribers.forEach((callback) => callback(item));
+      },
+    };
   }
 
   protected static _pluginInit(plugins: Plugin[]) {
