@@ -15,8 +15,8 @@ export function createAuth(authOptions?: AuthOptions & StoreOptions) {
 
   let storage = window.localStorage;
 
-  if (authOptions?.type === 'cookie') {
-    const cookie = Cookie.withAttributes(authOptions.cookie!);
+  if (authOptions?.cookie) {
+    const cookie = Cookie.withAttributes(authOptions.cookie);
 
     storage = {
       getItem: (key?: string) => (key ? cookie.get(key)! : null),
@@ -40,7 +40,6 @@ export function createAuth(authOptions?: AuthOptions & StoreOptions) {
 
   setStore({
     hanaAuthConfig: {
-      type: 'localstorage',
       userKey: 'user',
       tokenKey: 'token',
       refreshTokenKey: 'refreshToken',

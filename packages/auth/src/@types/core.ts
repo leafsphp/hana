@@ -7,7 +7,6 @@ export type StoreOptions = {
 }
 
 export type AuthOptions = {
-  type?: 'cookie' | 'localstorage';
   userKey?: string;
   tokenKey?: string;
   refreshTokenKey?: string;
