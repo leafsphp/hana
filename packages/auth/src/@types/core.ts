@@ -1,4 +1,5 @@
 import { SetStoreFn } from '@hanabira/store';
+import { CookieAttributes } from 'js-cookie';
 
 export type StoreOptions = {
   // persist?: boolean;
@@ -6,15 +7,19 @@ export type StoreOptions = {
 }
 
 export type AuthOptions = {
-  userKey: string;
-  tokenKey: string;
-  refreshTokenKey: string;
-  loginPath: string;
-  logoutPath: string;
-  dashboardPath: string;
-  environment: 'react' | 'react-native';
-  router: any;
+  type?: 'cookie' | 'localstorage';
+  userKey?: string;
+  tokenKey?: string;
+  refreshTokenKey?: string;
+  loginPath?: string;
+  logoutPath?: string;
+  dashboardPath?: string;
+  environment?: 'react' | 'react-native';
+  router?: any;
+  cookie?: CookieOptions;
 };
+
+export type CookieOptions = CookieAttributes;
 
 export type LoginData = {
   user: any;
