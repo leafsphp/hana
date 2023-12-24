@@ -145,17 +145,17 @@ const mainSidebar = [
       { text: 'Reducers', link: '/docs/store/reducers' },
       { text: 'Plugins', link: '/docs/store/plugins' },
       { text: 'TypeScript', link: '/docs/store/typescript' },
-      // { text: 'Modules', link: '/docs/store/modules' },
+      { text: 'Modules', link: '/docs/store/modules' },
     ]
   },
-  // {
-  //   text: 'Utilities',
-  //   collapsible: true,
-  //   collapsed: true,
-  //   items: [
-  //     { text: 'Basic Routing', link: '/docs/routing/' },
-  //   ]
-  // },
+  {
+    text: 'Utilities',
+    collapsible: true,
+    collapsed: true,
+    items: [
+      { text: 'Authentication', link: '/docs/auth/' },
+    ]
+  },
 ]
 
 const communitySidebar = [
