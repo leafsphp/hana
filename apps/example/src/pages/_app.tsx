@@ -23,7 +23,6 @@ createStore({
 
 const Application: React.FC<React.PropsWithChildren> = ({ children }) => {
   createAuth({
-    type: 'cookie',
     cookie: {
       path: '/',
       expires: 60,
