@@ -1,12 +1,21 @@
-import { getStore, useStore } from '@hanabira/store';
-import { Manager, handleRedirect, login, logout } from './manager';
+import { useStore } from '@hanabira/store';
 
-import type { AuthState, GuestState, LoginData, LoginFunction, LogoutFunction } from '../@types/core';
+import { authConfig, handleRedirect, login, logout } from './manager';
+
+import type {
+  AuthState,
+  GuestState,
+  LoginData,
+  LoginFunction,
+  LogoutFunction,
+} from '../@types/core';
 
 export const useAuthState = (): AuthState => {
-  const [user, setUser] = useStore(Manager.get().userKey);
-  const [token, setToken] = useStore(Manager.get().tokenKey);
-  const [refreshToken, setRefreshToken] = useStore(Manager.get().refreshTokenKey);
+  const [user, setUser] = useStore(authConfig('userKey'));
+  const [token, setToken] = useStore(authConfig('tokenKey'));
+  const [refreshToken, setRefreshToken] = useStore(
+    authConfig('refreshTokenKey')
+  );
 
   if (!user || !token) {
     // @ts-expect-error Illegal, but it's okay
@@ -32,9 +41,9 @@ export const useAuthState = (): AuthState => {
 };
 
 export const useGuestState = (): GuestState => {
-  const [user, setUser] = useStore(Manager.get().userKey);
-  const [token, setToken] = useStore(Manager.get().tokenKey);
-  const [, setRefreshToken] = useStore(Manager.get().refreshTokenKey);
+  const [user, setUser] = useStore(authConfig('userKey'));
+  const [token, setToken] = useStore(authConfig('tokenKey'));
+  const [, setRefreshToken] = useStore(authConfig('refreshTokenKey'));
 
   if (user && token) {
     // @ts-expect-error Illegal, but it's okay
@@ -53,9 +62,9 @@ export const useGuestState = (): GuestState => {
 };
 
 export const useLogin = (): LoginFunction => {
-  const [, setUser] = useStore(Manager.get().userKey);
-  const [, setToken] = useStore(Manager.get().tokenKey);
-  const [, setRefreshToken] = useStore(Manager.get().refreshTokenKey);
+  const [, setUser] = useStore(authConfig('userKey'));
+  const [, setToken] = useStore(authConfig('tokenKey'));
+  const [, setRefreshToken] = useStore(authConfig('refreshTokenKey'));
 
   return (data) => {
     login(data, {
@@ -67,9 +76,9 @@ export const useLogin = (): LoginFunction => {
 };
 
 export const useLogout = (): LogoutFunction => {
-  const [, setUser] = useStore(Manager.get().userKey);
-  const [, setToken] = useStore(Manager.get().tokenKey);
-  const [, setRefreshToken] = useStore(Manager.get().refreshTokenKey);
+  const [, setUser] = useStore(authConfig('userKey'));
+  const [, setToken] = useStore(authConfig('tokenKey'));
+  const [, setRefreshToken] = useStore(authConfig('refreshTokenKey'));
 
   return (callback?: VoidFunction) => {
     logout({
@@ -82,9 +91,13 @@ export const useLogout = (): LogoutFunction => {
 };
 
 export const useUser = (): LoginData => {
+  const [user] = useStore(authConfig('userKey'));
+  const [token] = useStore(authConfig('tokenKey'));
+  const [refreshToken] = useStore(authConfig('refreshTokenKey'));
+
   return {
-    user: getStore(Manager.get().userKey),
-    token: getStore(Manager.get().tokenKey),
-    refreshToken: getStore(Manager.get().refreshTokenKey),
+    user,
+    token,
+    refreshToken,
   };
 };
