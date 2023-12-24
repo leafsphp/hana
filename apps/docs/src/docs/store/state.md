@@ -105,14 +105,12 @@ const Component = () => {
 
 ## Resetting the state
 
-Hana provides a `useResetStore()` hook that can be used to reset the state object to its initial value. This hook is useful when you need to reset the state object to its initial value.
+Hana provides a `resetStore()` function that can be used to reset the state object to its initial value. You can call this function anywhere in your application to reset the state.
 
-```jsx{4,8}
-import { useResetStore } from '@hanabira/store';
+```jsx{6}
+import { resetStore } from '@hanabira/store';
 
 const Component = () => {
-  const resetStore = useResetStore();
-
   return (
     <div>
       <button onClick={() => resetStore()}>Reset state</button>
