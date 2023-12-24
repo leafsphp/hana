@@ -1,41 +1,67 @@
-import { PersistedState, createStore } from '@hanabira/store';
+import Cookie from 'js-cookie';
+import {
+  PersistedState,
+  createStore,
+  getStore,
+  setStore,
+} from '@hanabira/store';
 
 import type { AuthOptions, LoginData, StoreOptions } from '../@types/core';
 
-export class Manager {
-  static options: AuthOptions = {
-    userKey: 'user',
-    tokenKey: 'token',
-    refreshTokenKey: 'refreshToken',
-    loginPath: '/auth/login',
-    logoutPath: '/logout',
-    dashboardPath: '/dashboard',
-    environment: 'react',
-    router: null,
-  };
+export function createAuth(authOptions?: AuthOptions & StoreOptions) {
+  if (typeof window === 'undefined') {
+    return;
+  }
 
-  static set(authOptions?: Partial<AuthOptions>) {
-    Manager.options = {
-      ...Manager.options,
-      ...authOptions,
+  let storage = window.localStorage;
+
+  if (authOptions?.type === 'cookie') {
+    const cookie = Cookie.withAttributes(authOptions.cookie!);
+
+    storage = {
+      getItem: (key?: string) => (key ? cookie.get(key)! : null),
+      setItem: (key: string, value: string) => cookie.set(key, value),
+      removeItem: (key: string) => cookie.remove(key),
+      length: 0,
+      key: (index: number) => '',
+      clear: () => {},
     };
   }
 
-  static get() {
-    return Manager.options;
-  }
-}
-
-export function createAuth(authOptions?: AuthOptions & StoreOptions) {
   createStore({
     plugins: [
       new PersistedState({
+        storage,
         key: authOptions?.persistKey ?? 'hana-auth',
+        exclude: ['hanaAuthConfig'],
       }),
     ],
   });
 
-  Manager.set(authOptions);
+  setStore({
+    hanaAuthConfig: {
+      type: 'localstorage',
+      userKey: 'user',
+      tokenKey: 'token',
+      refreshTokenKey: 'refreshToken',
+      loginPath: '/auth/login',
+      logoutPath: '/logout',
+      dashboardPath: '/dashboard',
+      environment: 'react',
+      router: null,
+      ...authOptions,
+    },
+  });
+}
+
+export function authConfig(item?: keyof AuthOptions) {
+  const config = getStore('hanaAuthConfig');
+
+  if (item) {
+    return config[item];
+  }
+
+  return config;
 }
 
 export function login(
@@ -86,9 +112,11 @@ export function logout({
 }
 
 export function handleRedirect(to: 'loginPath' | 'dashboardPath') {
-  if (Manager.get().environment === 'react') {
+  if (authConfig('environment') === 'react') {
     if (typeof window !== 'undefined') {
-      window.location.replace(Manager.get()[to]);
+      window.location.replace(authConfig(to));
     }
   }
+
+  return null;
 }
