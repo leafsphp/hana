@@ -9,7 +9,7 @@ HOCs are functions that take in a component and return a new component with addi
 
 This HOC is used to verify that the user is authenticated before rendering the component. If the user **is not authenticated**, the user is redirected to the login page.
 
-*The redirect paths can be configured using the `loginPath` and `dashboardPath` options as described [here](/docs/auth#auth-configuration).*
+*The redirect paths can be configured using the `loginPath` and `dashboardPath` options as described [here](/docs/auth/#auth-configuration).*
 
 ```jsx
 import { withAuthState } from '@hanabira/auth';
@@ -74,7 +74,7 @@ const Dashboard = ({ user, token, refreshToken, setUser, setToken, setRefreshTok
 
 This HOC is used to verify that the user is not authenticated before rendering the component. If the user **is authenticated**, the user is redirected to the "dashboard" page.
 
-*The redirect paths can be configured using the `loginPath` and `dashboardPath` options as described [here](/docs/auth#auth-configuration).*
+*The redirect paths can be configured using the `loginPath` and `dashboardPath` options as described [here](/docs/auth/#auth-configuration).*
 
 ```jsx
 import { withGuestState } from '@hanabira/auth';
