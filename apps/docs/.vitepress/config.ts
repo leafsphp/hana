@@ -149,11 +149,13 @@ const mainSidebar = [
     ]
   },
   {
-    text: 'Utilities',
+    text: 'Authentication',
     collapsible: true,
     collapsed: true,
     items: [
-      { text: 'Authentication', link: '/docs/auth/' },
+      { text: 'Introduction', link: '/docs/auth/' },
+      { text: 'Auth using HOCs', link: '/docs/auth/hocs' },
+      { text: 'Auth using hooks', link: '/docs/auth/hooks' },
     ]
   },
 ]
