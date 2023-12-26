@@ -5,7 +5,6 @@ import { _authConfig, _handleRedirect, _login, _logout } from './manager';
 import type {
   AuthState,
   GuestState,
-  LoginData,
   LoginFunction,
   LogoutFunction,
 } from '../@types/core';
