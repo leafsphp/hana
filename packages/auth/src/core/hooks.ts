@@ -90,14 +90,17 @@ export const useLogout = (): LogoutFunction => {
   };
 };
 
-export const useUser = (): LoginData => {
-  const [user] = useStore(_authConfig('userKey'));
-  const [token] = useStore(_authConfig('tokenKey'));
-  const [refreshToken] = useStore(_authConfig('refreshTokenKey'));
+export const useUser = () => {
+  const [user, setUser] = useStore(_authConfig('userKey'));
+  const [token, setToken] = useStore(_authConfig('tokenKey'));
+  const [refreshToken, setRefreshToken] = useStore(_authConfig('refreshTokenKey'));
 
   return {
     user,
+    setUser,
     token,
+    setToken,
     refreshToken,
+    setRefreshToken,
   };
 };
