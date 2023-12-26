@@ -76,7 +76,7 @@ export function _authConfig(item?: keyof AuthOptions) {
 }
 
 export function _login(
-  data: LoginData,
+  data: LoginData & { redirect?: boolean },
   {
     setUser,
     setToken,
@@ -87,39 +87,56 @@ export function _login(
     setRefreshToken: (refreshToken: string) => void;
   }
 ) {
-  setUser(data.user);
-  setToken(data.token);
+  return new Promise<LoginData>((resolve, reject) => {
+    try {
+      setUser(data.user);
+      setToken(data.token);
 
-  if (typeof data.refreshToken !== 'undefined') {
-    setRefreshToken(data.refreshToken);
-  }
+      if (typeof data.refreshToken !== 'undefined') {
+        setRefreshToken(data.refreshToken);
+      }
 
-  if (data.user) {
-    _handleRedirect('dashboardPath');
-  }
+      if (data.redirect ?? true) {
+        _handleRedirect('dashboardPath');
+      } else {
+        resolve({
+          user: data.user,
+          token: data.token,
+          refreshToken: data.refreshToken,
+        });
+      }
+    } catch (error) {
+      reject(error);
+    }
+  });
 }
 
 export function _logout({
   setUser,
   setToken,
   setRefreshToken,
-  callback,
+  redirect,
 }: {
   setUser: (user: any) => void;
   setToken: (token: any) => void;
   setRefreshToken: (refreshToken: any) => void;
-  callback?: VoidFunction;
+  redirect?: boolean;
 }) {
-  setUser(null);
-  setToken(null);
-  setRefreshToken(null);
+  return new Promise((resolve, reject) => {
+    try {
+      setUser(null);
+      setToken(null);
+      setRefreshToken(null);
 
-  if (typeof callback === 'function') {
-    callback();
-    _handleRedirect('loginPath');
-  } else {
-    _handleRedirect('loginPath');
-  }
+      if (redirect) {
+        _handleRedirect('loginPath');
+      } else {
+        resolve(true);
+      }
+    } catch (error) {
+      reject(error);
+    }
+  });
 }
 
 export function _handleRedirect(to: 'loginPath' | 'dashboardPath') {

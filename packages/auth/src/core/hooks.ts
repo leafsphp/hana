@@ -28,9 +28,9 @@ export const useAuthState = (): AuthState => {
     setToken,
     refreshToken,
     setRefreshToken,
-    logout: (callback?: VoidFunction) => {
-      _logout({
-        callback,
+    logout: (redirect = true) => {
+      return _logout({
+        redirect,
         setUser,
         setToken,
         setRefreshToken,
@@ -51,7 +51,7 @@ export const useGuestState = (): GuestState => {
 
   return {
     login: (data) => {
-      _login(data, {
+      return _login(data, {
         setUser,
         setToken,
         setRefreshToken,
@@ -66,7 +66,7 @@ export const useLogin = (): LoginFunction => {
   const [, setRefreshToken] = useStore(_authConfig('refreshTokenKey'));
 
   return (data) => {
-    _login(data, {
+    return _login(data, {
       setUser,
       setToken,
       setRefreshToken,
@@ -79,9 +79,9 @@ export const useLogout = (): LogoutFunction => {
   const [, setToken] = useStore(_authConfig('tokenKey'));
   const [, setRefreshToken] = useStore(_authConfig('refreshTokenKey'));
 
-  return (callback?: VoidFunction) => {
-    _logout({
-      callback,
+  return (redirect = true) => {
+    return _logout({
+      redirect,
       setUser,
       setToken,
       setRefreshToken,
@@ -92,7 +92,9 @@ export const useLogout = (): LogoutFunction => {
 export const useUser = () => {
   const [user, setUser] = useStore(_authConfig('userKey'));
   const [token, setToken] = useStore(_authConfig('tokenKey'));
-  const [refreshToken, setRefreshToken] = useStore(_authConfig('refreshTokenKey'));
+  const [refreshToken, setRefreshToken] = useStore(
+    _authConfig('refreshTokenKey')
+  );
 
   return {
     user,

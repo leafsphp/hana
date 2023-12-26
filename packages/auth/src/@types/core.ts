@@ -40,5 +40,5 @@ export type GuestState = {
   login: LoginFunction;
 };
 
-export type LoginFunction = (data: LoginData) => void;
-export type LogoutFunction = (callback?: VoidFunction) => void;
+export type LoginFunction = (data: LoginData) => Promise<LoginData>;
+export type LogoutFunction = (redirect?: boolean) => Promise<any>;
