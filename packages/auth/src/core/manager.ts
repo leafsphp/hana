@@ -53,7 +53,19 @@ export function createAuth(authOptions?: AuthOptions & StoreOptions) {
   });
 }
 
-export function authConfig(item?: keyof AuthOptions) {
+export function getAuth() {
+  const user = getStore(_authConfig('userKey'));
+  const token = getStore(_authConfig('tokenKey'));
+  const refreshToken = getStore(_authConfig('refreshTokenKey'));
+
+  return {
+    user,
+    token,
+    refreshToken,
+  };
+}
+
+export function _authConfig(item?: keyof AuthOptions) {
   const config = getStore('hanaAuthConfig');
 
   if (item) {
@@ -63,7 +75,7 @@ export function authConfig(item?: keyof AuthOptions) {
   return config;
 }
 
-export function login(
+export function _login(
   data: LoginData,
   {
     setUser,
@@ -83,11 +95,11 @@ export function login(
   }
 
   if (data.user) {
-    handleRedirect('dashboardPath');
+    _handleRedirect('dashboardPath');
   }
 }
 
-export function logout({
+export function _logout({
   setUser,
   setToken,
   setRefreshToken,
@@ -104,16 +116,16 @@ export function logout({
 
   if (typeof callback === 'function') {
     callback();
-    handleRedirect('loginPath');
+    _handleRedirect('loginPath');
   } else {
-    handleRedirect('loginPath');
+    _handleRedirect('loginPath');
   }
 }
 
-export function handleRedirect(to: 'loginPath' | 'dashboardPath') {
-  if (authConfig('environment') === 'react') {
+export function _handleRedirect(to: 'loginPath' | 'dashboardPath') {
+  if (_authConfig('environment') === 'react') {
     if (typeof window !== 'undefined') {
-      window.location.replace(authConfig(to));
+      window.location.replace(_authConfig(to));
     }
   }
 
