@@ -40,5 +40,5 @@ export type GuestState = {
   login: LoginFunction;
 };
 
-export type LoginFunction = (data: LoginData) => Promise<LoginData>;
+export type LoginFunction = (data: LoginData & { redirect?: boolean }) => Promise<LoginData>;
 export type LogoutFunction = (redirect?: boolean) => Promise<any>;
