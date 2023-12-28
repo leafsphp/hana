@@ -28,6 +28,7 @@ export const componentify = (files: string[]) => {
 
   files.forEach((file) => {
     const routePath = file
+      .replace(/\[\[(.*?)\]\]/g, ':$1?')
       .replace(/\[(.*?)\]/g, ':$1')
       .replace(/\$/g, '')
       .replace(/\.(js|jsx|ts|tsx)$/g, '')
@@ -42,6 +43,7 @@ export const componentify = (files: string[]) => {
       component: file
         .replace(/:/g, '_')
         .replace(/\?/g, '_')
+        .replace(/\*/g, '_')
         .replace(/\//g, '_')
         .replace(/\*/g, '_')
         .replace(/\[/g, '_')
