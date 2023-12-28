@@ -41,7 +41,9 @@ export const componentify = (files: string[]) => {
       path: routePath,
       component: file
         .replace(/:/g, '_')
+        .replace(/\?/g, '_')
         .replace(/\//g, '_')
+        .replace(/\*/g, '_')
         .replace(/\[/g, '_')
         .replace(/\]/g, '_')
         .replace(/-/g, '_')
