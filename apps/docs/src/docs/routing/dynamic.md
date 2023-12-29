@@ -11,137 +11,103 @@ import VideoDocs from '/@theme/components/VideoDocs.vue'
   link="https://www.youtube.com/embed/BTcUgeOZLyM"
 /> -->
 
-*This guide assumes you have read [Simple Routing](/docs/routing/)*
+*This guide assumes you have read [the routing intro](/docs/routing/)*
 
 Dynamic routing is the idea of creating routes that can be accessed dynamically. For example, you can create a route that accepts a user id and displays the user with that id. This is useful when you want to create routes that can be accessed using dynamic information like ids, usernames, etc.
 
-Leaf router provides two ways to create dynamic routes:
+## Creating Dynamic Routes
 
-- [Dynamic Placeholder-based Route Patterns](#named-params)
-- [PCRE-based Route Patterns](#pcre-based-params)
+Since all Hana routes are basically just files in the `pages` directory, dynamic routes are no different. The only thing you need to note is that to make a route dynamic, the filename should be wrapped in square brackets (`[]`). For example, if you create a file called `[id].tsx` in the `pages/users` directory, it will create a route for `/users/:id`. This makes the `id` parameter dynamic, and you can access it using the `useParams()` hook.
 
-## Named Params
+```jsx
+// Path: /pages/users/[id].tsx
+import { useParams } from '@hanabira/router';
 
-Dynamic Placeholder-based Route Patterns are the same as Dynamic PCRE-based Route Patterns, but with one difference: they use human readable placeholders instead of regular expressions. Placeholders are strings surrounded by curly braces, e.g. {name}. You don't need to add parens around placeholders.
+export default function User() {
+  const { id } = useParams();
 
-Examples
-
-- `/movies/{id}`
-- `/profile/{username}`
-
-These placeholders are easier to use than PRCEs, but offer you less control as they internally get translated to a PRCE that matches any character (.*).
-
-<div class="functional-mode">
-
-```php
-app()->get('/movies/{movieId}/photos/{photoId}', function ($movieId, $photoId) {
-  echo 'Movie #' . $movieId . ', photo #' . $photoId;
-});
+  return <div>User ID: {id}</div>
+}
 ```
 
-</div>
-<div class="class-mode">
+Note that the name of the file is used as the name of the parameter. For example, if you create a file called `[userId].tsx` in the `pages/users` directory, it will create a route for `/users/:userId`. That means that the name of the parameter is `userId`.
 
-```php
-$app->get('/movies/{movieId}/photos/{photoId}', function ($movieId, $photoId) {
-  echo 'Movie #' . $movieId . ', photo #' . $photoId;
-});
+The `useParams` hook is used to access the parameters of a dynamic route. It returns an object containing the parameters of the route. It can also be typed to provide type safety.
+
+```tsx
+// Path: /pages/users/[id].tsx
+
+// The type of the id parameter is string
+const { id } = useParams<{ id: string }>();
 ```
 
-</div>
+This also works when a folder's name is made up of square brackets. For example, if you create a file called `stats.tsx` in the `pages/users/[user]` directory, it will create a route for `users/:user/stats`. That means that the name of the parameter is `user`.
 
-**Note:** the name of the placeholder does not need to match with the name of the parameter that is passed into the route handling function...although it's adviced:
+```jsx
+// Path: /pages/users/[user]/stats.tsx
+import { useParams } from '@hanabira/router';
 
-<div class="functional-mode">
+export default function UserStats() {
+  const { user } = useParams();
 
-```php
-app()->get('/movies/{foo}/photos/{bar}', function ($movieId, $photoId) {
-  echo 'Movie #' . $movieId . ', photo #' . $photoId;
-});
+  return <div>User: {user}</div>
+}
 ```
 
-</div>
-<div class="class-mode">
+## Nested Dynamic Routes
 
-```php
-$app->get('/movies/{foo}/photos/{bar}', function ($movieId, $photoId) {
-  echo 'Movie #' . $movieId . ', photo #' . $photoId;
-});
+You can also nest dynamic routes. For example, you can create a route that accepts a user id and a post id. This can be done by creating a file called `[id].tsx` in the `pages/users/[user]/posts` directory. This will create a route for `/users/:user/posts/:id`. Similar to what we did above, you can access the parameters using the `useParams` hook.
+
+```jsx
+// Path: /pages/users/[user]/posts/[id].tsx
+import { useParams } from '@hanabira/router';
+
+export default function Post() {
+  const { user, id } = useParams();
+
+  return (
+    <div>
+      User: {user}
+      <br />
+      Post ID: {id}
+    </div>
+  )
+}
 ```
 
-</div>
+## Dynamic Routes with Query Parameters
 
-## PCRE Based Params
+You can also create dynamic routes that accept query parameters. This can be done by creating a file called `[id].tsx` in the `pages/users` directory. This will create a route for `/users/:id`. You can then access the query parameters using the `useQueryParams` hook.
 
-Basically, PCRE based patterns are just another way to use routes dynamically. This type of Route Patterns contain dynamic parts which can vary per request. The varying parts are named subpatterns and are defined using regular expressions.
+```jsx
+// Path: /pages/users/[id].tsx
+import { useParams, useQueryParams } from '@hanabira/router';
 
-Examples
+export default function User() {
+  const { id } = useParams();
+  const { name } = useQueryParams();
 
-- /movies/(\d+)
-- /profile/(\w+)
-
-Commonly used PCRE-based subpatterns within Dynamic Route Patterns are:
-
-- \d+ = One or more digits (0-9)
-- \w+ = One or more word characters (a-z 0-9 _)
-- [a-z0-9_-]+ = One or more word characters (a-z 0-9 _) and the dash (-)
-- .* = Any character (including /), zero or more
-- [^/]+ = Any character but /, one or more
-
-Note: The PHP PCRE Cheat Sheet might come in handy.
-
-The subpatterns defined in Dynamic PCRE-based Route Patterns are converted to parameters which are passed into the route handling function. Prerequisite is that these subpatterns need to be defined as parenthesized subpatterns, which means that they should be wrapped between parens:
-
-<div class="functional-mode">
-
-```php
-// Bad
-app()->get('/hello/\w+', function ($name) {
-  echo 'Hello ' . htmlentities($name);
-});
-
-// Good
-app()->get('/hello/(\w+)', function ($name) {
-  echo 'Hello ' . htmlentities($name);
-});
+  return (
+    <div>
+      User ID: {id}
+      <br />
+      Name: {name}
+    </div>
+  )
+}
 ```
 
-</div>
-<div class="class-mode">
+## Optional Dynamic Routes
 
-```php
-// Bad
-$app->get('/hello/\w+', function ($name) {
-  echo 'Hello ' . htmlentities($name);
-});
+Optional dynamic routes are dynamic routes that can be accessed with or without a parameter. This can be done by wrapping the parameter in double square brackets (`[[]]`). For example, if you create a file called `[[query]].tsx` in the `pages/search` directory, it will create a route for `/search/[[query]]`. This route will be accessible on `/search` and `/search/:query`. You can then access the query parameter using the `useParams` hook.
 
-// Good
-$app->get('/hello/(\w+)', function ($name) {
-  echo 'Hello ' . htmlentities($name);
-});
+```jsx
+// Path: /pages/search/[[query]].tsx
+import { useParams } from '@hanabira/router';
+
+export default function Search() {
+  const { query } = useParams();
+
+  return <div>Query: {query}</div>
+}
 ```
-
-</div>
-
-**Note**: The leading `/` at the very beginning of a route pattern is not mandatory, but is recommended.
-
-When multiple subpatterns are defined, the resulting route handling parameters are passed into the route handling function in the order they are defined in:
-
-<div class="functional-mode">
-
-```php
-app()->get('/movies/(\d+)/photos/(\d+)', function ($movieId, $photoId) {
-  echo 'Movie #' . $movieId . ', photo #' . $photoId;
-});
-```
-
-</div>
-<div class="class-mode">
-
-```php
-$app->get('/movies/(\d+)/photos/(\d+)', function ($movieId, $photoId) {
-  echo 'Movie #' . $movieId . ', photo #' . $photoId;
-});
-```
-
-</div>

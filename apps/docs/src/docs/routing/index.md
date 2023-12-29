@@ -1,12 +1,12 @@
 <!-- markdownlint-disable no-inline-html -->
-# Basic Routing
+# Hana Router
 
 <!-- <script setup>
 import VideoDocs from '/@theme/components/VideoDocs.vue'
 </script> -->
 
 <p class="flex flex:start-all" style="gap:10px;">
-  <a href="https://npmjs.com/package/@hanabira/router"><img src="https://img.shields.io/npm/v/@hanabira/router" alt="npm version" height="18"></a>
+  <a href="https://npmjs.com/package/@hanabira/router" target="_blank"><img src="https://img.shields.io/npm/v/@hanabira/router" alt="npm version" height="18"></a>
   <img src="https://img.shields.io/npm/dt/@hanabira/router" class="m:0" alt="">
 </p>
 
@@ -53,45 +53,6 @@ To create a nested route, you can nest folders and files inside other folders. F
 
 - `pages/dashboard/settings.tsx` -> `/dashboard/settings`
 - `pages/dashboard/settings/index.tsx` -> `/dashboard/settings`
-
-## Dynamic Routes
-
-There are times when you want to create a route that accepts dynamic parameters. For example, you may want to create a route that accepts a user id as a parameter. You can do this by creating a file with square brackets in the `pages` directory. For example, if you create a file called `[id].tsx` in the `pages/users` directory, it will create a route for `/users/:id`.
-
-```jsx
-// Path: /pages/users/[id].tsx
-import { useParams } from '@hanabira/router';
-
-export default function User() {
-  const { id } = useParams();
-
-  return <div>User ID: {id}</div>
-}
-```
-
-Note that the name of the file is used as the name of the parameter. For example, if you create a file called `[userId].tsx` in the `pages/users` directory, it will create a route for `/users/:userId`. That means that the name of the parameter is `userId`.
-
-The `useParams` hook is used to access the parameters of a dynamic route. It returns an object containing the parameters of the route. It can also be typed to provide type safety.
-
-```tsx
-// Path: /pages/users/[id].tsx
-
-// The type of the id parameter is string
-const { id } = useParams<{ id: string }>();
-```
-
-This also works when a folder's name is made up of square brackets. For example, if you create a file called `stats.tsx` in the `pages/users/[user]` directory, it will create a route for `users/:user/stats`. That means that the name of the parameter is `user`.
-
-```jsx
-// Path: /pages/users/[user]/stats.tsx
-import { useParams } from '@hanabira/router';
-
-export default function UserStats() {
-  const { user } = useParams();
-
-  return <div>User: {user}</div>
-}
-```
 
 ## Setup Files
 
