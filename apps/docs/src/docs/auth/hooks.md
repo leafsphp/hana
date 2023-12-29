@@ -113,7 +113,35 @@ const MyComponent = () => {
 }
 ```
 
-**Note:** The `useLogin` hook does not redirect the user to the home page after they have logged in. If you want to redirect the user to the home page after they have logged in, you need to use the `useGuestState` hook.
+The `login()` function in the example above will automatically redirect the user to the home page after they have been logged in. If you however have an operation that you want to perform after the user has been logged in, you can usethe `login()` function as a promise. You can also pass in a `redirect` option to the `login()` function to make sure the redirect does not happen.
+
+```jsx{13,15-17}
+import { useLogin } from '@hanabira/auth';
+
+const MyComponent = () => {
+  const login = useLogin();
+
+  const handleLogin = async () => {
+    const res = await makeLoginRequest();
+
+    login({
+      user: res.user,
+      token: res.token,
+      refreshToken: res.refreshToken,
+      redirect: false
+    })
+      .then(() => {
+        // Do something after the user has been logged in
+      });
+  }
+
+  return (
+    <div>
+      <button onClick={() => handleLogin()}>Login</button>
+    </div>
+  );
+}
+```
 
 ## useLogout
 
@@ -133,9 +161,32 @@ const MyComponent = () => {
 }
 ```
 
+The `logout()` function in the example above will automatically redirect the user to the login page after they have been logged out. If you however have an operation that you want to perform after the user has been logged out, you can usethe `logout()` function as a promise. You can also pass in a `redirect` option to the `logout()` function to make sure the redirect does not happen.
+
+```jsx
+import { useLogout } from '@hanabira/auth';
+
+const MyComponent = () => {
+  const logout = useLogout();
+
+  const handleLogout = async () => {
+    logout({ redirect: false })
+      .then(() => {
+        // Do something after the user has been logged out
+      });
+  }
+
+  return (
+    <div>
+      <button onClick={() => handleLogout()}>Logout</button>
+    </div>
+  );
+}
+```
+
 ## useUser
 
-This hook is used to get the user's information. It returns the user's information if the user is authenticated. The returned object contains the user and tokens.
+This hook is used to get the user's information. It returns the user's information if the user is authenticated. The returned object contains the user, tokens and their setters.
 
 ```jsx
 import { useUser } from '@hanabira/auth';

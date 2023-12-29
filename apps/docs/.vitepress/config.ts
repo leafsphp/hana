@@ -129,7 +129,8 @@ const mainSidebar = [
     items: [
       { text: 'Overview', link: '/docs/routing/' },
       { text: 'Navigation', link: '/docs/routing/navigation' },
-      { text: 'Config', link: '/docs/routing/config' },
+      { text: 'Dynamic Routing', link: '/docs/routing/dynamic' },
+      { text: 'Router Config', link: '/docs/routing/config' },
       { text: 'Error Handling', link: '/docs/routing/errors' },
       { text: 'Loading Pages', link: '/docs/routing/loading' },
       { text: 'Layout Pages', link: '/docs/routing/layout' },
@@ -150,7 +151,7 @@ const mainSidebar = [
   },
   {
     text: 'Authentication',
-    collapsible: true,
+    collapsible: false,
     collapsed: true,
     items: [
       { text: 'Introduction', link: '/docs/auth/' },
