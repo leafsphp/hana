@@ -1,0 +1,65 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 120px;
+  gap: 120px;
+}
+
+.center {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  width: 100%;
+  max-width: 473px;
+  max-height: 473px;
+  aspect-ratio: 1 / 1;
+  background-image: url("eclipse.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.code {
+  font-family: "Berkeley Mono";
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  font-size: 16px;
+  padding: 14px 32px;
+  line-height: 1;
+  background-color: var(--code-background);
+  border: 1px solid rgba(172, 175, 176, 0.3);
+  border-radius: 14px;
+}
+
+.codespan {
+  color: var(--code-span);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.button {
+  color: inherit;
+  text-decoration: none;
+  border-radius: 100px;
+  border: 1px solid var(--border-color);
+  background-color: var(--background-color);
+  padding: 12px 20px;
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 12px 35px;
+  }
+
+  .center {
+    background-image: url("eclipse-dark.svg");
+  }
+}
