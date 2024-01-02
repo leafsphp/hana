@@ -1,8 +1,58 @@
-# React + Vite
+# Welcome to HanaJS🍃
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a [Hana.js](https://hanajs.dev/) project bootstrapped with [`create-hana-app`](https://github.com/leafsphp/hana/tree/main/packages/create-hana-app).
 
-Currently, two official plugins are available:
+## Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+First, install your dependencies:
+
+```bash
+npm run install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+Then, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Open [http://localhost:5173](http://localhost:5173) with your browser to see the result.
+
+## 📐 Project Structure
+
+Inside of your Hana project, you'll see the following folders and files:
+
+```text
+/
+├── public/
+│   └── eclipse.svg
+│   └── eclipse-dark.svg
+├── src/
+│   └── pages/
+│       └── app.tsx
+│       └── index.tsx
+│       └── index.module.css
+│   ├── styles/
+│   │   └── index.css
+└── package.json
+```
+
+Hana looks for `.tsx` or `.jsx` files in the `src/pages/` directory. Each page is exposed as a route based on its file name. `_app.jsx` is reserved for app config.
+
+Any static assets, like images and fonts, can be placed in the `public/` directory.
+
+## 👀 Want to learn more?
+
+Feel free to check [our documentation](https://hanajs.dev/) or jump into our [Discord server](https://discord.gg/Pkrm9NJPE3).

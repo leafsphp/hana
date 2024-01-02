@@ -1,30 +1,58 @@
-# React + TypeScript + Vite
+# Welcome to HanaJS🍃
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a [Hana.js](https://hanajs.dev/) project bootstrapped with [`create-hana-app`](https://github.com/leafsphp/hana/tree/main/packages/create-hana-app).
 
-Currently, two official plugins are available:
+## Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+First, install your dependencies:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+npm run install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Then, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Open [http://localhost:5173](http://localhost:5173) with your browser to see the result.
+
+## 📐 Project Structure
+
+Inside of your Hana project, you'll see the following folders and files:
+
+```text
+/
+├── public/
+│   └── eclipse.svg
+│   └── eclipse-dark.svg
+├── src/
+│   └── pages/
+│       └── app.tsx
+│       └── index.tsx
+│       └── index.module.css
+│   ├── styles/
+│   │   └── index.css
+└── package.json
+```
+
+Hana looks for `.tsx` or `.jsx` files in the `src/pages/` directory. Each page is exposed as a route based on its file name. `_app.tsx` is reserved for app config.
+
+Any static assets, like images and fonts, can be placed in the `public/` directory.
+
+## 👀 Want to learn more?
+
+Feel free to check [our documentation](https://hanajs.dev/) or jump into our [Discord server](https://discord.gg/Pkrm9NJPE3).
