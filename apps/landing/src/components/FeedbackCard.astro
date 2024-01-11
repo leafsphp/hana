@@ -1,0 +1,81 @@
+---
+interface Props {
+    user: {
+      image: string,
+      name: string,
+      position: string,
+      company: string,
+    },
+    feedback: string
+}
+
+const { user, feedback} = Astro.props
+---
+
+<li class="feedback-card">
+    <p class="feedback">{feedback}</p>
+    <div class="row">
+        <img src={user.image} alt={user?.name} class="user-image">
+        <div class="column">
+            <h4 class="name">{user?.name}</h4>
+            <p>{user?.position}, {user?.company}</p>
+        </div>
+    </div>
+
+</li>
+<style>
+    li {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 160px;
+        padding: 100px 60px 53px 60px;
+        border: 1px solid var(--border-primary);
+        background-color: var(--nav-bg);
+        z-index: 1;
+    }
+    p {
+        font-size: 12px;
+    }
+    .feedback {
+        font-size: 16px;
+    }
+    .user-image {
+        width: 43px;
+        height: 43px;
+        border-radius: 50%;
+    }
+    .row {
+        display: flex;
+        gap: 10px
+    }
+    .column {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .name {
+        color: var(--card-title);
+        font-size: 18px;
+        font-weight: 500;
+    }
+    @media (min-width: 1024px) {
+        li:first-of-type {
+            border-top-left-radius: 16px;
+            border-bottom-left-radius: 16px;
+            border-right: none;
+        }
+        li:last-of-type {
+            border-top-right-radius: 16px;
+            border-bottom-right-radius: 16px;
+            border-left: none;
+        }
+    }
+    @media (max-width: 720px) {
+       li {
+        height: max-content;
+        gap: 50px;
+        padding: 50px 34px;
+        }
+    }
+</style>

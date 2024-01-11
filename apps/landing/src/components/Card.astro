@@ -1,0 +1,176 @@
+---
+interface Props {
+	title: string;
+	body: string;
+	href: string;
+	image?: string;
+	animated?: string;
+	large?: boolean;
+	primaryColor?: string;
+	secondaryColor?: string;
+}
+
+const { href, title, body, image, animated, large, primaryColor, secondaryColor } = Astro.props;
+---
+
+<li class="link-card" style=``>
+	<div class="blur-circle-back" style=`background: ${primaryColor}`></div>
+	<a href={href}>
+		{large && 
+			<div class="image-wrapper">
+				<div class="blur-circle" style=`background: ${primaryColor}`></div>
+				<img src={image} width={150} height={150} alt={title} class="static"/>
+				<img src={animated} width={150} height={150} alt={title} class="animated">
+			</div>
+		}
+		<h2>
+			{!large && 
+				<div class="image-wrapper inline">
+					<div class="blur-circle" ></div>
+					<img src={image} width={26} height={26} alt={title} class="static"/>
+					<img src={animated} width={26} height={26} alt={title} class="animated">
+				</div>
+			}
+			{title}
+		</h2>
+		<p>
+			{body}
+		</p>
+	</a>
+</li>
+<style>
+	.link-card {
+		position: relative;
+		isolation: isolate;
+		list-style: none;
+		transition: all 500ms ease-out;
+	}
+
+	.link-card:nth-of-type(1n+3) .blur-circle-back {
+		height: 155px;
+		width: 330px;
+	}
+	.link-card::after {
+		content: " ";
+		position: absolute;
+		inset: 0;
+		width: calc(100% + 2px);
+		height: calc(100% + 2px);
+		border-radius: 16px;
+		opacity: 0;
+		transform: translate(-1px, -1px);
+		transition: all 200ms ease-out;
+		will-change: background, transform;
+	}
+	a {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		border-radius: 16px;
+		border: 1px solid primaryColor;
+		background-color: #000;
+		padding: 50px 60px;
+		z-index: 1;
+	}
+	.link-card:is(:hover, :focus-within) .animated {
+		display: block;
+	}
+	.link-card:is(:hover, :focus-within) .static {
+		display: none;
+	}
+	.link-card:is(:hover, :focus-within) .blur-circle-back {
+		opacity: 1;
+	}
+	.image-wrapper {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		height: 205px;
+		width: 205px;
+		margin-inline: auto;
+		margin-block: 40px;
+	}
+	.inline {
+		display: inline-flex;
+		height: 20px;
+		width: 26px;
+		margin-block: unset;
+	}
+	.animated {
+		position: absolute;
+		inset: 0;
+		margin: auto;
+		display: none;
+	}
+	.static {
+		position: absolute;
+		inset: 0;
+		margin: auto;
+	}
+	.blur-circle {
+		position: absolute;
+		inset: 0;
+		height: 205px;
+		width: 205px;
+		border-radius: 50%;
+		filter: blur(122px);
+	}
+	.blur-circle-back {
+		position: absolute;
+		inset: 0;
+		height: 360px;
+		width: 360px;
+		margin: auto;
+		border-radius: 50%;
+		filter: blur(122px);
+		opacity: 0;
+		transition: opacity 200ms ease-in;
+	}
+
+	h2 {
+		color: var(--card-title);
+		font-size: 24px;
+		transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+	}
+	p {
+		margin-top: 10px;
+		margin-bottom: 0;
+	}
+	.link-card:is(:hover, :focus-within) {
+		transform: translateY(-1%);
+	}
+	.link-card:is(:hover, :focus-within)::after {
+		opacity: 1;
+	}
+	.link-card:nth-of-type(1)::after {
+		content: " ";
+		background: linear-gradient(180deg, #CC962D 0%, #222223 100%);
+	}
+		.link-card:nth-of-type(2)::after {
+		content: " ";
+		background: linear-gradient(180deg, #E3E3E3 0%, #222223 100%);
+	}
+		.link-card:nth-of-type(3)::after {
+		content: " ";
+		background: linear-gradient(180deg, #FC3CA9 0%, #222223 100%);
+	}
+		.link-card:nth-of-type(4)::after {
+		content: " ";
+		background: linear-gradient(180deg, #DB1010 0%, #222223 100%);
+	}
+	@media (max-width: 720px) {
+		a {
+			padding: 85px 16px 32px 16px;
+		}
+		.blur-circle, .blur-circle-back {
+			display: none;
+		}
+		.link-card::after {
+			display: none;
+		}
+		.image-wrapper {
+			margin-block: 0;
+		}
+    }
+</style>

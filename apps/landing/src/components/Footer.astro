@@ -1,0 +1,68 @@
+---
+---
+
+<footer>
+    <div class="footer-wrapper">
+        <img class="hana-logo" src="HanaLogo.svg" alt="Hana JS logo">
+        <div class="column">
+            <h4 class="title">Learn Hana</h4>
+            <a href="#" target="_blank">Tutorial</a>
+            <a href="#" target="_blank">Online playground</a>
+            <a href="#" target="_blank">Youtube Videos</a>
+            <a href="#" target="_blank">Project Showcase</a>
+        </div>
+        <div class="column">
+            <h4 class="title">Learn Hana</h4>
+            <a href="#" target="_blank">Tutorial</a>
+            <a href="#" target="_blank">Online playground</a>
+            <a href="#" target="_blank">Youtube Videos</a>
+            <a href="#" target="_blank">Project Showcase</a>
+        </div>
+        <div class="column">
+            <h4 class="title">Learn Hana</h4>
+            <a href="#" target="_blank">Tutorial</a>
+            <a href="#" target="_blank">Online playground</a>
+            <a href="#" target="_blank">Youtube Videos</a>
+            <a href="#" target="_blank">Project Showcase</a>
+        </div>
+    </div>
+</footer>
+<style>
+    footer {
+        background: #000;
+        box-shadow: 0px -1px 0px 0px #272D41;
+    }
+	.footer-wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        padding-inline: 140px;
+        margin-inline: auto;
+        padding-block: 140px;
+        max-width: 1512px;
+        gap: 100px
+    }
+    a {
+        display: block;
+        font-weight: 400;
+    }
+    .hana-logo {
+        width: 100%;
+    }
+    .column {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    @media (max-width: 720px) {
+        .hana-logo {
+            width: 168px;
+        }
+        .footer-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            padding-inline: 16px;
+            padding-block: 80px;
+        }
+    }
+</style>

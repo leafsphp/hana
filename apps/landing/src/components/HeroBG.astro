@@ -1,0 +1,101 @@
+---
+---
+
+<div class="wrapper">
+    <div class="circle one"/>
+    <div class="circle two"/>
+    <div class="circle three"/>
+</div>
+<div class="wrapper bottom">
+    <div class="circle one"/>
+    <div class="circle two"/>
+    <div class="circle three"/>
+</div>
+
+<style>
+    @keyframes change-purple {
+        from {
+            background-color: rgba(98, 78, 132, 0.50);
+        }
+        to {
+            background-color: rgba(79, 132, 78, 0.50);
+        }
+    }
+    @keyframes change-yellow {
+        from {
+            background-color: rgba(132, 110, 78, 0.80);
+        }
+        to {
+            background-color: rgba(132, 78, 97, 0.80);
+        }
+    }
+    @keyframes change-blue {
+        from {
+            background-color: rgba(78, 109, 132, 0.70);
+        }
+        to {
+            background-color: rgba(132, 123, 78, 0.70);
+        }
+    }
+    
+    .wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100vw;
+        min-height: 100vh;
+        user-select: none;
+        pointer-events: none;
+    }
+    .bottom {
+        top: unset;
+        bottom: 770px;
+        /* transform: rotateZ(180deg); */
+    }
+    .bottom .two {
+        background: rgba(132, 110, 78, 0.80);
+        animation-name: change-yellow;
+    }
+    .bottom .three {
+        background: rgba(78, 109, 132, 0.70);
+        animation-name: change-blue;
+    }
+    .circle {
+        position: absolute;
+        width: 294px;
+        height: 294px;
+        flex-shrink: 0;
+        border-radius: 294px;
+        filter: blur(152px);
+        animation-duration: 2000ms;
+        animation-fill-mode: both;
+        animation-direction: alternate;
+        animation-iteration-count: infinite;
+        animation-delay: 600ms;
+        will-change: background;
+    }
+    .one {
+        left: 35%;
+        top: 20px;
+        background: rgba(98, 78, 132, 0.50);
+        animation-name: change-purple;
+    }
+    .two {
+        left: 0;
+        top: 570px;
+        background: rgba(78, 109, 132, 0.70);
+        animation-name: change-blue;
+    }
+    .three {
+        right: 0;
+        top: 247px;
+        background: rgba(132, 110, 78, 0.80);
+        animation-name: change-yellow;
+    }
+    @media (max-width: 730px) {
+        .wrapper {
+            display: none;
+        }
+    }
+</style>

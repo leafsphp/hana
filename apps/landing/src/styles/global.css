@@ -1,0 +1,145 @@
+:root {
+  --text-primary: #8a898c;
+  --text-secondary: #c7cde1;
+  --bg-primary: #0c0c0d;
+  --border-primary: #222223;
+  --accent: #5e79c7;
+  --card-title: #ffffff;
+  --nav-bg: #000000;
+}
+
+@font-face {
+  font-family: 'Berkeley Mono';
+  src: url('/fonts/BerkeleyMono-Regular.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  color: var(--text-primary);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-primary);
+  overflow-x: hidden;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+  line-height: normal;
+}
+
+h1 {
+  font-size: 112px;
+  font-weight: 800;
+  text-align: center;
+}
+
+h2 {
+  font-size: 82px;
+  font-weight: 800;
+}
+
+h3 {
+  font-size: 52px;
+  font-weight: 800;
+}
+
+h6 {
+  font-size: 18px;
+}
+
+p {
+  font-size: 16px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+pre {
+  all: unset;
+  border: 1px solid var(--border-primary);
+  border-radius: 14px;
+  padding: 14px 30px;
+  font-size: 16px;
+  cursor: copy;
+  font-family: 'Berkeley Mono';
+}
+
+pre > code {
+  display: inline-flex;
+  gap: 10px;
+}
+
+ul {
+  padding: 0;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #8296b3 18.97%, #e5e5f5 89.02%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mx-auto {
+  margin-inline: auto;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+@media (max-width: 738px) {
+  h1 {
+    font-size: 54px;
+  }
+  h2 {
+    font-size: 54px;
+  }
+}
