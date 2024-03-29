@@ -12,7 +12,7 @@ Leaf router is now separated from Leaf and is now available as an installable mo
 Leaf router uses a single root file, to which all the server requests are redirected, it then takes these requests and matches them to rules you have defined. The results are then displayed to the user. It's actually a very simple concept.
 
 ::: warning Note
-Leaf router is automatically installed and attached to your leaf apps, so you don't need to manually install it. This guide focuses on leaf router and a general application of it. If you want the leaf routing guide with leaf router, check out [routing](/docs/routing/) instead.
+Leaf router is automatically installed and attached to your leaf apps, so you don't need to manually install it. This guide focuses on leaf router and a general application of it. If you want the leaf routing guide with leaf router, check out [routing](/routing/) instead.
 :::
 
 You can install the leaf router with composer:
@@ -50,7 +50,7 @@ From this point onwards, we will assume that you are using Leaf router outside a
 Router::get('/', function () {...});
 ```
 
-Check out the [routing guide](/docs/routing/) for an application tailored for leaf apps.
+Check out the [routing guide](/routing/) for an application tailored for leaf apps.
 
 :::
 
@@ -157,7 +157,7 @@ Router::all('/post/{id}', function ($id) {
 
 ### Resource Routes
 
-This section assumes you've read [working with controllers](/docs/routing/controller). In an MVC application, controllers play a major role as they're the bridge between your view and your model.
+This section assumes you've read [working with controllers](/routing/controller). In an MVC application, controllers play a major role as they're the bridge between your view and your model.
 
 A resource route simply creates all the routes needed to successfully handle a particular feature. This sounds a bit bleak, let's look at an example.
 
@@ -181,7 +181,7 @@ Router::match("GET|HEAD", "/posts/{id}", "$controller@show");
 Router::run();
 ```
 
-Resource routes are handled by a [resource controller](/docs/routing/controller?id=resource-controller).
+Resource routes are handled by a [resource controller](/routing/controller?id=resource-controller).
 
 ### Route "Hooking"
 

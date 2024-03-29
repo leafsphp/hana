@@ -13,24 +13,25 @@ import FeedbackCard from '../components/FeedbackCard.astro';
 		<HeroBG />
 		<Header />
 		<section>
-			<h1 class="gradient-text mx-auto">The Framework that 
+			<h1 class="gradient-text mx-auto">The Framework that
 				grows with you</h1>
 			<p style="max-width: 55ch;" class="text-center mx-auto">
-				Hana.js is a simple, lightweight React framework crafted with simplicity, 
+				Hana.js is a simple, lightweight React framework crafted with simplicity,
 				performance and a great developer experience in mind.
 			</p>
+
 			<div class="pre-wrapper mx-auto">
 				<pre>
 					<code>
 						npx create-hana-app@latest
-						<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"><path stroke="#5e79c7" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 12.9v4.2c0 3.5-1.4 4.9-4.9 4.9H6.9C3.4 22 2 20.6 2 17.1v-4.2C2 9.4 3.4 8 6.9 8h4.2c3.5 0 4.9 1.4 4.9 4.9z"></path><path stroke="#5e79c7" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M22 6.9v4.2c0 3.5-1.4 4.9-4.9 4.9H16v-3.1C16 9.4 14.6 8 11.1 8H8V6.9C8 3.4 9.4 2 12.9 2h4.2C20.6 2 22 3.4 22 6.9z"></path></svg>
+						<!-- <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"><path stroke="#5e79c7" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 12.9v4.2c0 3.5-1.4 4.9-4.9 4.9H6.9C3.4 22 2 20.6 2 17.1v-4.2C2 9.4 3.4 8 6.9 8h4.2c3.5 0 4.9 1.4 4.9 4.9z"></path><path stroke="#5e79c7" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M22 6.9v4.2c0 3.5-1.4 4.9-4.9 4.9H16v-3.1C16 9.4 14.6 8 11.1 8H8V6.9C8 3.4 9.4 2 12.9 2h4.2C20.6 2 22 3.4 22 6.9z"></path></svg> -->
 					</code>
 				</pre>
 			</div>
 		</section>
 		<section>
 		<h3 class="text-center gradient-text mx-auto" style="max-width: 25ch">
-			Unlike the 100s of other React 
+			Unlike the 100s of other React
 			frameworks out there
 		</h3>
 			<p style="max-width: 55ch;" class="text-center mx-auto">
@@ -38,7 +39,7 @@ import FeedbackCard from '../components/FeedbackCard.astro';
 			</p>
 			<ul role="list" class="link-card-grid">
 					<Card
-					href="https://hanajs.dev/docs/store/"
+					href="https://docs.hanajs.dev/store/"
 					title="Simple State Management"
 					body="Hana comes with Hana Store which is a high performance, easy-to-use state management library that has a feature-rich API."
 					image="/folder.png"
@@ -48,7 +49,7 @@ import FeedbackCard from '../components/FeedbackCard.astro';
 					large
 					/>
 					<Card
-					href="https://hanajs.dev/docs/routing/"
+					href="https://docs.hanajs.dev/routing/"
 					title="Powerful Routing"
 					body="Hana includes a powerful router that automatically maps your file-system into routes and includes advanced features like loading pages and route based error pages.❤️"
 					image="/car.png"
@@ -65,9 +66,9 @@ import FeedbackCard from '../components/FeedbackCard.astro';
 					primaryColor='#591040'
 					/>
 				<Card
-					href="https://hanajs.dev/docs/introduction/"
+					href="https://docs.hanajs.dev/"
 					title="Superpowers included"
-					body="Hana includes a bunch of utilities like route-based error pages and loading pages, data fetching, SEO and meta utilities, as well as authentication and web builder helpers."
+					body="Hana includes a bunch of utilities like route-based error pages and loading pages, easy peasy token and cookie-based authentication and a lot more to make your life easier."
 					image="/bolt.png"
 					animated='/animated/Lightning.gif'
 					primaryColor='rgba(132, 117, 78, 0.70)'
@@ -109,10 +110,10 @@ import FeedbackCard from '../components/FeedbackCard.astro';
 					Connect with our community of devs.
 				</h2>
 				<div style="display: grid; grid-template-columns: repeat(2, 1fr); place-items: center; gap: 50px;">
-					<a href="https://hanajs.dev/community/join.html" target="_blank">
+					<a href="https://docs.hanajs.dev/community/join.html" target="_blank">
 						<img class="bw-image" src="/discord.png" alt="Discord logo">
 					</a>
-					<a href="https://hanajs.dev/community/join.html" target="_blank">
+					<a href="https://docs.hanajs.dev/community/join.html" target="_blank">
 						<img class="bw-image" src="/whatsapp.png" alt="Whatsapp logo">
 					</a>
 				</div>
@@ -160,17 +161,20 @@ import FeedbackCard from '../components/FeedbackCard.astro';
 		margin-bottom: 100px
 	}
 	.pre-wrapper {
-		width: max-content;
-		 margin-top: 100px;
-  		margin-bottom: 100px;
+    width: max-content;
+    margin-top: 100px;
+    margin-bottom: 100px;
 	}
+  .pre-wrapper pre {
+    cursor: inherit !important;
+  }
 	.link-card-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 		gap: 20px;
 		padding: 0;
 		margin-top: 120px;
-	} 
+	}
 	.sponsors-list {
 		display: flex;
 		align-items: center;
@@ -205,11 +209,11 @@ import FeedbackCard from '../components/FeedbackCard.astro';
 		place-items: center;
 		gap: 120px;
 	}
-	
+
 	@media (max-width: 720px) {
 		main {
 			padding-inline: 16px;
-		}	
+		}
 		section {
 			margin-bottom: 130px;
 		}

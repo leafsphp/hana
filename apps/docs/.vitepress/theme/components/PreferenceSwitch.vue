@@ -27,7 +27,7 @@ const show = $computed(() =>
 const showFullText = $computed(() =>
   /^\/(tutorial|examples)\//.test(route.path)
 )
-// const showSFC = $computed(() => !/^\/guide|docs/.test(route.path))
+// const showSFC = $computed(() => !/^\/guide|.test(route.path))
 const showSFC = false
 
 let isOpen = $ref(true)
@@ -85,7 +85,7 @@ function useToggleFn(
         <VTSwitch class="api-switch" aria-label="prefer functional mode" :aria-checked="preferFunctional"
           @click="toggleFunctionalMode()" />
         <label class="composition-label" @click="toggleFunctionalMode(true)">Functions</label>
-        <a class="switch-link" title="About API preference" href="/docs/introduction/#class-mode-vs-functional-mode"
+        <a class="switch-link" title="About API preference" href="/introduction/#class-mode-vs-functional-mode"
           @click="closeSideBar">?</a>
       </div>
     </div>

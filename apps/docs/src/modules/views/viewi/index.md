@@ -77,7 +77,7 @@ $app->run();
 
 ## Your first Viewi component
 
-After setting up the viewi module, all you need to do is to add your Viewi components and register them to routes. So all we need to do is create the folders described in the [Viewi docs installation](https://viewi.net/docs/installation#manual).
+After setting up the viewi module, all you need to do is to add your Viewi components and register them to routes. So all we need to do is create the folders described in the [Viewi docs installation](https://viewi.net/installation#manual).
 
 Create the following folders:
 
@@ -250,7 +250,7 @@ $app->run();
 
 ## Configuring Viewi
 
-Viewi takes in a bunch of configuration options which can be found on [their documentation](https://viewi.net/docs/configuration). This allows you to customize the way Viewi behaves. Since we're using the Leaf Viewi module, your configuration will be passed through the `init` method we saw above.
+Viewi takes in a bunch of configuration options which can be found on [their documentation](https://viewi.net/configuration). This allows you to customize the way Viewi behaves. Since we're using the Leaf Viewi module, your configuration will be passed through the `init` method we saw above.
 
 <div class="functional-mode">
 

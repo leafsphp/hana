@@ -24,32 +24,29 @@ export const SPONSORS = [
 export const FEEDBACK = [
   {
     user: {
-      image: '/leaf.png',
+      image: 'https://avatars.githubusercontent.com/u/37486330?v=4',
       name: 'Desmond Sofua',
       position: 'Founder',
       company: 'MailPigeon',
     },
     feedback:
-      '“With Next.js at the helm of our headless tech stack, our developers can create features with velocity and speed, ultimately enabling users to create whatever, whenever they want to.”',
+      'Building with Hana has been the most straightforward approach to getting an app production ready”',
   },
   {
     user: {
       image: '/leaf.png',
-      name: 'Desmond Sofua',
-      position: 'Founder',
-      company: 'MailPigeon',
+      name: 'Sebastian Livingstone',
+      position: 'UI/UX Designer',
     },
-    feedback:
-      '“With Next.js at the helm of our headless tech stack, our developers can create features with velocity and speed, ultimately enabling users to create whatever, whenever they want to.”',
+    feedback: 'Top notch developer experience even for newbies to frontend”',
   },
   {
     user: {
-      image: '/leaf.png',
-      name: 'Desmond Sofua',
-      position: 'Founder',
-      company: 'MailPigeon',
+      image: 'https://avatars.githubusercontent.com/u/36931378?v=4',
+      name: 'Andy Apenteng',
+      position: 'Fullstack Developer',
     },
     feedback:
-      '“With Next.js at the helm of our headless tech stack, our developers can create features with velocity and speed, ultimately enabling users to create whatever, whenever they want to.”',
+      'Integration with backend systems, especially with built-in support for leaf PHP really has the full stack experience”',
   },
 ];

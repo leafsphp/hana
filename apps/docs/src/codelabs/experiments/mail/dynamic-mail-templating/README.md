@@ -16,7 +16,7 @@ $app = new Leaf\App;
 $mail = new Leaf\Mail;
 ```
 
-At this point, it will be best to define our view. We're using Leaf Blade templating which is just Leaf's adaptation of [Laravel's Blade Templating Engine](https://laravel.com/docs/5.8/blade), so our files will end with `.blade.php`. I'll name my mail template `mail.php`. In the "real world", meaningful template names are used like `withdrawal_processed` or something along those lines.
+At this point, it will be best to define our view. We're using Leaf Blade templating which is just Leaf's adaptation of [Laravel's Blade Templating Engine](https://laravel.com/5.8/blade), so our files will end with `.blade.php`. I'll name my mail template `mail.php`. In the "real world", meaningful template names are used like `withdrawal_processed` or something along those lines.
 
 ### Our Blade View
 

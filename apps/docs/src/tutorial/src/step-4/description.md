@@ -86,7 +86,7 @@ In this exercise, we'll be rendering various content types with leaf response. L
 
 ## WORKING WITH JSON
 
-Today, most APIs output JSON to the client, and this requires you to set a content type and encode your data as JSON. All of this however, has been taken by leaf. All you need to do is to call the `json` method on the leaf response object. The JSON method takes in some data to output and the [http status code](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) to attach
+Today, most APIs output JSON to the client, and this requires you to set a content type and encode your data as JSON. All of this however, has been taken by leaf. All you need to do is to call the `json` method on the leaf response object. The JSON method takes in some data to output and the [http status code](https://developer.mozilla.org/en-US/Web/HTTP/Status) to attach
 
 <div class="class-mode">
 

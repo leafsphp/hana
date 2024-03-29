@@ -6,7 +6,7 @@
   <a href="https://packagist.org/packages/leafs/fetch"><img src="https://poser.pugx.org/leafs/fetch/license" alt="License"></a>
 </div>
 
-Fetch is a clean, simple, developer friendly interface for making network requests with PHP. It provides a modern API based on [axios](https://axios-http.com/docs/intro) and uses elements from [Unirest PHP](https://github.com/Kong/unirest-php).
+Fetch is a clean, simple, developer friendly interface for making network requests with PHP. It provides a modern API based on [axios](https://axios-http.com/intro) and uses elements from [Unirest PHP](https://github.com/Kong/unirest-php).
 
 ## Installation
 

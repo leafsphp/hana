@@ -37,4 +37,4 @@ $model = ModelName::find($id);
 $model->delete();
 ```
 
-Checkout [building your first app](/docs/introduction/first-app) for more practical use cases
+Checkout [building your first app](/introduction/first-app) for more practical use cases

@@ -36,7 +36,7 @@ $app->post("/user/change-username", function () use($app) {
 ## Functional Mode
 <!-- <Badge text="new" /> -->
 
-Request now hooks into leaf 3's functional mode and comes with global functions you can use anywhere in your app. Read the [functional mode docs](/docs/tooling/functions) for all the information on functional mode.
+Request now hooks into leaf 3's functional mode and comes with global functions you can use anywhere in your app. Read the [functional mode docs](/tooling/functions) for all the information on functional mode.
 
 ```php{2}
 app()->post("/items/add", function () {

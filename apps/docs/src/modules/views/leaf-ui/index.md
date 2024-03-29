@@ -24,7 +24,7 @@ composer require leafs/ui
 
 ## Getting Started
 
-To get started, you need to create a new Leaf UI component. A component is a reusable piece of your website or app's UI, such as a header, sidebar, or button. A component includes HTML markup and the business logic needed to make that markup interactive. You can think of a component as a self-contained module that encapsulates its own functionality, which can then be reused throughout your website or app. You can also pass data into a component, making it more dynamic and reusable. Check out the [Leaf UI documentation](https://ui.leafphp.dev/docs/essentials/components.html) for more information on components.
+To get started, you need to create a new Leaf UI component. A component is a reusable piece of your website or app's UI, such as a header, sidebar, or button. A component includes HTML markup and the business logic needed to make that markup interactive. You can think of a component as a self-contained module that encapsulates its own functionality, which can then be reused throughout your website or app. You can also pass data into a component, making it more dynamic and reusable. Check out the [Leaf UI documentation](https://ui.leafphp.dev/essentials/components.html) for more information on components.
 
 To create a new component, we need to add a new class. Let's create a new component called `HelloWorld`:
 

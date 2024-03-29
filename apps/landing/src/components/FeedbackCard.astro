@@ -18,16 +18,17 @@ const { user, feedback} = Astro.props
         <img src={user.image} alt={user?.name} class="user-image">
         <div class="column">
             <h4 class="name">{user?.name}</h4>
-            <p>{user?.position}, {user?.company}</p>
+            <p>{user?.position}{user?.company && `, ${user?.company}`}</p>
         </div>
     </div>
-
 </li>
+
 <style>
     li {
         list-style: none;
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
         gap: 160px;
         padding: 100px 60px 53px 60px;
         border: 1px solid var(--border-primary);

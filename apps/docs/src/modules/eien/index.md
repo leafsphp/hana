@@ -7,13 +7,13 @@ When serving Leaf apps with Eien, you gain additional performance improvements d
 ::: warning Note that
 Eien runs on Swoole, so you need to have the swoole extension installed.
 
-- [Swoole Installation docs](https://openswoole.com/docs/get-started/installation)
+- [Swoole Installation docs](https://openswoole.com/get-started/installation)
 - [In case you have errors installing swoole on Mac](https://parsinta.com/articles/setup-php-swoole-in-your-mac-os)
 :::
 
 ## Installation
 
-You can easily install Eien using the [Leaf CLI](/docs/cli/):
+You can easily install Eien using the [Leaf CLI](/cli/):
 
 ```bash
 leaf install eien
@@ -27,7 +27,7 @@ composer require leafs/eien
 
 ## Prerequisites
 
-Eien has been configured to rely on some features available in only v3 of Leaf. This means that you can't use Eien with earlier versions of the Leaf framework. Not to worry, if you're on Leaf 2, migrating to Leaf 3 should take less than 10 minutes. You can follow this [documentation to help you migrate](/docs/migration/introduction.html)
+Eien has been configured to rely on some features available in only v3 of Leaf. This means that you can't use Eien with earlier versions of the Leaf framework. Not to worry, if you're on Leaf 2, migrating to Leaf 3 should take less than 10 minutes. You can follow this [documentation to help you migrate](/migration/introduction.html)
 
 ## Benchmarks
 

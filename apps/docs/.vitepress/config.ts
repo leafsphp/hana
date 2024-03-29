@@ -9,7 +9,7 @@ const nav = [
   {
     text: 'Docs',
     activeMatch: `^/(docs|style-guide|examples|tutorial)/`,
-    link: '/docs/introduction/',
+    link: '/',
   },
   {
     text: 'Ecosystem',
@@ -30,7 +30,7 @@ const nav = [
         items: [
           {
             text: 'Hana CLI',
-            link: '/docs/cli/'
+            link: '/cli/'
           },
         ]
       },
@@ -115,11 +115,11 @@ const mainSidebar = [
     collapsible: false,
     collapsed: true,
     items: [
-      { text: 'Introduction', link: '/docs/introduction/' },
-      { text: 'Installation', link: '/docs/introduction/installation' },
-      { text: 'Project Structure', link: '/docs/introduction/structure' },
-      // { text: 'Migration Guide', link: '/docs/migration/other' },
-      { text: 'create-hana-app', link: '/docs/cli/' },
+      { text: 'Introduction', link: '/' },
+      { text: 'Installation', link: '/introduction/installation' },
+      { text: 'Project Structure', link: '/introduction/structure' },
+      // { text: 'Migration Guide', link: '/migration/other' },
+      { text: 'create-hana-app', link: '/cli/' },
     ]
   },
   {
@@ -127,13 +127,13 @@ const mainSidebar = [
     collapsible: false,
     collapsed: true,
     items: [
-      { text: 'Overview', link: '/docs/routing/' },
-      { text: 'Navigation', link: '/docs/routing/navigation' },
-      { text: 'Dynamic Routing', link: '/docs/routing/dynamic' },
-      { text: 'Router Config', link: '/docs/routing/config' },
-      { text: 'Error Handling', link: '/docs/routing/errors' },
-      { text: 'Loading Pages', link: '/docs/routing/loading' },
-      { text: 'Layout Pages', link: '/docs/routing/layout' },
+      { text: 'Overview', link: '/routing/' },
+      { text: 'Navigation', link: '/routing/navigation' },
+      { text: 'Dynamic Routing', link: '/routing/dynamic' },
+      { text: 'Router Config', link: '/routing/config' },
+      { text: 'Error Handling', link: '/routing/errors' },
+      { text: 'Loading Pages', link: '/routing/loading' },
+      { text: 'Layout Pages', link: '/routing/layout' },
     ]
   },
   {
@@ -141,12 +141,12 @@ const mainSidebar = [
     collapsible: false,
     collapsed: true,
     items: [
-      { text: 'Overview', link: '/docs/store/' },
-      { text: 'State', link: '/docs/store/state' },
-      { text: 'Reducers', link: '/docs/store/reducers' },
-      { text: 'Plugins', link: '/docs/store/plugins' },
-      { text: 'TypeScript', link: '/docs/store/typescript' },
-      { text: 'Modules', link: '/docs/store/modules' },
+      { text: 'Overview', link: '/store/' },
+      { text: 'State', link: '/store/state' },
+      { text: 'Reducers', link: '/store/reducers' },
+      { text: 'Plugins', link: '/store/plugins' },
+      { text: 'TypeScript', link: '/store/typescript' },
+      { text: 'Modules', link: '/store/modules' },
     ]
   },
   {
@@ -154,9 +154,9 @@ const mainSidebar = [
     collapsible: false,
     collapsed: true,
     items: [
-      { text: 'Introduction', link: '/docs/auth/' },
-      { text: 'Auth using HOCs', link: '/docs/auth/hocs' },
-      { text: 'Auth using hooks', link: '/docs/auth/hooks' },
+      { text: 'Introduction', link: '/auth/' },
+      { text: 'Auth using HOCs', link: '/auth/hocs' },
+      { text: 'Auth using hooks', link: '/auth/hooks' },
     ]
   },
 ]
@@ -189,7 +189,7 @@ const communitySidebar = [
 ]
 
 export const sidebar = {
-  '/docs/': mainSidebar,
+  '/': mainSidebar,
   '/modules/': mainSidebar,
   '/codelabs/': mainSidebar,
   '/aloe-cli/': [

@@ -199,7 +199,7 @@ The Leaf all method will return all of the results in the model's table. Since e
 $flights = Flight::where('active', 1)->orderBy('name', 'desc')->take(10)->get();
 ```
 
-> **You can check [here](https://laravel.com/docs/5.8/queries) for available queries on your models.**
+> **You can check [here](https://laravel.com/5.8/queries) for available queries on your models.**
 
 ### Refreshing Models
 
@@ -272,6 +272,6 @@ $flight->save();
 
 <hr>
 
-Since Leaf Models use Eloquent, you can read more [here](https://laravel.com/docs/5.8/eloquent) to view available methods on the Eloquent object.
+Since Leaf Models use Eloquent, you can read more [here](https://laravel.com/5.8/eloquent) to view available methods on the Eloquent object.
 
 **Just remember, your models should extend `Leaf\Model` not `Eloquent`**

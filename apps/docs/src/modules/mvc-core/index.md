@@ -30,7 +30,7 @@ Leaf MVC Core comes in with two (2) controller classes. `Leaf\Controller` for cr
 
 ## Models
 
-Leaf MVC Core comes with a base model from which all models in your leaf API and leaf MVC apps are created. This model is directly built unto [laravel's eloquent](https://laravel.com/docs/10.x/eloquent) and so we'll recommend checking out laravel models for detailed documentation. Models in your app will look something like this:
+Leaf MVC Core comes with a base model from which all models in your leaf API and leaf MVC apps are created. This model is directly built unto [laravel's eloquent](https://laravel.com/10.x/eloquent) and so we'll recommend checking out laravel models for detailed documentation. Models in your app will look something like this:
 
 ```php
 <?php
