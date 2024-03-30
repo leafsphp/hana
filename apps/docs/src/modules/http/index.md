@@ -24,7 +24,7 @@ The available classes in the Http module are:
 
 ## Installation
 
-You can install the http module with the [Leaf CLI](/docs/cli/):
+You can install the http module with the [Leaf CLI](/cli/):
 
 ```bash
 leaf install http

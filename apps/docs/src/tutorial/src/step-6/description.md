@@ -125,7 +125,7 @@ As shown above, you can have as many dynamic parts as you want. Leaf will automa
 
 ## LIMITING DYNAMIC URLS TO PARTICULAR TYPES
 
-Using the 1st example, we actually expect the user to pass in a user id. For this example, let's say the user id is a **number**. If you pass in text, this will still work. You can try that out in the editor. Text is seen as valid input, but we only want to support numbers. For situations like this, leaf allows you to use <a href="/docs/routing/dynamic.html#pcre-based-params" target="_blank">PCRE-patterns</a> for your dynamic routes instead of the normal values which allow everything.
+Using the 1st example, we actually expect the user to pass in a user id. For this example, let's say the user id is a **number**. If you pass in text, this will still work. You can try that out in the editor. Text is seen as valid input, but we only want to support numbers. For situations like this, leaf allows you to use <a href="/routing/dynamic.html#pcre-based-params" target="_blank">PCRE-patterns</a> for your dynamic routes instead of the normal values which allow everything.
 
 Basically, PCRE based routes contain dynamic parts which can vary per request. The varying parts are named subpatterns and are defined using regular expressions. Commonly used PCRE-based subpatterns within Dynamic Route Patterns are:
 

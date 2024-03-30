@@ -11,7 +11,7 @@
         <h4 class="mb:_1">Learn Leaf</h4>
         <ul>
           <li>
-            <a href="/docs/introduction/" target="_blank">Getting Started</a>
+            <a href="/" target="_blank">Getting Started</a>
           </li>
           <li>
             <a href="/tutorial/" target="_blank">Tutorial</a>

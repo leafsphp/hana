@@ -4,7 +4,7 @@ title: "Optional Route Subpatterns"
 
 <!-- markdownlint-disable no-inline-html -->
 
-*This guide assumes you have read [Simple Routing](/docs/routing/) and [dynamic routing](/docs/routing/dynamic)*
+*This guide assumes you have read [Simple Routing](/routing/) and [dynamic routing](/routing/dynamic)*
 
 Route subpatterns can be made optional by making the subpatterns optional by adding a ? after them. Think of blog URLs in the form of /blog(/year)(/month)(/day)(/slug):
 

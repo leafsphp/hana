@@ -6,7 +6,7 @@ Leaf MVC and Leaf API both come with built-in support for Leaf Auth. This means 
 \Leaf\Database::initDb();
 ```
 
-This will allow Leaf Auth to use your database connection set up in your `.env` file. If you don't have a database connection set up, you can set one up by following the [Leaf MVC Database docs](/docs/leafmvc/).
+This will allow Leaf Auth to use your database connection set up in your `.env` file. If you don't have a database connection set up, you can set one up by following the [Leaf MVC Database docs](/leafmvc/).
 
 ## Auth config
 

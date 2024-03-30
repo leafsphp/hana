@@ -48,13 +48,13 @@ leaf create test-app --basic --v3
 
 This will generate a simple leaf 3 app with an `index.php` file as well.
 
-- You will also need basic knowledge on [leaf's router](https://leafphp.dev/docs/routing/)
+- You will also need basic knowledge on [leaf's router](https://leafphp.dev/routing/)
 
 ## Building Our Login
 
 Our authentication flow starts with a user entering their credentials on the frontend of an app. This is parsed and sent to the backend (our API) through an [API endpoint](https://smartbear.com/learn/performance-monitoring/api-endpoints/) or route. This means that our first task is to set up a route to handle the data passed into our API.
 
-We'll use [leaf's core router](https://leafphp.dev/docs/routing/) for this.
+We'll use [leaf's core router](https://leafphp.dev/routing/) for this.
 
 ```php
 require __DIR__ . "/vendor/autoload.php";

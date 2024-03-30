@@ -2,7 +2,7 @@
 
 Welcome to the Leaf tutorial!
 
-This is an attempt to give you the experience of what it feels like to work with Leaf, right in your browser. This tutorial aims to give you the basic knowledge required to build a simple Leaf project. You don't need to understand everything before moving on, however, after you complete it, make sure to also read the <a target="_blank" href="/docs/introduction/">docs which cover each topic</a> in more details.
+This is an attempt to give you the experience of what it feels like to work with Leaf, right in your browser. This tutorial aims to give you the basic knowledge required to build a simple Leaf project. You don't need to understand everything before moving on, however, after you complete it, make sure to also read the <a target="_blank" href="/">docs which cover each topic</a> in more details.
 
 ## PREREQUISITES
 
@@ -39,7 +39,7 @@ If you are an experienced developer coming from Leaf 2 or other frameworks, ther
 <details>
 <summary>Tutorial Setting Details</summary>
 
-- Leaf offers two API styles: functional mode and class mode. This tutorial is designed to work for both - you can choose your preferred style using the **Style preference** switches at the top. <a target="_blank" href="/docs/introduction/#class-mode-vs-functional-mode">Learn more about API styles</a>.
+- Leaf offers two API styles: functional mode and class mode. This tutorial is designed to work for both - you can choose your preferred style using the **Style preference** switches at the top. <a target="_blank" href="/introduction/#class-mode-vs-functional-mode">Learn more about API styles</a>.
 
 </details>
 

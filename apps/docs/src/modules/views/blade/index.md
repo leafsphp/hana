@@ -6,7 +6,7 @@
 import VideoDocs from '/@theme/components/VideoDocs.vue'
 </script>
 
-[Blade](https://laravel.com/docs/10.x/blade#introduction) is the simple, yet powerful templating engine that is included with Laravel. Unlike some PHP templating engines, Blade does not restrict you from using plain PHP code in your templates. In fact, all Blade templates are compiled into plain PHP code and cached until they are modified, meaning Blade adds essentially zero overhead to your application. Blade template files use the `.blade.php` file extension.
+[Blade](https://laravel.com/10.x/blade#introduction) is the simple, yet powerful templating engine that is included with Laravel. Unlike some PHP templating engines, Blade does not restrict you from using plain PHP code in your templates. In fact, all Blade templates are compiled into plain PHP code and cached until they are modified, meaning Blade adds essentially zero overhead to your application. Blade template files use the `.blade.php` file extension.
 
 Leaf Blade is a port of the [jenssegers/blade](https://github.com/jenssegers/blade) package that allows you to use blade templates in your Leaf PHP projects.
 
@@ -113,4 +113,4 @@ Which allows you to use the following in your blade template:
 Current date: @datetime($date)
 ```
 
-The Blade instance passes all methods to the internal view factory. So methods such as exists, file, share, composer and creator are available as well. Check out the [original documentation](http://laravel.com/docs/5.8/blade) for more information.
+The Blade instance passes all methods to the internal view factory. So methods such as exists, file, share, composer and creator are available as well. Check out the [original documentation](http://laravel.com/5.8/blade) for more information.

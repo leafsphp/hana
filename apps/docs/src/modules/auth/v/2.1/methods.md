@@ -281,7 +281,7 @@ This method returns the id of the currently logged in user. In the case of JWTs,
 $userId = auth()->id();
 ```
 
-<!-- ### [Leaf Authentication Methods](/docs/core/authentication) -->
+<!-- ### [Leaf Authentication Methods](/core/authentication) -->
 
 <!-- Leaf Auth now uses the `Leaf\Helpers\Authentication` package to provide solutions for token authentication. This provides a simple way to work with manual authentication and tokens. All methods here are now available in `Leaf\Auth`.
 
