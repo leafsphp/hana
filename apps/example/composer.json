@@ -1,0 +1,54 @@
+{
+  "name": "hana/app",
+  "description": "Leaf Server for your Hana applications",
+  "keywords": [
+    "authentication",
+    "simple auth",
+    "login",
+    "register",
+    "leaf",
+    "php",
+    "framework"
+  ],
+  "homepage": "https://leafphp.netlify.app/#/",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Michael Darko",
+      "email": "mickdd22@gmail.com",
+      "homepage": "https://mychi.netlify.app",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Leaf\\": "src"
+    },
+    "files": [
+      "src/functions.php"
+    ]
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true,
+  "require": {
+    "leafs/date": "*",
+    "leafs/password": "*",
+    "leafs/session": "*",
+    "leafs/db": "*",
+    "leafs/form": "*",
+    "leafs/http": "*"
+  },
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  },
+  "require-dev": {
+    "leafs/alchemy": "^1.0",
+    "pestphp/pest": "^1.0 | ^2.0"
+  },
+  "scripts": {
+    "test": "vendor/bin/pest --colors=always --coverage"
+  }
+}

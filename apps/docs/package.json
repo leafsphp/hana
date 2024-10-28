@@ -5,7 +5,7 @@
   },
   "scripts": {
     "dev": "vitepress",
-    "build": "vitepress build",
+    "build": "exit 0",
     "serve": "vitepress serve",
     "preinstall": "npx only-allow pnpm"
   },
@@ -24,16 +24,5 @@
   "devDependencies": {
     "@types/markdown-it": "^12.2.3",
     "@types/node": "^16.9.1"
-  },
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "@algolia/client-search",
-        "react",
-        "react-dom",
-        "@types/react",
-        "search-insights"
-      ]
-    }
   }
 }

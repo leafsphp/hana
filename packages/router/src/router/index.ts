@@ -6,7 +6,7 @@ export {
   useSearchParams,
   useBeforeUnload,
   useLocation,
-  unstable_useViewTransitionState as useViewTransitionState,
+  useViewTransitionState,
   Await,
   Link,
   NavLink,
