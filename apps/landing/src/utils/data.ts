@@ -5,14 +5,14 @@ export const SPONSORS = [
     href: 'https://leafphp.dev/',
   },
   {
-    image: '/digitalocean.png',
-    alt: 'Digital Ocean',
-    href: 'https://www.digitalocean.com/',
+    image: '/adplist.svg',
+    alt: 'ADPList',
+    href: 'https://www.adplist.org/',
   },
   {
-    image: '/jetbrains.png',
-    alt: 'JetBrains',
-    href: 'https://www.jetbrains.com/',
+    image: '/seev.png',
+    alt: 'SeevCash',
+    href: 'https://www.seevcash.com/',
   },
   {
     image: '/netlify.png',
@@ -34,7 +34,8 @@ export const FEEDBACK = [
   },
   {
     user: {
-      image: '/leaf.png',
+      image:
+        'https://pbs.twimg.com/profile_images/1968677690392600576/T7lwRXVK_400x400.jpg',
       name: 'Sebastian Livingstone',
       position: 'UI/UX Designer',
     },

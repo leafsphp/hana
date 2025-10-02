@@ -13,11 +13,10 @@ import FeedbackCard from '../components/FeedbackCard.astro';
 		<HeroBG />
 		<Header />
 		<section>
-			<h1 class="gradient-text mx-auto">The Framework that
+			<h1 class="gradient-text mx-auto" style="margin-bottom: 24px;">The React Framework that
 				grows with you</h1>
-			<p style="max-width: 55ch;" class="text-center mx-auto">
-				Hana.js is a simple, lightweight React framework crafted with simplicity,
-				performance and a great developer experience in mind.
+			<p style="max-width: 55ch; font-style: italic;" class="text-center hero-subtext mx-auto">
+				Do your apps really need all that boilerplate? Get started with Hana and build your next big idea with great defaults and powerful features.
 			</p>
 
 			<div class="pre-wrapper mx-auto">
@@ -39,7 +38,7 @@ import FeedbackCard from '../components/FeedbackCard.astro';
 			</p>
 			<ul role="list" class="link-card-grid">
 					<Card
-					href="https://docs.hanajs.dev/store/"
+					href="https://docs.hana.leafphp.dev/store/"
 					title="Simple State Management"
 					body="Hana comes with Hana Store which is a high performance, easy-to-use state management library that has a feature-rich API."
 					image="/folder.png"
@@ -49,7 +48,7 @@ import FeedbackCard from '../components/FeedbackCard.astro';
 					large
 					/>
 					<Card
-					href="https://docs.hanajs.dev/routing/"
+					href="https://docs.hana.leafphp.dev/routing/"
 					title="Powerful Routing"
 					body="Hana includes a powerful router that automatically maps your file-system into routes and includes advanced features like loading pages and route based error pages.❤️"
 					image="/car.png"
@@ -66,7 +65,7 @@ import FeedbackCard from '../components/FeedbackCard.astro';
 					primaryColor='#591040'
 					/>
 				<Card
-					href="https://docs.hanajs.dev/"
+					href="https://docs.hana.leafphp.dev/"
 					title="Superpowers included"
 					body="Hana includes a bunch of utilities like route-based error pages and loading pages, easy peasy token and cookie-based authentication and a lot more to make your life easier."
 					image="/bolt.png"
@@ -79,7 +78,7 @@ import FeedbackCard from '../components/FeedbackCard.astro';
 		<section>
 			<div class="sponsors-list">
 				<p style="max-width: 15ch">
-					Trusted by Leaf and it&apos;s sponsors
+          Used in production by the very best.
 				</p>
 				<div class="sponsors-grid">
 					{
@@ -109,18 +108,14 @@ import FeedbackCard from '../components/FeedbackCard.astro';
 				<h2>
 					Connect with our community of devs.
 				</h2>
-				<div style="display: grid; grid-template-columns: repeat(2, 1fr); place-items: center; gap: 50px;">
-					<a href="https://docs.hanajs.dev/community/join.html" target="_blank">
+				<div style="display: flex; place-items: center;">
+					<a href="https://docs.hana.leafphp.dev/community/join.html" target="_blank">
 						<img class="bw-image" src="/discord.png" alt="Discord logo">
-					</a>
-					<a href="https://docs.hanajs.dev/community/join.html" target="_blank">
-						<img class="bw-image" src="/whatsapp.png" alt="Whatsapp logo">
 					</a>
 				</div>
 			</div>
 		</section>
 	</main>
-	<Footer />
 </Layout>
 
 <style>
@@ -205,7 +200,7 @@ import FeedbackCard from '../components/FeedbackCard.astro';
 	}
 	.community-grid {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: 2fr 1fr;
 		place-items: center;
 		gap: 120px;
 	}
