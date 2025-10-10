@@ -1,7 +1,7 @@
 ---
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
-import "../styles/global.css";
+import '../styles/global.css';
 
 interface Props {
   title: string;
@@ -9,8 +9,7 @@ interface Props {
   image?: string;
 }
 
-
-const { title, description, image = "/og/OpenGraph.png" } = Astro.props;
+const { title, description, image = '/og/OpenGraph.png' } = Astro.props;
 const { host, href } = new URL(Astro.request.url);
 ---
 
@@ -20,10 +19,9 @@ const { host, href } = new URL(Astro.request.url);
 <link
   rel="icon"
   type="image/svg+xml"
-  href="https://www.publicmasonry.com/og/favicon32.svg"
+  href="https://docs.hana.leafphp.dev/images/hanabira-theme.png"
 />
 <meta name="generator" content={Astro.generator} />
-
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
