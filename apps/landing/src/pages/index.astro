@@ -2,239 +2,308 @@
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro'
-import HeroBG from '../components/HeroBG.astro'
-import {SPONSORS, FEEDBACK} from '../utils/data'
+import Header from '../components/Header.astro';
+import HeroBG from '../components/HeroBG.astro';
+import { SPONSORS, FEEDBACK } from '../utils/data';
 import FeedbackCard from '../components/FeedbackCard.astro';
 ---
 
 <Layout title="Welcome to Astro.">
-	<main>
-		<HeroBG />
-		<Header />
-		<section>
-			<h1 class="gradient-text mx-auto" style="margin-bottom: 24px;">The React Framework that
-				grows with you</h1>
-			<p style="max-width: 55ch; font-style: italic;" class="text-center hero-subtext mx-auto">
-				Do your apps really need all that boilerplate? Get started with Hana and build your next big idea with great defaults and powerful features.
-			</p>
+  <main>
+    <HeroBG />
+    <Header />
+    <section style="padding-top: 120px;">
+      <h1
+        class="gradient-text hero-gradient mx-auto"
+        style="margin-bottom: 40px;"
+      >
+        React without the overengineering ⚡️
+      </h1>
+      <p style="max-width: 40ch;" class="text-center hero-subtext mx-auto">
+        No server component BS, no infinite boilerplate, just React, Vite and
+        all the tools you love.
+      </p>
 
-			<div class="pre-wrapper mx-auto">
-				<pre>
+      <div class="get-started-buttons">
+        <a href="https://docs.hana.leafphp.dev/" class="btn primary"
+          >Get Started</a
+        >
+        <a href="https://leafphp.dev/" class="btn" target="_blank"
+          >Visit Leaf PHP</a
+        >
+      </div>
+
+      <div class="pre-wrapper mx-auto">
+        <pre>
 					<code>
 						npx create-hana-app@latest
-						<!-- <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"><path stroke="#5e79c7" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 12.9v4.2c0 3.5-1.4 4.9-4.9 4.9H6.9C3.4 22 2 20.6 2 17.1v-4.2C2 9.4 3.4 8 6.9 8h4.2c3.5 0 4.9 1.4 4.9 4.9z"></path><path stroke="#5e79c7" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M22 6.9v4.2c0 3.5-1.4 4.9-4.9 4.9H16v-3.1C16 9.4 14.6 8 11.1 8H8V6.9C8 3.4 9.4 2 12.9 2h4.2C20.6 2 22 3.4 22 6.9z"></path></svg> -->
+						<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" style="width: 16px; cursor: pointer;" onclick="window.navigator.clipboard.writeText('npx create-hana-app@latest')">
+              <path stroke="var(--text-primary)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 12.9v4.2c0 3.5-1.4 4.9-4.9 4.9H6.9C3.4 22 2 20.6 2 17.1v-4.2C2 9.4 3.4 8 6.9 8h4.2c3.5 0 4.9 1.4 4.9 4.9z" />
+              <path stroke="var(--text-primary)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M22 6.9v4.2c0 3.5-1.4 4.9-4.9 4.9H16v-3.1C16 9.4 14.6 8 11.1 8H8V6.9C8 3.4 9.4 2 12.9 2h4.2C20.6 2 22 3.4 22 6.9z" />
+            </svg>
 					</code>
 				</pre>
-			</div>
-		</section>
-		<section>
-		<h3 class="text-center gradient-text mx-auto" style="max-width: 25ch">
-			Unlike the 100s of other React
-			frameworks out there
-		</h3>
-			<p style="max-width: 55ch;" class="text-center mx-auto">
-				Hana comes with a lot of features out of the box:
-			</p>
-			<ul role="list" class="link-card-grid">
-					<Card
-					href="https://docs.hana.leafphp.dev/store/"
-					title="Simple State Management"
-					body="Hana comes with Hana Store which is a high performance, easy-to-use state management library that has a feature-rich API."
-					image="/folder.png"
-					animated='/animated/folder.gif'
-					primaryColor='#625454'
-					secondaryColor='#898483'
-					large
-					/>
-					<Card
-					href="https://docs.hana.leafphp.dev/routing/"
-					title="Powerful Routing"
-					body="Hana includes a powerful router that automatically maps your file-system into routes and includes advanced features like loading pages and route based error pages.❤️"
-					image="/car.png"
-					animated='/animated/car.gif'
-					primaryColor='#DB1010'
-					large
-				/>
-					<Card
-					href="https://leafphp.dev/"
-					title="Powered by tools you love"
-					body="Hana uses powerful tools like Vite that make it simple and easy to use and customize. Hana is the ultimate Vite + React, all tools included setup to build your next big idea on."
-					image="/heart.png"
-					animated='/animated/heart.gif'
-					primaryColor='#591040'
-					/>
-				<Card
-					href="https://docs.hana.leafphp.dev/"
-					title="Superpowers included"
-					body="Hana includes a bunch of utilities like route-based error pages and loading pages, easy peasy token and cookie-based authentication and a lot more to make your life easier."
-					image="/bolt.png"
-					animated='/animated/Lightning.gif'
-					primaryColor='rgba(132, 117, 78, 0.70)'
-					secondaryColor='#594410'
-					/>
-			</ul>
-		</section>
-		<section>
-			<div class="sponsors-list">
-				<p style="max-width: 15ch">
-          Used in production by the very best.
-				</p>
-				<div class="sponsors-grid">
-					{
-						SPONSORS.map((sponsor: any, index: number) => (
-							<a href={sponsor.href} target="_blank">
-								<img class="bw-image" src={sponsor.image} alt={sponsor.alt}>
-							</a>
-						))
-					}
-				</div>
-			</div>
-		</section>
-		<section>
-			<h3 style="max-width: 55ch;" class="text-center gradient-text">
-				Feedback From Our Community
-			</h3>
-			<ul class="feedback-grid">
-				{
-					FEEDBACK.map((feedback: any) => (
-						<FeedbackCard {...feedback} />
-					))
-				}
-			</ul>
-		</section>
-		<section>
-			<div class="community-grid gradient-text">
-				<h2>
-					Connect with our community of devs.
-				</h2>
-				<div style="display: flex; place-items: center;">
-					<a href="https://docs.hana.leafphp.dev/community/join.html" target="_blank">
-						<img class="bw-image" src="/discord.png" alt="Discord logo">
-					</a>
-				</div>
-			</div>
-		</section>
-	</main>
+      </div>
+
+      <div
+        style="background: #ffffff10; padding: 20px; border-radius: 36px; max-width: 900px; width: 100%; margin: auto; display: block; pointer-events: none;"
+      >
+        <img
+          src="https://github.com/user-attachments/assets/0558ffc5-ad94-4485-b8ba-aac2bd8223f6"
+          style="border-radius: 16px; border: 1px solid #ffffff14;"
+          alt=""
+        />
+      </div>
+    </section>
+    <section>
+      <h3 class="text-center gradient-text mx-auto" style="max-width: 25ch">
+        Unlike the 100s of other React frameworks out there
+      </h3>
+      <p style="max-width: 55ch;" class="text-center mx-auto hero-subtext">
+        Hana gives you strong foundations without the overhead
+      </p>
+      <ul role="list" class="link-card-grid">
+        <Card
+          href="https://docs.hana.leafphp.dev/store/"
+          title="Simple State Management"
+          body="Hana comes with a high performance, easy-to-use state solution that makes state management a breeze. No boilerplate, no complexity, just simple and effective state management ✈️"
+          image="/folder.png"
+          animated="/animated/folder.gif"
+          primaryColor="#625454"
+          secondaryColor="#898483"
+          large
+        />
+        <Card
+          href="https://docs.hana.leafphp.dev/routing/"
+          title="Powerful Routing"
+          body="Hana includes a powerful router that automatically maps your file-system into routes and includes advanced features like loading pages and route based error pages ❤️"
+          image="/car.png"
+          animated="/animated/car.gif"
+          primaryColor="#DB1010"
+          large
+        />
+        <Card
+          href="https://leafphp.dev/"
+          title="Powered by tools you love"
+          body="Hana uses powerful tools like Vite that make it simple and easy to use and customize. Hana is the ultimate Vite + React, all tools included setup to build your next big idea on."
+          image="/heart.png"
+          animated="/animated/heart.gif"
+          primaryColor="#591040"
+        />
+        <Card
+          href="https://docs.hana.leafphp.dev/"
+          title="Superpowers included"
+          body="Hana includes a bunch of utilities like route-based error pages and loading pages, easy peasy token and cookie-based authentication and a lot more to make your life easier."
+          image="/bolt.png"
+          animated="/animated/Lightning.gif"
+          primaryColor="rgba(132, 117, 78, 0.70)"
+          secondaryColor="#594410"
+        />
+      </ul>
+    </section>
+    <section>
+      <div class="sponsors-list">
+        <p style="max-width: 15ch; margin-top: 60px;">Used & sponsored by the very best.</p>
+        <div class="sponsors-grid">
+          {
+            SPONSORS.map((sponsor: any, index: number) => (
+              <a href={sponsor.href} target="_blank">
+                <img class="bw-image" src={sponsor.image} alt={sponsor.alt} style={sponsor.style || ""} />
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+    <section>
+      <h3 style="max-width: 55ch;" class="text-center gradient-text">
+        Feedback From Our Community
+      </h3>
+      <ul class="feedback-grid">
+        {FEEDBACK.map((feedback: any) => <FeedbackCard {...feedback} />)}
+      </ul>
+    </section>
+    <section>
+      <div class="community-grid gradient-text">
+        <h2>Connect with our community of devs.</h2>
+        <div style="display: flex; place-items: center;">
+          <a
+            href="https://docs.hana.leafphp.dev/community/join.html"
+            target="_blank"
+          >
+            <img class="bw-image" src="/discord.png" alt="Discord logo" />
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
 </Layout>
 
 <style>
-	nav {
-		display: flex;
-		justify-content: space-between;
-		padding-block: 30px;
-	}
-	header nav div {
-		display: flex;
-		align-items: center;
-		gap: 12px
-	}
+  .hero-gradient {
+    animation: hero-gradient-anim 16s ease infinite;
+    background-size: 300% 200%;
+  }
 
-	header nav div a {
-		color: var(--text-primary);
-		font-size: 14px;
-	}
-	main {
-		position: relative;
-		margin: auto;
-		padding-inline: 140px;
-		max-width: 1512px;
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
-	}
-	section {
-		margin-bottom: 260px;
-	}
-	section:first-of-type {
-		padding-top: 200px
-	}
-	section:last-of-type {
-		padding-bottom: 200px
-	}
-	.subtitle-text {
-		margin-bottom: 100px
-	}
-	.pre-wrapper {
-    width: max-content;
-    margin-top: 100px;
+  @keyframes hero-gradient-anim {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    25% {
+      background-position: 50% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    padding-block: 30px;
+  }
+  header nav div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  header nav div a {
+    color: var(--text-primary);
+    font-size: 14px;
+  }
+  main {
+    position: relative;
+    margin: auto;
+    padding-inline: 140px;
+    max-width: 1512px;
+    color: white;
+    font-size: 20px;
+    line-height: 1.6;
+  }
+  section {
+    margin-bottom: 260px;
+  }
+  section:first-of-type {
+    padding-top: 200px;
+  }
+  section:last-of-type {
+    padding-bottom: 200px;
+  }
+  .subtitle-text {
     margin-bottom: 100px;
-	}
+  }
+  .get-started-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 40px;
+  }
+  .btn {
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 200ms ease-in-out;
+    border: 1px solid #ffffff24;
+    background-color: transparent;
+    color: white;
+    font-size: 16px;
+  }
+  .btn:hover {
+    background-color: #ffffff14;
+    border: 1px solid #ffffff14;
+  }
+  .btn.primary {
+    background-color: white;
+    color: black;
+    border: 1px solid transparent;
+  }
+  .btn.primary:hover {
+    background-color: #e0e0e0;
+    border: 1px solid #e0e0e0;
+  }
+  .pre-wrapper {
+    width: max-content;
+    margin-top: 10px;
+    margin-bottom: 100px;
+  }
   .pre-wrapper pre {
     cursor: inherit !important;
   }
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-		gap: 20px;
-		padding: 0;
-		margin-top: 120px;
-	}
-	.sponsors-list {
-		display: flex;
-		align-items: center;
-		margin-top: 260px;
-		width: 100%;
-		gap: 45px;
-	}
-	.sponsors-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-		place-items: center;
-		width: 100%;
-		gap: 80px 0px;
-	}
-	.bw-image {
-		filter: saturate(0%) brightness(70%);
-		transition: all 250ms ease-in-out;
-		cursor: pointer;
-	}
-	.bw-image:hover {
-		filter: saturate(100%) brightness(100%);
-	}
-	.feedback-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-		margin-top: 60px;
-		gap: 20px 0px;
-	}
-	.community-grid {
-		display: grid;
-		grid-template-columns: 2fr 1fr;
-		place-items: center;
-		gap: 120px;
-	}
+  .link-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+    padding: 0;
+    margin-top: 120px;
+  }
+  .sponsors-list {
+    display: flex;
+    /* align-items: center; */
+    margin-top: 260px;
+    width: 100%;
+    gap: 45px;
+  }
+  .sponsors-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    place-items: center;
+    width: 100%;
+    gap: 80px 0px;
+  }
+  .bw-image {
+    filter: saturate(0%) brightness(70%);
+    transition: all 250ms ease-in-out;
+    cursor: pointer;
+  }
+  .bw-image:hover {
+    filter: saturate(100%) brightness(100%);
+  }
+  .feedback-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    margin-top: 60px;
+    gap: 20px 0px;
+  }
+  .community-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    place-items: center;
+    gap: 120px;
+  }
 
-	@media (max-width: 720px) {
-		main {
-			padding-inline: 16px;
-		}
-		section {
-			margin-bottom: 130px;
-		}
-		section:first-of-type {
-			padding-top: 160px
-		}
-		section:last-of-type {
-			padding-bottom: 90px
-		}
-		.link-card-grid {
-			grid-template-columns: 1fr;
-			grid-template-rows: repeat(4, auto);
-			gap: 10px;
-		}
-		.sponsors-list {
-			flex-direction: column;
-			margin-top: 75px;
-			text-align: center;
-		}
-		.community-grid {
-			display: grid;
-			grid-template-columns: auto;
-			grid-template-rows: repeat(2, auto);
-			place-items: center;
-			gap: 120px;
-			text-align: center;
-		}
-	}
+  @media (max-width: 720px) {
+    main {
+      padding-inline: 16px;
+    }
+    section {
+      margin-bottom: 130px;
+    }
+    section:first-of-type {
+      padding-top: 160px;
+    }
+    section:last-of-type {
+      padding-bottom: 90px;
+    }
+    .link-card-grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(4, auto);
+      gap: 10px;
+    }
+    .sponsors-list {
+      flex-direction: column;
+      margin-top: 75px;
+      text-align: center;
+    }
+    .community-grid {
+      display: grid;
+      grid-template-columns: auto;
+      grid-template-rows: repeat(2, auto);
+      place-items: center;
+      gap: 120px;
+      text-align: center;
+    }
+  }
 </style>

@@ -1,8 +1,10 @@
 export const SPONSORS = [
   {
-    image: '/leaf.png',
+    image:
+      'https://studio.leafphp.dev/assets/img/creative-leaf-square-text-white.png',
     alt: 'Leaf PHP',
-    href: 'https://leafphp.dev/',
+    href: 'https://studio.leafphp.dev/',
+    style: 'width: 150px;'
   },
   {
     image: '/adplist.svg',
@@ -13,11 +15,27 @@ export const SPONSORS = [
     image: '/seev.png',
     alt: 'SeevCash',
     href: 'https://www.seevcash.com/',
+    style: 'width: 150px;'
   },
   {
-    image: '/netlify.png',
+    image: '/netlify.svg',
     alt: 'Netlify',
     href: 'https://netlify.com/',
+  },
+  {
+    image: '/nyla.svg',
+    alt: 'Nyla Bank',
+    href: 'https://nylabank.com/',
+  },
+  {
+    image: '/algolia.svg',
+    alt: 'Algolia',
+    href: 'https://algolia.com/',
+  },
+  {
+    image: '/github.svg',
+    alt: 'Github',
+    href: 'https://github.com/',
   },
 ];
 

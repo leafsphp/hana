@@ -35,7 +35,7 @@ body {
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  font-family: 'Inter', sans-serif;
+  font-family: "Bricolage Grotesque", serif;
   background-color: var(--bg-primary);
   overflow-x: hidden;
 }
@@ -103,9 +103,7 @@ a {
 
 pre {
   all: unset;
-  border: 1px solid var(--border-primary);
   border-radius: 14px;
-  padding: 14px 30px;
   font-size: 16px;
   cursor: copy;
   font-family: 'Berkeley Mono';
@@ -121,7 +119,7 @@ ul {
 }
 
 .gradient-text {
-  background: linear-gradient(90deg, #8296b3 18.97%, #e5e5f5 89.02%);
+  background: linear-gradient(140deg, #8296b3 10%, #C391D9 70%, #e5e5f5 80%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
