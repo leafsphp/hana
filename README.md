@@ -5,7 +5,7 @@
   <br>
 </p>
 
-<h1 align="center">Hana</h1>
+<h1 align="center">Hana (WIP)</h1>
 
 <p align="center">
 	<a href="https://packagist.org/packages/leafs/hanabira"
