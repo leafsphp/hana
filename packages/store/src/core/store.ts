@@ -32,11 +32,7 @@ export default class Manager {
 
     if (modules.length > 0) {
       modules.forEach((module) => {
-        let key: string | null = null;
-
-        if (module.namespace && module.namespace.length > 0) {
-          key = module.namespace;
-        }
+        const key: string | null = module.namespace ?? null;
 
         if (module.state) {
           const moduleState = module.state;
@@ -47,9 +43,17 @@ export default class Manager {
               ...moduleState,
             });
           } else {
+            const modularState = Object.keys(moduleState).reduce(
+              (accumulator, stateKey) => {
+                accumulator[`${key}.${stateKey}`] = moduleState[stateKey];
+                return accumulator;
+              },
+              {} as Record<string, any>
+            );
+
             state = this.createCleanObject({
               ...state,
-              [key]: moduleState,
+              ...modularState,
             });
           }
         }
@@ -100,7 +104,7 @@ export default class Manager {
    * @param {boolean} withPlugins Whether to run the plugin hooks or not
    * @param {boolean} reactive Whether to run the property listeners or not
    */
-  public static set(state: any, withPlugins = true, reactive = true) {
+  public static set(state: State, withPlugins: boolean = true, reactive: boolean = true) {
     let finalState: State = {};
     const globalState: State = this.get();
 
@@ -143,6 +147,8 @@ export default class Manager {
 
   /**
    * Get the global state
+   * @param {string|null} state The state property to get
+   * @param {PropertyListener} propertyListener The listener to add for this property
    */
   public static get<Shape = State>(
     state?: string | null,
@@ -176,14 +182,7 @@ export default class Manager {
 
     this.applyPluginHook('onRead', state);
 
-    const parts = state.split('.');
-    let selectedState = this._options.state[parts[0]];
-
-    if (parts.length > 1) {
-      selectedState = selectedState?.[parts[1]];
-    }
-
-    return selectedState;
+    return this._options.state[state];
   }
 
   /**
@@ -206,6 +205,7 @@ export default class Manager {
 
     const reducerFunction = (reducerName: string): Reducer => {
       const parts = reducerName.split('.');
+
       let base: any = this._options.reducers[parts[0]];
 
       if (parts.length > 1) {
@@ -220,6 +220,7 @@ export default class Manager {
     }
 
     this._options.reducers[reducer.name] = reducer;
+
     return runner<PayloadType>(reducerFunction(reducer.name));
   }
 
