@@ -1,8 +1,8 @@
+import { useEffect } from 'react';
 import useForceUpdate from 'use-force-update';
 
 import Manager from './store';
 
-import { useEffect, type SetStateAction } from 'react';
 import type { State } from '../@types/core';
 import type { SetStoreFn, Reducer } from '../@types/functions';
 
@@ -48,20 +48,7 @@ export function useStore<StateType = any>(
     }
 
     if (item) {
-      const parts = item.split('.');
-
-      if (parts.length === 1) {
-        stateToSet = { [item]: stateValue };
-      } else {
-        const parentState = Manager.get(parts[0]) ?? {};
-
-        stateToSet = {
-          [parts[0]]: {
-            ...parentState,
-            [parts[1]]: stateValue,
-          },
-        };
-      }
+      stateToSet = { [item]: stateValue };
     }
 
     Manager.set(stateToSet);
@@ -112,7 +99,7 @@ export function useSetStore<StateType extends State = State>(): (
 
   useEffect((): VoidFunction => removeForceUpdateListener, []);
 
-  return (value: SetStateAction<StateType>) => {
+  return (value: React.SetStateAction<StateType>) => {
     Manager.set(value);
   };
 }
