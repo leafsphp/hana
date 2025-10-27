@@ -24,9 +24,7 @@ export const isLoadingFile = (file: string) =>
   isJavascriptFile(file) && file.includes('/_loading.');
 
 export const componentify = (files: string[]) => {
-  const routes: RouteItem[] = [];
-
-  files.forEach((file) => {
+  return files.map((file: string) => {
     const routePath = file
       .replace(/\[\[(.*?)\]\]/g, ':$1?')
       .replace(/\[(.*?)\]/g, ':$1')
@@ -35,9 +33,10 @@ export const componentify = (files: string[]) => {
       .replace(/\/index$/g, '')
       .replace(/\/_/g, '/:')
       .replace(/\/\//g, '/')
+      .replace(/\s+/g, '_')
       .toLowerCase();
 
-    routes.push({
+    return {
       file,
       path: routePath,
       component: file
@@ -51,11 +50,11 @@ export const componentify = (files: string[]) => {
         .replace(/-/g, '_')
         .replace(/\.(js|ts)$/g, '___')
         .replace(/\.(jsx|tsx)$/g, '____')
+        .replace(/\s+/g, '_')
+        .replace(/-/g, '_')
         .toUpperCase(),
-    });
+    };
   });
-
-  return routes;
 };
 
 export const importify = (
