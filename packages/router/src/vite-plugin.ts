@@ -28,10 +28,13 @@ export default function hana({
       `_app.${typescript ? 'tsx' : 'jsx'}`
     );
 
-    if (!fs.existsSync(appFile)) {
-      fs.writeFileSync(
-        appFile,
-        `import React from 'react';
+    if (fs.existsSync(appFile)) {
+      fs.unlinkSync(appFile);
+    }
+
+    fs.writeFileSync(
+      appFile,
+      `import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createRouter } from '@hanabira/router';
 
@@ -95,8 +98,7 @@ ReactDOM.createRoot(document.getElementById('root')${
   </React.StrictMode>
 );
 `
-      );
-    }
+    );
   };
 
   const buildRoutes = () => {
@@ -108,13 +110,21 @@ ReactDOM.createRoot(document.getElementById('root')${
       const layoutFiles: string[] = [];
       const errorFiles: string[] = [];
 
-      const files = useSrc
-        ? fs.readdirSync(path.resolve(root, 'src', dir), {
-            withFileTypes: true,
-          })
-        : fs.readdirSync(path.resolve(root, dir), {
-            withFileTypes: true,
-          });
+      const fullPath = useSrc
+        ? path.resolve(root, 'src', dir)
+        : path.resolve(root, dir);
+
+      if (!fs.existsSync(fullPath)) {
+        return {
+          javascriptFiles: [],
+          loadingFiles: [],
+          layoutFiles: [],
+          errorFiles: [],
+          _404Page: undefined,
+        };
+      }
+
+      const files = fs.readdirSync(fullPath, { withFileTypes: true });
 
       for (const file of files) {
         if (file.isDirectory()) {
@@ -145,28 +155,32 @@ ReactDOM.createRoot(document.getElementById('root')${
       };
     };
 
-    const appFiles = compileRoutes();
-    const errorPages = componentify(appFiles.errorFiles);
-    const routes = componentify(appFiles.javascriptFiles);
-    const layoutPages = componentify(appFiles.layoutFiles);
-    const loadingPages = componentify(appFiles.loadingFiles);
-    const _404Page = appFiles._404Page ? componentify([appFiles._404Page]) : [];
+    try {
+      const appFiles = compileRoutes();
+      const errorPages = componentify(appFiles.errorFiles);
+      const routes = componentify(appFiles.javascriptFiles);
+      const layoutPages = componentify(appFiles.layoutFiles);
+      const loadingPages = componentify(appFiles.loadingFiles);
+      const _404Page = appFiles._404Page ? componentify([appFiles._404Page]) : [];
 
-    console.log('Routes built successfully!');
+      console.log(`Routes built successfully! Found ${routes.length} routes...`);
 
-    fs.mkdirSync(path.resolve(root, '.hana'), { recursive: true });
-    fs.writeFileSync(
-      path.resolve(root, '.hana/routes.json'),
-      JSON.stringify({
-        routes,
-        errorPages,
-        loadingPages,
-        layoutPages,
-        _404Page: _404Page[0] ?? {},
-      })
-    );
+      fs.mkdirSync(path.resolve(root, '.hana'), { recursive: true });
+      fs.writeFileSync(
+        path.resolve(root, '.hana/routes.json'),
+        JSON.stringify({
+          routes,
+          errorPages,
+          loadingPages,
+          layoutPages,
+          _404Page: _404Page[0] ?? {},
+        }, null, 2)
+      );
 
-    setupAppFile({ routes, errorPages, loadingPages, layoutPages, _404Page });
+      setupAppFile({ routes, errorPages, loadingPages, layoutPages, _404Page });
+    } catch (error) {
+      console.error('Error building routes:', error);
+    }
   };
 
   return {
@@ -188,13 +202,39 @@ ReactDOM.createRoot(document.getElementById('root')${
       buildRoutes();
     },
 
+    configureServer(server) {
+      const pagesDir = useSrc
+        ? path.resolve(root, 'src', 'pages')
+        : path.resolve(root, 'pages');
+
+      server.watcher.add(`${pagesDir}/**/*`);
+
+      server.watcher.on('add', (filePath) => {
+        const normalizedFilePath = path.normalize(filePath);
+        const normalizedPagesDir = path.normalize(pagesDir);
+
+        if (normalizedFilePath.startsWith(normalizedPagesDir) && isJavascriptFile(filePath)) {
+          console.log(`New page detected: ${filePath}`);
+          setTimeout(() => buildRoutes(), 300);
+        }
+      });
+
+      server.watcher.on('unlink', (filePath) => {
+        const normalizedFilePath = path.normalize(filePath);
+        const normalizedPagesDir = path.normalize(pagesDir);
+
+        if (normalizedFilePath.startsWith(normalizedPagesDir) && isJavascriptFile(filePath)) {
+          console.log(`Page deleted: ${filePath}`);
+          setTimeout(() => buildRoutes(), 300);
+        }
+      });
+    },
+
     async handleHotUpdate({ file, read }) {
       if (isJavascriptFile(file)) {
         if ((await read()).indexOf('export default') > -1) {
           buildRoutes();
         }
-
-        // TODO: Handle page deletion
       }
     },
   };
