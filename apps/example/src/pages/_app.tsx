@@ -1,7 +1,25 @@
 import { createAuth } from '@hanabira/auth';
-import { PersistedState, createStore } from '@hanabira/store';
+import { type Module, PersistedState, createStore } from '@hanabira/store';
 
 import './../styles/index.css';
+
+const authModule: Module = {
+  namespace: 'auth',
+  state: {
+    user: {
+      name: 'Test User',
+      email: 'test@example.com',
+    },
+  },
+  reducers: {
+    setUser(state, user) {
+      return {
+        ...state,
+        user,
+      };
+    },
+  },
+};
 
 createStore({
   state: {
@@ -14,10 +32,9 @@ createStore({
       };
     },
   },
+  modules: [authModule],
   plugins: [
-    new PersistedState({
-      include: ['count'],
-    }),
+    new PersistedState(),
   ],
 });
 

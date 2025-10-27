@@ -42,7 +42,7 @@ function App() {
   const [, setStaticCount] = useStaticStore<number>('count');
 
   // getStore is a function that returns the state of the store
-  console.log('count', getStore<number>('count'));
+  console.log('count w/ getStore', getStore<number>('count'));
 
   return (
     <>
@@ -58,7 +58,7 @@ function App() {
       <div className="card">
         <Dummy />
         <button onClick={increment}>count is {count} with Reducer</button> <br />
-        <button onClick={() => setCount(count + 1)}>count is {count} with setCount</button> <br />
+        <button onClick={() => setCount((prev) => prev + 1)}>count is {count} with setCount</button> <br />
         <br />
         <button onClick={() => {
           // we use the setStaticCount function to update the count state
