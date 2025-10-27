@@ -21,6 +21,19 @@ export default function hana({
   typescript = false,
   usePageTransition = true,
 }: HanaOptions): Plugin {
+  let buildTimeout: NodeJS.Timeout | null = null;
+
+  const debouncedBuildRoutes = () => {
+    if (buildTimeout) {
+      clearTimeout(buildTimeout);
+    }
+
+    buildTimeout = setTimeout(() => {
+      buildRoutes();
+      buildTimeout = null;
+    }, 300);
+  };
+
   const setupAppFile = (routes: AppRoutes) => {
     const appFile = path.resolve(
       root,
@@ -34,7 +47,10 @@ export default function hana({
 
     fs.writeFileSync(
       appFile,
-      `import React from 'react';
+      `// @ts-nocheck
+// This file is auto-generated. Do not edit manually.
+/* eslint-disable */
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createRouter } from '@hanabira/router';
 
@@ -215,7 +231,7 @@ ReactDOM.createRoot(document.getElementById('root')${
 
         if (normalizedFilePath.startsWith(normalizedPagesDir) && isJavascriptFile(filePath)) {
           console.log(`New page detected: ${filePath}`);
-          setTimeout(() => buildRoutes(), 300);
+          debouncedBuildRoutes();
         }
       });
 
@@ -225,7 +241,7 @@ ReactDOM.createRoot(document.getElementById('root')${
 
         if (normalizedFilePath.startsWith(normalizedPagesDir) && isJavascriptFile(filePath)) {
           console.log(`Page deleted: ${filePath}`);
-          setTimeout(() => buildRoutes(), 300);
+          debouncedBuildRoutes();
         }
       });
     },
