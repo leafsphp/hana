@@ -48,7 +48,7 @@ export default class Manager {
                 accumulator[`${key}.${stateKey}`] = moduleState[stateKey];
                 return accumulator;
               },
-              {} as Record<string, any>
+              {} as Record<string, any>,
             );
 
             state = this.createCleanObject({
@@ -104,7 +104,11 @@ export default class Manager {
    * @param {boolean} withPlugins Whether to run the plugin hooks or not
    * @param {boolean} reactive Whether to run the property listeners or not
    */
-  public static set(state: State, withPlugins: boolean = true, reactive: boolean = true) {
+  public static set(
+    state: State,
+    withPlugins: boolean = true,
+    reactive: boolean = true,
+  ) {
     let finalState: State = {};
     const globalState: State = this.get();
 
@@ -152,7 +156,7 @@ export default class Manager {
    */
   public static get<Shape = State>(
     state?: string | null,
-    propertyListener?: PropertyListener
+    propertyListener?: PropertyListener,
   ) {
     if (!state) {
       /**
@@ -176,7 +180,7 @@ export default class Manager {
 
           return accumulator;
         },
-        Object.create(null)
+        Object.create(null),
       );
     }
 
@@ -191,15 +195,33 @@ export default class Manager {
    */
   public static useReducer<PayloadType = any>(
     reducer: string | Reducer<State>,
-    propertyListener?: PropertyListener
+    propertyListener?: PropertyListener,
   ) {
-    const runner = <PayloadType = any>(reducer: Reducer) => {
+    const runner = <PayloadType = any>(reducerFunction: Reducer) => {
       return async (payload?: PayloadType) => {
-        Manager.set(
-          await reducer(Manager.get(null, propertyListener), payload),
-          true,
-          !!propertyListener
+        const newState: Record<string, any> = {};
+        const reducerState = await reducerFunction(
+          Manager.get(null, propertyListener),
+          payload,
         );
+
+        if (typeof reducer === 'string' && reducer.includes('.')) {
+          const namespace = reducer.split('.')[0];
+
+          Object.keys(reducerState).map((key) => {
+            if (!key.includes('.')) {
+              if (Manager.get(`${namespace}.${key}`) !== undefined) {
+                newState[`${namespace}.${key}`] = reducerState[key];
+              } else {
+                newState[key] = reducerState[key];
+              }
+            }
+          });
+        } else {
+          Object.assign(newState, reducerState);
+        }
+
+        Manager.set(newState, true, !!propertyListener);
       };
     };
 
@@ -246,7 +268,7 @@ export default class Manager {
    */
   public static addPropertyListener(
     property: string,
-    propertyListener: PropertyListener
+    propertyListener: PropertyListener,
   ) {
     if (this._options.listeners.has(property)) {
       this._options.listeners.get(property)?.add(propertyListener);
