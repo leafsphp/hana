@@ -1,0 +1,40 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@font-face {
+  font-family: 'Berkeley Mono';
+  src: url('/fonts/BerkeleyMono-Regular.woff2');
+}
+
+@theme {
+  --font-berkeley: 'Berkeley Mono', monospace;
+  --font-inter: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  --color-code: var(--color-code);
+  --color-primary: var(--color-primary);
+  --color-code-span: var(--color-code-span);
+  --color-background: var(--color-background);
+  --color-border: var(--color-border);
+}
+
+:root {
+  --color-code: #f2f2f3;
+  --color-primary: #213547;
+  --color-code-span: #5e79c7;
+  --color-background: #fdfdfd;
+  --color-border: #e9e9e9;
+}
+
+@variant dark {
+  :root {
+    --color-code: #0c0c0d;
+    --color-primary: #afafaf;
+    --color-code-span: #5e79c7;
+    --color-background: #000000;
+    --color-border: #222223;
+  }
+}
+
+body {
+  @apply text-primary bg-background;
+}

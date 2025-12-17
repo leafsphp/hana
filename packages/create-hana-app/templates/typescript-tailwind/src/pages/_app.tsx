@@ -1,4 +1,5 @@
 import { PersistedState, createStore } from '@hanabira/store';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import './../styles/index.css';
 
@@ -28,9 +29,11 @@ createStore({
     // The persisted state plugin allows you to save your
     // global state to local storage. You can remove the plugins
     // section if you don't need it
-    PersistedState
+    PersistedState,
   ],
 });
+
+const queryClient = new QueryClient();
 
 const Application: React.FC<React.PropsWithChildren> = ({ children }) => {
   /**
@@ -38,7 +41,9 @@ const Application: React.FC<React.PropsWithChildren> = ({ children }) => {
    * global components here. You can also add a global layout
    * here if you want to wrap all of your pages in a layout.
    */
-  return <>{children}</>;
+  return (
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  );
 };
 
 export default Application;
