@@ -26,9 +26,21 @@ const templates = [
     value: 'js',
   },
   {
+    name: 'javascript-tailwind',
+    color: chalk.yellow,
+    display: 'JS + Tailwind + Tanstack Query',
+    value: 'js',
+  },
+  {
     name: 'typescript',
     color: chalk.blue,
     display: 'TypeScript',
+    value: 'ts',
+  },
+  {
+    name: 'typescript-tailwind',
+    color: chalk.blue,
+    display: 'TS + Tailwind + Tanstack Query',
     value: 'ts',
   },
 ];
