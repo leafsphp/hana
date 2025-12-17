@@ -23,17 +23,17 @@
   },
   "dependencies": {
     "chalk": "^5.6.2",
-    "execa": "^9.6.0",
+    "execa": "^9.6.1",
     "minimist": "^1.2.8",
     "prompts": "^2.4.2"
   },
   "devDependencies": {
     "@hanabira/config": "workspace:*",
     "@types/minimist": "^1.2.5",
-    "@types/node": "^24.9.1",
+    "@types/node": "^25.0.3",
     "@types/prompts": "^2.4.9",
-    "eslint": "^9.38.0",
-    "tsup": "^8.5.0",
+    "eslint": "^9.39.2",
+    "tsup": "^8.5.1",
     "typescript": "^5.9.3"
   },
   "publishConfig": {

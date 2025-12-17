@@ -13,10 +13,10 @@
     "release": "turbo build && changeset && changeset version && changeset publish"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.29.7",
+    "@changesets/cli": "^2.29.8",
     "@hanabira/config": "workspace:*",
-    "eslint": "^9.38.0",
-    "prettier": "^3.6.2",
+    "eslint": "^9.39.2",
+    "prettier": "^3.7.4",
     "turbo": "latest"
   },
   "packageManager": "pnpm@10.19.0",
