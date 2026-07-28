@@ -30,9 +30,8 @@ const { user, feedback} = Astro.props
         flex-direction: column;
         justify-content: space-between;
         gap: 80px;
-        padding: 100px 60px 53px 60px;
-        border: 1px solid var(--border-primary);
-        background-color: var(--nav-bg);
+        padding: 70px 44px 48px 44px;
+        background-color: var(--tile-bg);
         z-index: 1;
     }
     p {
@@ -59,18 +58,6 @@ const { user, feedback} = Astro.props
         color: var(--card-title);
         font-size: 18px;
         font-weight: 500;
-    }
-    @media (min-width: 1024px) {
-        li:first-of-type {
-            border-top-left-radius: 16px;
-            border-bottom-left-radius: 16px;
-            border-right: none;
-        }
-        li:last-of-type {
-            border-top-right-radius: 16px;
-            border-bottom-right-radius: 16px;
-            border-left: none;
-        }
     }
     @media (max-width: 720px) {
        li {

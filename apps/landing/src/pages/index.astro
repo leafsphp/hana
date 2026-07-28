@@ -8,134 +8,255 @@ import { SPONSORS, FEEDBACK } from '../utils/data';
 import FeedbackCard from '../components/FeedbackCard.astro';
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Hana JS — React without the overengineering">
   <main>
     <HeroBG />
     <Header />
-    <section style="padding-top: 120px;">
-      <h1
-        class="gradient-text hero-gradient mx-auto"
-        style="margin-bottom: 40px;"
-      >
-        React without the overengineering ⚡️
-      </h1>
-      <p style="max-width: 40ch;" class="text-center hero-subtext mx-auto">
-        No server component BS, no infinite boilerplate, just React, Vite and
-        all the tools you love.
-      </p>
+    <div class="rails">
+      <section class="hero">
+        <p class="eyebrow"><span class="kanji">花びら</span> React, simplified</p>
+        <h1 class="hero-title gradient-text hero-gradient">
+          React without the<br />overengineering ⚡️
+        </h1>
+        <p class="hero-subtext">
+          No server component BS, no infinite boilerplate, just React, Vite and
+          all the tools you love.
+        </p>
 
-      <div class="get-started-buttons">
-        <a href="https://docs.hana.leafphp.dev/" class="btn primary"
-          >Get Started</a
-        >
-        <a href="https://leafphp.dev/" class="btn" target="_blank"
-          >Visit Leaf PHP</a
-        >
-      </div>
+        <div class="get-started-buttons">
+          <a href="https://docs.hana.leafphp.dev/" class="btn primary"
+            >Get Started</a
+          >
+          <a href="https://leafphp.dev/" class="btn" target="_blank"
+            >Visit Leaf PHP</a
+          >
+          <div class="pre-wrapper">
+            <pre>
+              <code>
+                npx create-hana-app@latest
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" style="width: 16px; cursor: pointer;" onclick="window.navigator.clipboard.writeText('npx create-hana-app@latest')">
+                <path stroke="var(--text-primary)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 12.9v4.2c0 3.5-1.4 4.9-4.9 4.9H6.9C3.4 22 2 20.6 2 17.1v-4.2C2 9.4 3.4 8 6.9 8h4.2c3.5 0 4.9 1.4 4.9 4.9z" />
+                <path stroke="var(--text-primary)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M22 6.9v4.2c0 3.5-1.4 4.9-4.9 4.9H16v-3.1C16 9.4 14.6 8 11.1 8H8V6.9C8 3.4 9.4 2 12.9 2h4.2C20.6 2 22 3.4 22 6.9z" />
+                </svg>
+              </code>
+            </pre>
+          </div>
+        </div>
 
-      <div class="pre-wrapper mx-auto">
-        <pre>
-					<code>
-						npx create-hana-app@latest
-						<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" style="width: 16px; cursor: pointer;" onclick="window.navigator.clipboard.writeText('npx create-hana-app@latest')">
-              <path stroke="var(--text-primary)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 12.9v4.2c0 3.5-1.4 4.9-4.9 4.9H6.9C3.4 22 2 20.6 2 17.1v-4.2C2 9.4 3.4 8 6.9 8h4.2c3.5 0 4.9 1.4 4.9 4.9z" />
-              <path stroke="var(--text-primary)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M22 6.9v4.2c0 3.5-1.4 4.9-4.9 4.9H16v-3.1C16 9.4 14.6 8 11.1 8H8V6.9C8 3.4 9.4 2 12.9 2h4.2C20.6 2 22 3.4 22 6.9z" />
-            </svg>
-					</code>
-				</pre>
-      </div>
+        <div class="demo-frame">
+          <span class="marker tl"></span>
+          <span class="marker tr"></span>
+          <span class="marker bl"></span>
+          <span class="marker br"></span>
+          <div class="demo-grid">
+            <div class="demo-editor">
+              <div class="demo-chrome">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="demo-chrome-label">LikeButton.jsx</span>
+              </div>
+              <pre class="demo-code"><code><span class="tk">import</span> <span class="tp">&#123;</span> <span class="tv">useStore</span> <span class="tp">&#125;</span> <span class="tk">from</span> <span class="ts">'@hanabira/store'</span><span class="tp">;</span>
 
-      <div
-        style="background: #ffffff10; padding: 20px; border-radius: 36px; max-width: 900px; width: 100%; margin: auto; display: block; pointer-events: none;"
-      >
-        <img
-          src="https://github.com/user-attachments/assets/0558ffc5-ad94-4485-b8ba-aac2bd8223f6"
-          style="border-radius: 16px; border: 1px solid #ffffff14;"
-          alt=""
-        />
-      </div>
-    </section>
-    <section>
-      <h3 class="text-center gradient-text mx-auto" style="max-width: 25ch">
-        Instead of server components, we give you...
-      </h3>
-      <p style="max-width: 55ch;" class="text-center mx-auto hero-subtext">
-        Hana gives you strong foundations without the overhead
-      </p>
-      <ul role="list" class="link-card-grid">
-        <Card
-          href="https://docs.hana.leafphp.dev/store/"
-          title="Simple State Management"
-          body="Hana comes with a high performance, easy-to-use state solution that makes state management a breeze. No boilerplate, no complexity, just simple and effective state management ✈️"
-          image="/folder.png"
-          animated="/animated/folder.gif"
-          primaryColor="#625454"
-          secondaryColor="#898483"
-          large
-        />
-        <Card
-          href="https://docs.hana.leafphp.dev/routing/"
-          title="Powerful Routing"
-          body="Hana includes a powerful router that automatically maps your file-system into routes and includes advanced features like loading pages and route based error pages ❤️"
-          image="/car.png"
-          animated="/animated/car.gif"
-          primaryColor="#DB1010"
-          large
-        />
-        <Card
-          href="https://leafphp.dev/"
-          title="Powered by tools you love"
-          body="Hana uses powerful tools like Vite that make it simple and easy to use and customize. Hana is the ultimate Vite + React, all tools included setup to build your next big idea on."
-          image="/heart.png"
-          animated="/animated/heart.gif"
-          primaryColor="#591040"
-        />
-        <Card
-          href="https://docs.hana.leafphp.dev/"
-          title="Superpowers included"
-          body="Hana includes a bunch of utilities like route-based error pages and loading pages, easy peasy token and cookie-based authentication and a lot more to make your life easier."
-          image="/bolt.png"
-          animated="/animated/Lightning.gif"
-          primaryColor="rgba(132, 117, 78, 0.70)"
-          secondaryColor="#594410"
-        />
-      </ul>
-    </section>
-    <section>
-      <div class="sponsors-list">
-        <p style="max-width: 15ch; margin-top: 60px;">Used & sponsored by the very best.</p>
-        <div class="sponsors-grid">
+<span class="tc">// likes starts at 0 — set once in createStore()</span>
+<span class="tk">const</span> <span class="tf">LikeButton</span> <span class="tp">= () =&gt;</span> <span class="tp">&#123;</span>
+  <span class="tk">const</span> <span class="tp">[</span><span class="tv">likes</span><span class="tp">,</span> <span class="tv">setLikes</span><span class="tp">] =</span> <span class="tf">useStore</span><span class="tp">(</span><span class="ts">'likes'</span><span class="tp">);</span>
+  <span class="tk">const</span> <span class="tf">addLike</span> <span class="tp">= () =&gt;</span> <span class="tf">setLikes</span><span class="tp">((</span><span class="tv">prevLikes</span><span class="tp">) =&gt;</span> <span class="tv">prevLikes</span> <span class="tp">+</span> <span class="tn">1</span><span class="tp">);</span>
+
+  <span class="tk">return</span> <span class="tp">(</span>
+    <span class="tp">&lt;</span><span class="tt">button</span> <span class="tv">onClick</span><span class="tp">=&#123;</span><span class="tf">addLike</span><span class="tp">&#125;&gt;</span>
+      ❤️ <span class="tp">&#123;</span><span class="tv">likes</span><span class="tp">&#125;</span>
+    <span class="tp">&lt;/</span><span class="tt">button</span><span class="tp">&gt;</span>
+  <span class="tp">);</span>
+<span class="tp">&#125;;</span></code></pre>
+              <div class="demo-store">
+                <span class="demo-store-label">store</span>
+                <span class="demo-store-value">&#123; likes: <span id="store-likes" class="tn">0</span> &#125;</span>
+              </div>
+            </div>
+            <div class="demo-preview">
+              <div class="demo-chrome">
+                <span class="demo-url">app.hanajs.dev</span>
+              </div>
+              <div class="demo-app">
+                <div class="demo-navbar">
+                  <span class="demo-brand">🌸 my-app</span>
+                  <span class="demo-badge">❤️ <span id="nav-likes">0</span></span>
+                </div>
+                <div class="demo-card">
+                  <p class="demo-card-title">Hana makes state global by default</p>
+                  <p class="demo-card-copy">
+                    This button and the navbar badge are two separate components
+                    reading the same store. Try it.
+                  </p>
+                  <button id="like-button" class="demo-like" type="button">
+                    ❤️ <span id="btn-likes">0</span> likes
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="demo-caption">
+            Two components, one <code>useStore('likes')</code> — no context, no
+            providers, no prop drilling. Go on, click it.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <p class="eyebrow"><span class="kanji">機能</span> What's in the box</p>
+        <h3 class="section-title gradient-text">
+          Instead of server components, we give you...
+        </h3>
+        <p class="section-subtext hero-subtext">
+          Hana gives you strong foundations without the overhead
+        </p>
+        <ul role="list" class="link-card-grid tilebed">
+          <Card
+            href="https://docs.hana.leafphp.dev/store/"
+            title="Simple State Management"
+            body="Hana comes with a high performance, easy-to-use state solution that makes state management a breeze. No boilerplate, no complexity, just simple and effective state management ✈️"
+            image="/folder.png"
+            animated="/animated/folder.gif"
+            primaryColor="#625454"
+            secondaryColor="#898483"
+            large
+          />
+          <Card
+            href="https://docs.hana.leafphp.dev/routing/"
+            title="Powerful Routing"
+            body="Hana includes a powerful router that automatically maps your file-system into routes and includes advanced features like loading pages and route based error pages ❤️"
+            image="/car.png"
+            animated="/animated/car.gif"
+            primaryColor="#DB1010"
+            large
+          />
+          <Card
+            href="https://leafphp.dev/"
+            title="Powered by tools you love"
+            body="Hana uses powerful tools like Vite that make it simple and easy to use and customize. Hana is the ultimate Vite + React, all tools included setup to build your next big idea on."
+            image="/heart.png"
+            animated="/animated/heart.gif"
+            primaryColor="#591040"
+          />
+          <Card
+            href="https://docs.hana.leafphp.dev/"
+            title="Superpowers included"
+            body="Hana includes a bunch of utilities like route-based error pages and loading pages, easy peasy token and cookie-based authentication and a lot more to make your life easier."
+            image="/bolt.png"
+            animated="/animated/Lightning.gif"
+            primaryColor="rgba(132, 117, 78, 0.70)"
+            secondaryColor="#594410"
+          />
+        </ul>
+      </section>
+
+      <section>
+        <p class="eyebrow"><span class="kanji">道</span> Routes from files</p>
+        <h3 class="section-title gradient-text">
+          Your file system is the router.
+        </h3>
+        <p class="section-subtext hero-subtext">
+          Drop a file in <code>pages/</code> and it's a route. Click a file to
+          see where it takes you — dynamic params included.
+        </p>
+        <div class="route-demo tilebed">
+          <div class="route-files tile">
+            <p class="demo-chrome-label route-files-label">pages/</p>
+            <button class="route-file active" type="button" data-route="/"
+              data-content="home">📄 index.jsx</button>
+            <button class="route-file" type="button" data-route="/about"
+              data-content="about">📄 about.jsx</button>
+            <button class="route-file" type="button" data-route="/flowers/42"
+              data-content="flower">📄 flowers/[id].jsx</button>
+            <button class="route-file" type="button" data-route="/secret-garden"
+              data-content="error">📄 _404.jsx</button>
+          </div>
+          <div class="route-browser tile">
+            <div class="demo-chrome">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="demo-url" id="route-url">app.hanajs.dev/</span>
+            </div>
+            <div class="route-stage">
+              <div class="route-page active" data-page="home">
+                <p class="route-page-title">🌸 Welcome home</p>
+                <p class="route-page-copy">pages/index.jsx renders at <code>/</code>. No config, no route table.</p>
+              </div>
+              <div class="route-page" data-page="about">
+                <p class="route-page-title">About us</p>
+                <p class="route-page-copy">pages/about.jsx becomes <code>/about</code>. That's the whole story.</p>
+              </div>
+              <div class="route-page" data-page="flower">
+                <p class="route-page-title">Flower #42</p>
+                <p class="route-page-copy">Brackets are dynamic params — <code>useParams()</code> gives you <span class="route-param">&#123; id: '42' &#125;</span>.</p>
+              </div>
+              <div class="route-page" data-page="error">
+                <p class="route-page-title">404, gracefully</p>
+                <p class="route-page-copy">_404.jsx catches anything that doesn't match. Loading pages work the same way.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <p class="eyebrow"><span class="kanji">仲間</span> Backed by the best</p>
+        <h3 class="section-title gradient-text">
+          Used &amp; sponsored by the very best.
+        </h3>
+        <div class="sponsors-grid tilebed">
           {
-            SPONSORS.map((sponsor: any, index: number) => (
-              <a href={sponsor.href} target="_blank">
+            SPONSORS.map((sponsor: any) => (
+              <a href={sponsor.href} target="_blank" class="sponsor-tile tile">
                 <img class="bw-image" src={sponsor.image} alt={sponsor.alt} style={sponsor.style || ""} />
               </a>
             ))
           }
-        </div>
-      </div>
-    </section>
-    <section>
-      <h3 style="max-width: 55ch;" class="text-center gradient-text">
-        Feedback From Our Community
-      </h3>
-      <ul class="feedback-grid">
-        {FEEDBACK.map((feedback: any) => <FeedbackCard {...feedback} />)}
-      </ul>
-    </section>
-    <section>
-      <div class="community-grid gradient-text">
-        <h2>Connect with our community of devs.</h2>
-        <div style="display: flex; place-items: center;">
           <a
-            href="https://docs.hana.leafphp.dev/community/join.html"
+            href="https://leafphp.dev/support/"
             target="_blank"
+            class="sponsor-tile tile stripes sponsor-cta"
           >
-            <img class="bw-image" src="/discord.png" alt="Discord logo" />
+            + you?
           </a>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section>
+        <p class="eyebrow"><span class="kanji">声</span> Community voices</p>
+        <h3 class="section-title gradient-text">
+          Feedback From Our Community
+        </h3>
+        <ul class="feedback-grid tilebed">
+          {FEEDBACK.map((feedback: any) => <FeedbackCard {...feedback} />)}
+        </ul>
+      </section>
+
+      <section class="community-section">
+        <div class="community-band stripes">
+          <span class="marker tl"></span>
+          <span class="marker tr"></span>
+          <span class="marker bl"></span>
+          <span class="marker br"></span>
+          <div class="community-grid">
+            <div>
+              <p class="eyebrow"><span class="kanji">花</span> Grow with us</p>
+              <h2 class="community-title gradient-text">
+                Connect with our community of devs.
+              </h2>
+            </div>
+            <a
+              href="https://docs.hana.leafphp.dev/community/join.html"
+              target="_blank"
+            >
+              <img class="bw-image" src="/discord.png" alt="Discord logo" />
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
   </main>
 </Layout>
 
@@ -158,51 +279,71 @@ import FeedbackCard from '../components/FeedbackCard.astro';
     }
   }
 
-  nav {
-    display: flex;
-    justify-content: space-between;
-    padding-block: 30px;
-  }
-  header nav div {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  header nav div a {
-    color: var(--text-primary);
-    font-size: 14px;
-  }
   main {
     position: relative;
     margin: auto;
-    padding-inline: 140px;
+    padding-inline: 40px;
     max-width: 1512px;
     color: white;
     font-size: 20px;
     line-height: 1.6;
   }
-  section {
-    margin-bottom: 260px;
+
+  /* the family guide rails: content lives in a hairline-bordered shell,
+     sections divided by rules that meet the rails */
+  .rails {
+    margin-inline: auto;
+    max-width: 1240px;
+    border-inline: 1px solid var(--line);
   }
-  section:first-of-type {
+
+  section {
+    padding: 130px 56px;
+  }
+
+  section + section {
+    border-top: 1px solid var(--line);
+  }
+
+  section.hero {
     padding-top: 200px;
   }
-  section:last-of-type {
-    padding-bottom: 200px;
+
+  .hero-title {
+    font-size: clamp(52px, 7vw, 92px);
+    text-align: left;
+    letter-spacing: -0.03em;
+    line-height: 1.02;
   }
-  .subtitle-text {
-    margin-bottom: 100px;
+
+  .hero-subtext {
+    max-width: 44ch;
+    margin-top: 24px;
+    text-align: left;
   }
+
+  .section-title {
+    max-width: 24ch;
+    font-size: clamp(34px, 4vw, 52px);
+    letter-spacing: -0.02em;
+  }
+
+  .section-subtext {
+    max-width: 55ch;
+    margin-top: 12px;
+  }
+
   .get-started-buttons {
     display: flex;
+    align-items: center;
+    flex-wrap: wrap;
     gap: 20px;
-    justify-content: center;
-    margin-top: 40px;
+    margin-top: 44px;
   }
+
   .btn {
     padding: 12px 20px;
-    border-radius: 8px;
+    border-radius: 0;
     font-weight: 600;
     text-decoration: none;
     transition: all 200ms ease-in-out;
@@ -211,99 +352,478 @@ import FeedbackCard from '../components/FeedbackCard.astro';
     color: white;
     font-size: 16px;
   }
+
   .btn:hover {
     background-color: #ffffff14;
     border: 1px solid #ffffff14;
   }
+
   .btn.primary {
-    background-color: white;
-    color: black;
+    background-color: var(--hana);
+    color: #0c0c0d;
     border: 1px solid transparent;
   }
+
   .btn.primary:hover {
-    background-color: #e0e0e0;
-    border: 1px solid #e0e0e0;
+    background-color: #a3b1e8;
+    border: 1px solid transparent;
   }
+
   .pre-wrapper {
     width: max-content;
-    margin-top: 10px;
-    margin-bottom: 100px;
+    border: 1px dashed #ffffff24;
+    padding: 2px 16px;
   }
+
   .pre-wrapper pre {
     cursor: inherit !important;
   }
-  .link-card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 20px;
-    padding: 0;
-    margin-top: 120px;
+
+  .screenshot-frame {
+    position: relative;
+    margin-top: 90px;
+    border: 1px solid var(--line);
+    background: #ffffff08;
+    padding: 16px;
   }
-  .sponsors-list {
+
+  .screenshot-frame img {
+    display: block;
+    width: 100%;
+    border: 1px solid #ffffff14;
+  }
+
+  /* --- live demos ------------------------------------------------ */
+  .demo-frame {
+    position: relative;
+    margin-top: 90px;
+    border: 1px solid var(--line);
+    background: #ffffff05;
+    padding: 16px;
+  }
+
+  .demo-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+
+  .demo-editor,
+  .demo-preview {
+    background: #0a0a0c;
+    min-width: 0;
+  }
+
+  .demo-chrome {
     display: flex;
-    /* align-items: center; */
-    margin-top: 260px;
-    width: 100%;
-    gap: 45px;
+    align-items: center;
+    gap: 7px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
   }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .dot.red { background: #e06c75; }
+  .dot.yellow { background: #e5c07b; }
+  .dot.green { background: #98c379; }
+
+  .demo-chrome-label,
+  .demo-url {
+    font-family: 'Berkeley Mono', monospace;
+    font-size: 12px;
+    color: var(--text-primary);
+    margin-left: 6px;
+  }
+
+  .demo-url {
+    margin: 0 auto;
+    padding: 3px 14px;
+    border: 1px solid var(--line);
+    background: #ffffff06;
+  }
+
+  .demo-code {
+    all: unset;
+    display: block;
+    padding: 22px 24px;
+    font-family: 'Berkeley Mono', monospace;
+    font-size: 13.5px;
+    line-height: 1.8;
+    overflow-x: auto;
+    white-space: pre;
+  }
+
+  /* global.css sets pre > code to inline-flex for the npx chip —
+     the editor needs real lines back */
+  .demo-code > code {
+    display: block;
+    white-space: pre;
+  }
+
+  .demo-code::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .demo-code::-webkit-scrollbar-thumb {
+    background: #ffffff14;
+  }
+
+  .demo-code::-webkit-scrollbar-track,
+  .demo-code::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  .tc { color: #6a737d; }
+  .tk { color: #c678dd; }
+  .tf { color: #61afef; }
+  .ts { color: #98c379; }
+  .tv { color: #e06c75; }
+  .tp { color: #abb2bf; }
+  .tn { color: #d19a66; }
+  .tt { color: #e5c07b; }
+
+  .demo-store {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 24px;
+    border-top: 1px dashed var(--line);
+    font-family: 'Berkeley Mono', monospace;
+    font-size: 12px;
+  }
+
+  .demo-store-label {
+    color: var(--hana);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-size: 10.5px;
+  }
+
+  .demo-store-value {
+    color: var(--text-secondary);
+  }
+
+  .demo-app {
+    padding: 20px;
+  }
+
+  .demo-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border: 1px solid var(--line);
+    font-size: 14px;
+  }
+
+  .demo-brand {
+    color: var(--text-secondary);
+    font-weight: 600;
+  }
+
+  .demo-badge {
+    padding: 2px 10px;
+    border: 1px solid rgba(139, 156, 224, 0.35);
+    background: rgba(139, 156, 224, 0.12);
+    color: var(--hana);
+    font-family: 'Berkeley Mono', monospace;
+    font-size: 12px;
+  }
+
+  .demo-card {
+    margin-top: 14px;
+    border: 1px solid var(--line);
+    padding: 20px;
+  }
+
+  .demo-card-title {
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .demo-card-copy {
+    margin-top: 6px;
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+
+  .demo-like {
+    margin-top: 16px;
+    padding: 9px 18px;
+    border: 1px solid transparent;
+    background: var(--hana);
+    color: #0c0c0d;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 150ms ease, transform 120ms ease;
+  }
+
+  .demo-like:hover {
+    background: #a3b1e8;
+  }
+
+  .demo-like:active {
+    transform: scale(0.94);
+  }
+
+  .demo-caption {
+    margin-top: 14px;
+    padding-inline: 4px;
+    font-size: 14px;
+  }
+
+  .demo-caption code {
+    font-family: 'Berkeley Mono', monospace;
+    font-size: 12.5px;
+    color: var(--hana);
+  }
+
+  .route-demo {
+    grid-template-columns: 280px 1fr;
+    margin-top: 70px;
+  }
+
+  .route-files {
+    display: flex;
+    flex-direction: column;
+    padding: 14px;
+    gap: 4px;
+  }
+
+  .route-files-label {
+    margin: 4px 6px 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-size: 10.5px;
+    color: var(--hana);
+  }
+
+  .route-file {
+    all: unset;
+    box-sizing: border-box;
+    padding: 10px 14px;
+    font-family: 'Berkeley Mono', monospace;
+    font-size: 13px;
+    color: var(--text-primary);
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 150ms ease;
+  }
+
+  .route-file:hover {
+    background: #ffffff08;
+    color: var(--text-secondary);
+  }
+
+  .route-file.active {
+    border-color: rgba(139, 156, 224, 0.35);
+    background: rgba(139, 156, 224, 0.1);
+    color: var(--hana);
+  }
+
+  .route-stage {
+    position: relative;
+    min-height: 210px;
+  }
+
+  .route-page {
+    position: absolute;
+    inset: 26px 28px;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 250ms ease, transform 250ms ease;
+    pointer-events: none;
+  }
+
+  .route-page.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .route-page-title {
+    color: var(--text-secondary);
+    font-weight: 700;
+    font-size: 22px;
+  }
+
+  .route-page-copy {
+    margin-top: 10px;
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 48ch;
+  }
+
+  .route-page-copy code,
+  .route-param {
+    font-family: 'Berkeley Mono', monospace;
+    font-size: 13px;
+    color: var(--hana);
+  }
+
+  .route-param {
+    color: var(--petal);
+  }
+
+  .link-card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    padding: 0;
+    margin-top: 70px;
+    margin-bottom: 0;
+  }
+
   .sponsors-grid {
-    display: grid;
     grid-template-columns: repeat(4, 1fr);
-    place-items: center;
-    width: 100%;
-    gap: 80px 0px;
+    margin-top: 70px;
   }
+
+  .sponsor-tile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 130px;
+    padding: 28px;
+  }
+
+  .sponsor-cta {
+    font-family: 'Berkeley Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    color: var(--text-primary);
+    transition: color 250ms ease-in-out;
+  }
+
+  .sponsor-cta:hover {
+    color: var(--hana);
+  }
+
   .bw-image {
     filter: saturate(0%) brightness(70%);
     transition: all 250ms ease-in-out;
     cursor: pointer;
   }
+
   .bw-image:hover {
     filter: saturate(100%) brightness(100%);
   }
+
   .feedback-grid {
-    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-    margin-top: 60px;
-    gap: 20px 0px;
+    margin-top: 70px;
+    margin-bottom: 0;
   }
+
+  .community-section {
+    padding-bottom: 160px;
+  }
+
+  .community-band {
+    position: relative;
+    border: 1px solid var(--line);
+    padding: 70px 60px;
+  }
+
   .community-grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    place-items: center;
-    gap: 120px;
+    align-items: center;
+    gap: 80px;
+  }
+
+  .community-title {
+    font-size: clamp(34px, 4vw, 56px);
+    letter-spacing: -0.02em;
+  }
+
+  .community-grid a {
+    justify-self: center;
+  }
+
+  .community-grid img {
+    width: 100%;
+    max-width: 190px;
   }
 
   @media (max-width: 720px) {
     main {
-      padding-inline: 16px;
+      padding-inline: 0;
+    }
+    .rails {
+      border-inline: none;
     }
     section {
-      margin-bottom: 130px;
+      padding: 80px 16px;
     }
-    section:first-of-type {
+    section.hero {
       padding-top: 160px;
-    }
-    section:last-of-type {
-      padding-bottom: 90px;
     }
     .link-card-grid {
       grid-template-columns: 1fr;
-      grid-template-rows: repeat(4, auto);
-      gap: 10px;
     }
-    .sponsors-list {
-      flex-direction: column;
-      margin-top: 75px;
-      text-align: center;
+    .sponsors-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .demo-frame {
+      margin-top: 60px;
+      padding: 8px;
+    }
+    .demo-grid {
+      grid-template-columns: 1fr;
+    }
+    .route-demo {
+      grid-template-columns: 1fr;
+    }
+    .route-stage {
+      min-height: 240px;
+    }
+    .community-band {
+      padding: 50px 24px;
     }
     .community-grid {
-      display: grid;
-      grid-template-columns: auto;
-      grid-template-rows: repeat(2, auto);
-      place-items: center;
-      gap: 120px;
-      text-align: center;
+      grid-template-columns: 1fr;
+      gap: 50px;
+      justify-items: start;
     }
   }
 </style>
+
+<script>
+  // hero demo: two "components" bound to the same store
+  const likeButton = document.getElementById('like-button');
+  const counters = ['btn-likes', 'nav-likes', 'store-likes'].map((id) =>
+    document.getElementById(id)
+  );
+  let likes = 0;
+
+  likeButton?.addEventListener('click', () => {
+    likes += 1;
+    counters.forEach((el) => {
+      if (el) el.textContent = String(likes);
+    });
+  });
+
+  // routing demo: click a file, land on its route
+  const routeUrl = document.getElementById('route-url');
+  const routeFiles = document.querySelectorAll<HTMLButtonElement>('.route-file');
+  const routePages = document.querySelectorAll<HTMLElement>('.route-page');
+
+  routeFiles.forEach((file) => {
+    file.addEventListener('click', () => {
+      routeFiles.forEach((f) => f.classList.toggle('active', f === file));
+      routePages.forEach((p) =>
+        p.classList.toggle('active', p.dataset.page === file.dataset.content)
+      );
+      if (routeUrl) {
+        routeUrl.textContent = `app.hanajs.dev${file.dataset.route ?? '/'}`;
+      }
+    });
+  });
+</script>

@@ -152,3 +152,81 @@ ul {
     padding: 0 10px;
   }
 }
+
+/* ------------------------------------------------------------------ */
+/* Leaf family design system, Hana edition: hairline grids, mono      */
+/* eyebrows, squared corners — with a petal-soft purple palette.      */
+/* ------------------------------------------------------------------ */
+
+:root {
+  --line: rgba(199, 205, 225, 0.1);
+  --hana: #8b9ce0;
+  --petal: #c391d9;
+  --tile-bg: #0e0e10;
+}
+
+pre {
+  border-radius: 0;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 18px;
+  font-family: 'Berkeley Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--hana);
+}
+
+.eyebrow::before {
+  content: '//';
+  color: #4a4a52;
+  letter-spacing: 0;
+}
+
+.eyebrow .kanji {
+  color: var(--petal);
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.tilebed {
+  display: grid;
+  gap: 1px;
+  border: 1px solid var(--line);
+  background: var(--line);
+}
+
+.tile {
+  background: var(--tile-bg);
+}
+
+.stripes {
+  background-image: repeating-linear-gradient(
+    315deg,
+    rgba(199, 205, 225, 0.05) 0,
+    rgba(199, 205, 225, 0.05) 1px,
+    transparent 0,
+    transparent 50%
+  );
+  background-size: 9px 9px;
+}
+
+.marker {
+  position: absolute;
+  z-index: 2;
+  width: 5px;
+  height: 5px;
+  background: var(--hana);
+  pointer-events: none;
+}
+
+.marker.tl { top: -3px; left: -3px; }
+.marker.tr { top: -3px; right: -3px; }
+.marker.bl { bottom: -3px; left: -3px; }
+.marker.br { bottom: -3px; right: -3px; }
